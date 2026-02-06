@@ -1,5 +1,12 @@
-import { Loading } from "@/components";
+"use client";
+
+import { Loading, MainContent } from "@/components";
 
 export default function Home() {
-  return <Loading />;
+  return (
+    <>
+      <Loading duration={3000} />
+      <MainContent />
+    </>
+  );
 }
