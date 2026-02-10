@@ -29,6 +29,9 @@ const valky = localFont({
 export const metadata: Metadata = {
   title: "ONA",
   description: "ONA Rest",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
