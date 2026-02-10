@@ -171,6 +171,7 @@
 
 .navItem {
   position: relative;
+  font-family: var(--font-valky), sans-serif;
   font-size: 2.2rem;
   font-weight: 400;
   color: #333;
@@ -182,13 +183,36 @@
 
 /* Inner wrapper clips the letter animation without hiding the ::after border */
 .navItemInner {
+  position: relative;
+  z-index: 1;
   display: block;
   overflow: hidden;
-  padding-bottom: 2px;
+  padding-top: 0.1em;
+}
+
+/* ── Hover fill background — sweeps left to right ── */
+
+.navItem::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s ease;
+  z-index: 0;
+}
+
+.navItem:hover::before {
+  transform: scaleX(1);
 }
 
 .navItem:hover .letter {
-  opacity: 0.5;
+  color: #e8e2bf;
+  transition: color 0.3s ease 0.1s;
 }
 
 .navItemActive {

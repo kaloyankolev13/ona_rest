@@ -20,6 +20,12 @@ const kaloyak = localFont({
   display: "swap",
 });
 
+const valky = localFont({
+  src: "../../public/font/Valky-Regular.ttf",
+  variable: "--font-valky",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "ONA",
   description: "ONA Rest",
@@ -33,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${kaloyak.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${kaloyak.variable} ${valky.variable} antialiased`}
       >
         {children}
         <SideBar />
