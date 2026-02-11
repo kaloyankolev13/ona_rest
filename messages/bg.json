@@ -1,0 +1,30 @@
+{
+  "Metadata": {
+    "title": "ONA",
+    "description": "ONA Ресторант"
+  },
+  "Nav": {
+    "home": "НАЧАЛО",
+    "voucher": "ВАУЧЕР",
+    "aboutUs": "ЗА НАС",
+    "contact": "КОНТАКТИ",
+    "news": "НОВИНИ",
+    "bookTable": "РЕЗЕРВИРАЙ МАСА"
+  },
+  "Footer": {
+    "workingHours": "РАБОТНО ВРЕМЕ",
+    "scheduleTueFri": "Вт-Пт 11:00 - 22:00",
+    "scheduleSatSun": "Сб-Нд 12:00 - 22:00",
+    "scheduleMon": "Пн (Затворено)",
+    "address": "АДРЕС",
+    "addressValue": "Скатевци, ул. 31 №3"
+  },
+  "Pages": {
+    "home": "Начало",
+    "voucher": "Ваучер",
+    "aboutUs": "За нас",
+    "contact": "Контакти",
+    "news": "Новини",
+    "bookTable": "Резервирай маса"
+  }
+}

@@ -1,22 +1,25 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import styles from "./SideBar.module.css";
 
 const navItems = [
-  { label: "HOME", href: "/" },
-  { label: "VOUCHER", href: "/voucher" },
-  { label: "ABOUT US", href: "/about" },
-  { label: "CONTACT", href: "/contact" },
-  { label: "NEWS", href: "/news" },
+  { key: "home" as const, href: "/" as const },
+  { key: "voucher" as const, href: "/voucher" as const },
+  { key: "aboutUs" as const, href: "/about" as const },
+  { key: "contact" as const, href: "/contact" as const },
+  { key: "news" as const, href: "/news" as const },
 ];
 
 export function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLanguage, setActiveLanguage] = useState<"BG" | "EN">("EN");
+  const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
+  const t = useTranslations("Nav");
+  const tFooter = useTranslations("Footer");
 
   // Lock body scroll when overlay is open
   useEffect(() => {
@@ -37,6 +40,10 @@ export function SideBar() {
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const switchLocale = (newLocale: "bg" | "en") => {
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (
@@ -105,15 +112,15 @@ export function SideBar() {
             {/* Language switcher */}
             <div className={styles.languageSwitcher}>
               <button
-                className={`${styles.langBtn} ${activeLanguage === "BG" ? styles.langActive : ""}`}
-                onClick={() => setActiveLanguage("BG")}
+                className={`${styles.langBtn} ${locale === "bg" ? styles.langActive : ""}`}
+                onClick={() => switchLocale("bg")}
               >
                 BG
               </button>
               <span className={styles.langDivider}>|</span>
               <button
-                className={`${styles.langBtn} ${activeLanguage === "EN" ? styles.langActive : ""}`}
-                onClick={() => setActiveLanguage("EN")}
+                className={`${styles.langBtn} ${locale === "en" ? styles.langActive : ""}`}
+                onClick={() => switchLocale("en")}
               >
                 EN
               </button>
@@ -125,27 +132,32 @@ export function SideBar() {
 
           {/* ── Navigation links ── */}
           <nav className={styles.nav}>
-            {navItems.map((item, itemIndex) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`${styles.navItem} ${pathname === item.href ? styles.navItemActive : ""} ${isOpen ? styles.navItemAnimating : ""}`}
-                onClick={() => setIsOpen(false)}
-                style={{ "--item-index": itemIndex } as React.CSSProperties}
-              >
-                <span className={styles.navItemInner}>
-                  {item.label.split("").map((char, charIndex) => (
-                    <span
-                      key={charIndex}
-                      className={styles.letter}
-                      style={{ "--letter-index": charIndex } as React.CSSProperties}
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </span>
-                  ))}
-                </span>
-              </Link>
-            ))}
+            {navItems.map((item, itemIndex) => {
+              const label = t(item.key);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`${styles.navItem} ${pathname === item.href ? styles.navItemActive : ""} ${isOpen ? styles.navItemAnimating : ""}`}
+                  onClick={() => setIsOpen(false)}
+                  style={{ "--item-index": itemIndex } as React.CSSProperties}
+                >
+                  <span className={styles.navItemInner}>
+                    {label.split("").map((char, charIndex) => (
+                      <span
+                        key={charIndex}
+                        className={styles.letter}
+                        style={
+                          { "--letter-index": charIndex } as React.CSSProperties
+                        }
+                      >
+                        {char === " " ? "\u00A0" : char}
+                      </span>
+                    ))}
+                  </span>
+                </Link>
+              );
+            })}
           </nav>
 
           {/* ── Book a table ── */}
@@ -155,21 +167,25 @@ export function SideBar() {
               className={styles.bookButton}
               onClick={() => setIsOpen(false)}
             >
-              BOOK A TABLE
+              {t("bookTable")}
             </Link>
           </div>
 
           {/* ── Footer info ── */}
           <footer className={styles.overlayFooter}>
             <div className={styles.footerBlock}>
-              <h4 className={styles.footerTitle}>WORKING HOURS</h4>
-              <p className={styles.footerText}>Tue-Fri 11 AM - 10 PM</p>
-              <p className={styles.footerText}>Sat-Sun 12 AM - 10 PM</p>
-              <p className={styles.footerText}>Mon (Closed)</p>
+              <h4 className={styles.footerTitle}>{tFooter("workingHours")}</h4>
+              <p className={styles.footerText}>
+                {tFooter("scheduleTueFri")}
+              </p>
+              <p className={styles.footerText}>
+                {tFooter("scheduleSatSun")}
+              </p>
+              <p className={styles.footerText}>{tFooter("scheduleMon")}</p>
             </div>
             <div className={styles.footerBlock}>
-              <h4 className={styles.footerTitle}>ADDRESS</h4>
-              <p className={styles.footerText}>Skatevtsi, 31 Street №3</p>
+              <h4 className={styles.footerTitle}>{tFooter("address")}</h4>
+              <p className={styles.footerText}>{tFooter("addressValue")}</p>
             </div>
           </footer>
         </div>

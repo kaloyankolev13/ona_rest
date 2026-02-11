@@ -1,0 +1,30 @@
+{
+  "Metadata": {
+    "title": "ONA",
+    "description": "ONA Restaurant"
+  },
+  "Nav": {
+    "home": "HOME",
+    "voucher": "VOUCHER",
+    "aboutUs": "ABOUT US",
+    "contact": "CONTACT",
+    "news": "NEWS",
+    "bookTable": "BOOK A TABLE"
+  },
+  "Footer": {
+    "workingHours": "WORKING HOURS",
+    "scheduleTueFri": "Tue-Fri 11 AM - 10 PM",
+    "scheduleSatSun": "Sat-Sun 12 AM - 10 PM",
+    "scheduleMon": "Mon (Closed)",
+    "address": "ADDRESS",
+    "addressValue": "Skatevtsi, 31 Street №3"
+  },
+  "Pages": {
+    "home": "Home",
+    "voucher": "Voucher",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "news": "News",
+    "bookTable": "Book a Table"
+  }
+}

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
-import { SideBar } from "@/components";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,24 +28,25 @@ const valky = localFont({
 
 export const metadata: Metadata = {
   title: "ONA",
-  description: "ONA Rest",
+  description: "ONA Restaurant",
   icons: {
     icon: "/logo.svg",
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${kaloyak.variable} ${valky.variable} antialiased`}
       >
         {children}
-        <SideBar />
       </body>
     </html>
   );
