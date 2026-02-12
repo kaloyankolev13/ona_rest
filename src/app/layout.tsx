@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { getLocale } from "next-intl/server";
@@ -47,6 +48,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${kaloyak.variable} ${valky.variable} antialiased`}
       >
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
