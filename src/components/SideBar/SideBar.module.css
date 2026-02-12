@@ -170,6 +170,7 @@
 }
 
 .navItem {
+  display: block;
   position: relative;
   font-family: var(--font-valky), sans-serif;
   font-size: 2.2rem;
@@ -184,10 +185,11 @@
 /* Inner wrapper clips the letter animation without hiding the ::after border */
 .navItemInner {
   position: relative;
-  z-index: 1;
   display: block;
   overflow: hidden;
-  padding-top: 0.1em;
+  line-height: 1.1;
+  padding: 0.15em 0 0;
+  margin-bottom: -0.15em;
 }
 
 /* ── Hover fill background — sweeps left to right ── */
@@ -199,15 +201,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #333;
+  background-color: var(--primary-green);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.45s ease;
-  z-index: 0;
 }
 
 .navItem:hover::before {
   transform: scaleX(1);
+}
+
+.letter {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
 }
 
 .navItem:hover .letter {
@@ -250,12 +259,6 @@
 }
 
 /* ── Letter-by-letter reveal — slides up from below the border ── */
-
-.letter {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(100%);
-}
 
 .navItemAnimating .letter {
   animation: letterSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;

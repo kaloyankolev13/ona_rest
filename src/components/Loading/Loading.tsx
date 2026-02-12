@@ -4,15 +4,14 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./Loading.module.css";
 import bgGeometry from "@/assets/bg_geometry.svg";
+import logoOna from "@/assets/logo-ona.svg";
 
 interface LoadingProps {
-  text?: string;
   duration?: number;
   onLoadingComplete?: () => void;
 }
 
 export function Loading({
-  text = "ONA",
   duration = 3000,
   onLoadingComplete,
 }: LoadingProps) {
@@ -54,7 +53,14 @@ export function Loading({
           height={400}
           priority
         />
-        <span className={styles.text}>{text}</span>
+        <Image
+          src={logoOna}
+          alt="ONA"
+          className={styles.logo}
+          width={316}
+          height={316}
+          priority
+        />
       </div>
     </div>
   );
