@@ -27,6 +27,7 @@ export function CoursesSection() {
   const numberRef = useRef<HTMLSpanElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
   const descRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const [current, setCurrent] = useState(0);
@@ -132,11 +133,25 @@ export function CoursesSection() {
           delay: 0.2,
         });
       }
+      if (galleryRef.current) {
+        gsap.set(galleryRef.current, { xPercent: 80, opacity: 0 });
+        gsap.to(galleryRef.current, {
+          xPercent: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
       if (descRef.current) {
         animateRevealOnScroll(descRef.current, {
           y: 40,
           duration: 0.7,
-          delay: 0.4,
+          delay: 0.6,
         });
       }
     }, section);
@@ -158,7 +173,7 @@ export function CoursesSection() {
             </span>
           </div>
 
-          <div className={styles.gallery} onClick={advance}>
+          <div ref={galleryRef} className={styles.gallery} onClick={advance}>
           {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
             <div
               key={i}
