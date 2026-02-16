@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import gsap from "gsap";
 import styles from "./SideBar.module.css";
 
 const navItems = [
@@ -21,6 +22,19 @@ export function SideBar() {
   const t = useTranslations("Nav");
   const tFooter = useTranslations("Footer");
 
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const bookRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
+
+  // Close menu when pathname changes (render-time state adjustment)
+  const [lastPathname, setLastPathname] = useState(pathname);
+  if (pathname !== lastPathname) {
+    setLastPathname(pathname);
+    setIsOpen(false);
+  }
+
   // Lock body scroll when overlay is open
   useEffect(() => {
     if (isOpen) {
@@ -33,10 +47,120 @@ export function SideBar() {
     };
   }, [isOpen]);
 
-  // Close menu on route change
+  // GSAP open / close animation
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+    const overlay = overlayRef.current;
+    const nav = navRef.current;
+    if (!overlay || !nav) return;
+
+    tlRef.current?.kill();
+    gsap.killTweensOf(overlay);
+
+    if (isOpen) {
+      const borders = nav.querySelectorAll<HTMLElement>(
+        `.${styles.borderLine}`
+      );
+      const navItemEls = nav.querySelectorAll<HTMLElement>(
+        `.${styles.navItem}`
+      );
+      const allLetters = nav.querySelectorAll<HTMLElement>(
+        `.${styles.letter}`
+      );
+
+      // Reset initial states
+      gsap.set(borders, { scaleX: 0 });
+      gsap.set(allLetters, { opacity: 0, y: "100%" });
+      if (bookRef.current) gsap.set(bookRef.current, { opacity: 0, y: 20 });
+      if (footerRef.current)
+        gsap.set(footerRef.current, { opacity: 0, y: 20 });
+
+      // Slide overlay in
+      gsap.fromTo(
+        overlay,
+        { x: "100%", opacity: 0, visibility: "visible" },
+        { x: "0%", opacity: 1, duration: 0.5, ease: "power2.inOut" }
+      );
+
+      // Content entrance timeline (starts slightly after overlay begins)
+      const tl = gsap.timeline({ delay: 0.15 });
+
+      // Borders expand left-to-right, staggered per item
+      tl.to(
+        borders,
+        {
+          scaleX: 1,
+          duration: 0.5,
+          ease: "power2.out",
+          stagger: 0.12,
+        },
+        0
+      );
+
+      // Letters slide up, staggered per item then per letter
+      navItemEls.forEach((navItem, i) => {
+        const letters = navItem.querySelectorAll<HTMLElement>(
+          `.${styles.letter}`
+        );
+        tl.to(
+          letters,
+          {
+            opacity: 1,
+            y: "0%",
+            duration: 0.4,
+            ease: "power2.out",
+            stagger: 0.035,
+          },
+          i * 0.12 + 0.05
+        );
+      });
+
+      // Book button fade in
+      if (bookRef.current) {
+        tl.to(
+          bookRef.current,
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+          "-=0.3"
+        );
+      }
+
+      // Footer fade in
+      if (footerRef.current) {
+        tl.to(
+          footerRef.current,
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+          "-=0.3"
+        );
+      }
+
+      tlRef.current = tl;
+    } else {
+      // Slide overlay out
+      gsap.to(overlay, {
+        x: "100%",
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.inOut",
+        onComplete: () => {
+          gsap.set(overlay, { visibility: "hidden" });
+        },
+      });
+
+      tlRef.current = null;
+    }
+
+    return () => {
+      tlRef.current?.kill();
+    };
+  }, [isOpen]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    const overlay = overlayRef.current;
+    return () => {
+      tlRef.current?.kill();
+      if (overlay) gsap.killTweensOf(overlay);
+    };
+  }, []);
 
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
@@ -51,20 +175,24 @@ export function SideBar() {
       {/* Hamburger / X toggle — always visible, sits above the overlay */}
       <div className={styles.triggerWrapper}>
         <button
-          className={`${styles.hamburger} ${isOpen ? styles.hamburgerOpen : ""}`}
+          className={`${styles.menuTrigger} ${isOpen ? styles.menuTriggerOpen : ""}`}
           onClick={handleToggle}
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
         >
-          <span className={styles.line} />
-          <span className={styles.line} />
-          <span className={styles.line} />
+          <span className={styles.menuLabel}>menu</span>
+          <span className={styles.hamburgerIcon}>
+            <span className={styles.line} />
+            <span className={styles.line} />
+            <span className={styles.line} />
+          </span>
         </button>
       </div>
 
       {/* Full-screen navigation overlay */}
       <div
-        className={`${styles.overlay} ${isOpen ? styles.overlayOpen : ""}`}
+        ref={overlayRef}
+        className={styles.overlay}
         aria-hidden={!isOpen}
       >
         <div className={styles.overlayInner}>
@@ -131,37 +259,31 @@ export function SideBar() {
           </header>
 
           {/* ── Navigation links ── */}
-          <nav className={styles.nav}>
-            {navItems.map((item, itemIndex) => {
+          <nav ref={navRef} className={styles.nav}>
+            {navItems.map((item) => {
               const label = t(item.key);
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`${styles.navItem} ${pathname === item.href ? styles.navItemActive : ""} ${isOpen ? styles.navItemAnimating : ""}`}
+                  className={`${styles.navItem} ${pathname === item.href ? styles.navItemActive : ""}`}
                   onClick={() => setIsOpen(false)}
-                  style={{ "--item-index": itemIndex } as React.CSSProperties}
                 >
                   <span className={styles.navItemInner}>
                     {label.split("").map((char, charIndex) => (
-                      <span
-                        key={charIndex}
-                        className={styles.letter}
-                        style={
-                          { "--letter-index": charIndex } as React.CSSProperties
-                        }
-                      >
+                      <span key={charIndex} className={styles.letter}>
                         {char === " " ? "\u00A0" : char}
                       </span>
                     ))}
                   </span>
+                  <span className={styles.borderLine} />
                 </Link>
               );
             })}
           </nav>
 
           {/* ── Book a table ── */}
-          <div className={styles.bookWrapper}>
+          <div ref={bookRef} className={styles.bookWrapper}>
             <Link
               href="/book"
               className={styles.bookButton}
@@ -172,7 +294,7 @@ export function SideBar() {
           </div>
 
           {/* ── Footer info ── */}
-          <footer className={styles.overlayFooter}>
+          <footer ref={footerRef} className={styles.overlayFooter}>
             <div className={styles.footerBlock}>
               <h4 className={styles.footerTitle}>{tFooter("workingHours")}</h4>
               <p className={styles.footerText}>

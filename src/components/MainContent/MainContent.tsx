@@ -17,10 +17,7 @@ export function MainContent({
   return (
     <main className={styles.container}>
       <div className={styles.content}>
-        <div className={styles.left}>
-          <h1 className={styles.title}>{title}</h1>
-        </div>
-        <div className={styles.right}>
+        <div className={styles.imageSection}>
           <div className={styles.imageWrapper}>
             {imageSrc ? (
               <Image
@@ -34,6 +31,9 @@ export function MainContent({
               <div className={styles.imagePlaceholder} />
             )}
           </div>
+        </div>
+        <div className={styles.textSection}>
+          <h1 className={styles.title}>{title}</h1>
         </div>
       </div>
     </main>
