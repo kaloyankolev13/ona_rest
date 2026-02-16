@@ -25,11 +25,12 @@
   cursor: pointer;
   padding: 0;
   pointer-events: auto;
-  font-family: inherit;
+  font-family: var(--font-valky), sans-serif;
   color: #333333;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: 1.2rem;
   letter-spacing: 0.08em;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 
 .menuTrigger:focus {

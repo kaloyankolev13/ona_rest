@@ -180,7 +180,7 @@ export function SideBar() {
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
         >
-          <span className={styles.menuLabel}>menu</span>
+          <span className={styles.menuLabel}>MENU</span>
           <span className={styles.hamburgerIcon}>
             <span className={styles.line} />
             <span className={styles.line} />
