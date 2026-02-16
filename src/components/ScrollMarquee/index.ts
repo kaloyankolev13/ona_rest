@@ -1,0 +1,1 @@
+export { ScrollMarquee } from "./ScrollMarquee";
