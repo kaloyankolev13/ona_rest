@@ -1,0 +1,6 @@
+/* Shared letter element — initial state hidden below */
+.letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+}

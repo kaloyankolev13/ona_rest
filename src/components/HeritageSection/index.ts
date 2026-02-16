@@ -1,0 +1,1 @@
+export { HeritageSection } from "./HeritageSection";

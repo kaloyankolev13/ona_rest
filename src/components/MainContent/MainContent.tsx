@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import mainContentImg from "@/assets/main_content_img.jpeg";
 import styles from "./MainContent.module.css";
 
 interface MainContentProps {
@@ -21,17 +22,13 @@ export function MainContent({
       <div className={styles.content}>
         <div className={styles.imageSection}>
           <div className={styles.imageWrapper}>
-            {imageSrc ? (
-              <Image
-                src={imageSrc}
-                alt={imageAlt}
-                fill
-                className={styles.image}
-                priority
-              />
-            ) : (
-              <div className={styles.imagePlaceholder} />
-            )}
+            <Image
+              src={imageSrc || mainContentImg}
+              alt={imageAlt}
+              fill
+              className={styles.image}
+              priority
+            />
           </div>
         </div>
         <div className={styles.textSection}>
