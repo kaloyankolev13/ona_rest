@@ -5,6 +5,7 @@ import {
   MainContent,
   ScrollMarquee,
   HeritageSection,
+  CoursesSection,
 } from "@/components";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <MainContent />
       <ScrollMarquee />
       <HeritageSection />
+      <CoursesSection />
     </>
   );
 }
