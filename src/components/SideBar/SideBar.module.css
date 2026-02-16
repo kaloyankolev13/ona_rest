@@ -132,6 +132,11 @@
   align-items: center;
 }
 
+.logo svg {
+  width: 28px;
+  height: auto;
+}
+
 /* Spacer keeps the header balanced (hamburger/X floats on top at this position) */
 .headerSpacer {
   width: 32px;
@@ -373,7 +378,7 @@
 
   .logo svg {
     width: 36px;
-    height: 40px;
+    height: auto;
   }
 
   .languageSwitcher {
