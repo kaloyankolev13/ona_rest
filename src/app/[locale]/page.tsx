@@ -16,6 +16,7 @@ export default function Home() {
       <ScrollMarquee />
       <HeritageSection />
       <CoursesSection />
+      <ScrollMarquee />
     </>
   );
 }
