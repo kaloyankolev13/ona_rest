@@ -1,0 +1,195 @@
+.section {
+  background-color: #e8e2bf;
+  width: 100%;
+  padding: 4rem 0;
+}
+
+.canvas {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 90vh;
+}
+
+/* ── Center block (title + button) ── */
+.centerBlock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+.title {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(5rem, 14vw, 12rem);
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--primary-green);
+  line-height: 1;
+  margin: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.newsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 2rem;
+  border: 1px solid var(--primary-green);
+  border-radius: 2rem;
+  background: transparent;
+  color: var(--primary-green);
+  font-family: var(--font-valky), serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+  pointer-events: auto;
+}
+
+.newsBtn:hover {
+  background: var(--primary-green);
+  color: #e8e2bf;
+}
+
+.arrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s;
+}
+
+.newsBtn:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* ── Image slots ── */
+.imgSlot {
+  position: absolute;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+.imgPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(7, 43, 22, 0.08) 0%,
+    rgba(7, 43, 22, 0.03) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgLabel {
+  font-family: var(--font-valky), serif;
+  font-size: 1.5rem;
+  color: rgba(51, 51, 51, 0.15);
+}
+
+/* ── Image positions (scattered, overlapping) ── */
+
+/* Top-left: small, slightly rotated */
+.imgA {
+  top: 5%;
+  left: 12%;
+  width: 22%;
+  aspect-ratio: 1 / 1;
+  transform: rotate(-3deg);
+  z-index: 3;
+}
+
+/* Top-right: large */
+.imgB {
+  top: 2%;
+  right: 8%;
+  width: 38%;
+  aspect-ratio: 4 / 3;
+  transform: rotate(1deg);
+  z-index: 2;
+}
+
+/* Center-left, overlapping imgA: medium, tilted */
+.imgC {
+  top: 42%;
+  left: -2%;
+  width: 32%;
+  aspect-ratio: 3 / 4;
+  transform: rotate(2deg);
+  z-index: 4;
+}
+
+/* Behind imgC: small, peeking */
+.imgD {
+  top: 55%;
+  left: 18%;
+  width: 20%;
+  aspect-ratio: 4 / 3;
+  transform: rotate(-5deg);
+  z-index: 3;
+}
+
+/* Bottom-right: large */
+.imgE {
+  bottom: 5%;
+  right: 10%;
+  width: 35%;
+  aspect-ratio: 1 / 1;
+  transform: rotate(-2deg);
+  z-index: 3;
+}
+
+/* Bottom-center: small, overlapping imgE */
+.imgF {
+  bottom: 2%;
+  right: 32%;
+  width: 22%;
+  aspect-ratio: 3 / 4;
+  transform: rotate(4deg);
+  z-index: 4;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .canvas {
+    min-height: 70vh;
+  }
+
+  .imgA {
+    width: 30%;
+  }
+
+  .imgB {
+    width: 45%;
+  }
+
+  .imgC {
+    width: 40%;
+  }
+
+  .imgD {
+    width: 28%;
+  }
+
+  .imgE {
+    width: 42%;
+  }
+
+  .imgF {
+    width: 30%;
+  }
+}
+
+@media (max-width: 500px) {
+  .canvas {
+    min-height: 60vh;
+  }
+}

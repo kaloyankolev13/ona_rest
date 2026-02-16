@@ -6,6 +6,7 @@ import {
   ScrollMarquee,
   HeritageSection,
   CoursesSection,
+  NewsSection,
 } from "@/components";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <HeritageSection />
       <CoursesSection />
       <ScrollMarquee />
+      <NewsSection />
     </>
   );
 }

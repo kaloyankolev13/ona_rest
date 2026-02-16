@@ -166,7 +166,7 @@ export function CoursesSection() {
         <div className={styles.topRow}>
           <div className={styles.titleBlock}>
             <span ref={numberRef} className={styles.bigNumber}>
-              {splitToLetters("23", animStyles.letter)}
+              {splitToLetters("12", animStyles.letter)}
             </span>
             <span ref={labelRef} className={styles.label}>
               {splitToLetters("COURSES", animStyles.letter)}
