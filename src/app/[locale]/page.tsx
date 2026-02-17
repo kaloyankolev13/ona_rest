@@ -7,11 +7,12 @@ import {
   HeritageSection,
   CoursesSection,
   NewsSection,
+  SmoothScroll,
 } from "@/components";
 
 export default function Home() {
   return (
-    <>
+    <SmoothScroll>
       <Loading duration={1000} />
       <MainContent />
       <ScrollMarquee />
@@ -19,6 +20,6 @@ export default function Home() {
       <CoursesSection />
       <ScrollMarquee />
       <NewsSection />
-    </>
+    </SmoothScroll>
   );
 }
