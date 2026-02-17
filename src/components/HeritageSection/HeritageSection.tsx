@@ -2,12 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   animateLettersOnScroll,
   animateRevealOnScroll,
 } from "@/animations/scrollAnimations";
 import animStyles from "@/animations/animations.module.css";
 import styles from "./HeritageSection.module.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HEADING = "Where cultural heritage meets culinary excellence";
 const DESCRIPTION =
@@ -59,6 +62,25 @@ export function HeritageSection() {
           delay: 0.1,
         });
       }
+
+      // Parallax: images drift at different speeds on scroll (uses yPercent to avoid conflict with reveal's y)
+      const parallaxSpeeds = [-20, 25, -15];
+      images.forEach((img, i) => {
+        gsap.fromTo(
+          img,
+          { yPercent: 0 },
+          {
+            yPercent: parallaxSpeeds[i % parallaxSpeeds.length],
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+      });
     }, section);
 
     return () => ctx.revert();

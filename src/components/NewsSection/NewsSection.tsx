@@ -56,6 +56,25 @@ export function NewsSection() {
           stagger: 0.15,
         });
       }
+
+      // Parallax: each image drifts at a different speed on scroll (uses yPercent to avoid conflict with reveal's y)
+      const parallaxSpeeds = [-25, 18, -30, 15, -22, 28];
+      images.forEach((img, i) => {
+        gsap.fromTo(
+          img,
+          { yPercent: 0 },
+          {
+            yPercent: parallaxSpeeds[i % parallaxSpeeds.length],
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+      });
     }, section);
 
     return () => ctx.revert();
