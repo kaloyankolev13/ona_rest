@@ -220,7 +220,7 @@
   background-color: var(--primary-green);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.45s ease;
+  transition: transform 0.7s ease-out;
 }
 
 .navItem:hover::before {
