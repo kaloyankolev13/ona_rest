@@ -43,7 +43,7 @@ export function ScrollMarquee() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.to(line1Ref.current, {
-        xPercent: -10,
+        xPercent: -2,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -54,7 +54,7 @@ export function ScrollMarquee() {
       });
 
       gsap.to(line2Ref.current, {
-        xPercent: 10,
+        xPercent: 2,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
