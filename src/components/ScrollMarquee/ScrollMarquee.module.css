@@ -49,3 +49,19 @@
   border: 2px solid var(--primary-green);
   margin: 0 0.4em;
 }
+
+@media (max-width: 900px) {
+  .section {
+    padding: 6rem 0;
+  }
+
+  .text {
+    -webkit-text-stroke: 1px var(--primary-green);
+  }
+}
+
+@media (max-width: 500px) {
+  .section {
+    padding: 4rem 0;
+  }
+}

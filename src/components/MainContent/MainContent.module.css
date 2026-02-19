@@ -79,30 +79,63 @@
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
+  .container {
+    min-height: auto;
+  }
+
   .content {
     flex-direction: column;
+    min-height: auto;
     gap: 0;
   }
 
   .imageSection {
     order: 1;
+    flex: none;
   }
 
   .imageWrapper {
     min-height: 0;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
   }
 
   .textSection {
     order: 2;
+    flex: none;
     justify-content: center;
     text-align: center;
     padding: 3rem 2rem;
   }
+
+  .titleGroup {
+    align-items: center;
+  }
+
+  .title2 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-left: 0;
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 14vw, 6rem);
+  }
 }
 
 @media (max-width: 500px) {
+  .imageWrapper {
+    aspect-ratio: 3 / 4;
+  }
+
   .textSection {
     padding: 2rem 1.5rem;
+  }
+
+  .title2 {
+    font-size: 1.8rem;
+  }
+
+  .title {
+    font-size: 3.2rem;
   }
 }

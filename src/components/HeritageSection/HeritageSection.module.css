@@ -185,9 +185,21 @@
   }
 
   .rightImages {
+    position: static;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    aspect-ratio: auto;
     order: 3;
+  }
+
+  .imgTop,
+  .imgBottom {
+    position: static;
+    width: 100%;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
   }
 
   .ownerBlock {
@@ -204,6 +216,11 @@
   .ownerText {
     text-align: center;
     align-items: center;
+    padding: 0 1rem;
+  }
+
+  .heading {
+    font-size: clamp(1.6rem, 5vw, 2.5rem);
   }
 }
 
@@ -212,12 +229,19 @@
     padding: 3rem 1.5rem;
   }
 
-  .leftImages,
+  .leftImages {
+    grid-template-columns: 1fr;
+  }
+
   .rightImages {
     grid-template-columns: 1fr;
   }
 
   .ownerPhoto {
     width: 80%;
+  }
+
+  .ownerBlock {
+    padding-top: 3rem;
   }
 }

@@ -148,21 +148,69 @@
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .section {
-    padding: 3rem 2rem;
+    padding: 3rem 0 3rem 2rem;
   }
 
-  .layout {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+  .titleBlock {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .topRow {
+    flex-direction: column;
+  }
+
+  .gallery {
+    margin-left: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  .bigNumber {
+    font-size: clamp(4rem, 10vw, 6rem);
+    -webkit-text-stroke: 2px #e8e2bf;
+  }
+
+  .label {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+  }
+
+  .bottom {
+    flex-direction: column;
+    padding-right: 2rem;
+    gap: 1.5rem;
   }
 
   .desc {
     max-width: 100%;
   }
+
+  .layout {
+    gap: 2rem;
+  }
 }
 
 @media (max-width: 500px) {
   .section {
-    padding: 2.5rem 1.5rem;
+    padding: 2.5rem 0 2.5rem 1.5rem;
+  }
+
+  .bigNumber {
+    font-size: 3.5rem;
+    -webkit-text-stroke: 1.5px #e8e2bf;
+  }
+
+  .label {
+    font-size: 1.1rem;
+  }
+
+  .gallery {
+    aspect-ratio: 3 / 2;
+  }
+
+  .slideLabel {
+    font-size: 2rem;
   }
 }
