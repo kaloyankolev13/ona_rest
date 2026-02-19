@@ -12,6 +12,7 @@ import styles from "./TableSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const MOBILE_BREAKPOINT = 900;
 const SLIDE_COUNT = 5;
 
 function splitToLetters(text: string, className: string) {
@@ -33,6 +34,15 @@ export function TableSection() {
 
   const [current, setCurrent] = useState(0);
   const animating = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
+    const handler = () => setIsMobile(mq.matches);
+    handler();
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const positionStack = useCallback(
     (startIndex: number) => {
@@ -40,13 +50,41 @@ export function TableSection() {
         if (!slide) return;
         const offset = (i - startIndex + SLIDE_COUNT) % SLIDE_COUNT;
         if (offset === 0) {
-          gsap.set(slide, { x: 0, y: 0, rotation: 0, zIndex: SLIDE_COUNT, opacity: 1, scale: 1 });
+          gsap.set(slide, {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            zIndex: SLIDE_COUNT,
+            opacity: 1,
+            scale: 1,
+          });
         } else if (offset === 1) {
-          gsap.set(slide, { x: 20, y: 20, rotation: 2, zIndex: SLIDE_COUNT - 1, opacity: 1, scale: 0.97 });
+          gsap.set(slide, {
+            x: 20,
+            y: 20,
+            rotation: 2,
+            zIndex: SLIDE_COUNT - 1,
+            opacity: 1,
+            scale: 0.97,
+          });
         } else if (offset === 2) {
-          gsap.set(slide, { x: 40, y: 40, rotation: 4, zIndex: SLIDE_COUNT - 2, opacity: 0.7, scale: 0.94 });
+          gsap.set(slide, {
+            x: 40,
+            y: 40,
+            rotation: 4,
+            zIndex: SLIDE_COUNT - 2,
+            opacity: 0.7,
+            scale: 0.94,
+          });
         } else {
-          gsap.set(slide, { x: 0, y: 0, rotation: 0, zIndex: 0, opacity: 0, scale: 0.9 });
+          gsap.set(slide, {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            zIndex: 0,
+            opacity: 0,
+            scale: 0.9,
+          });
         }
       });
     },
@@ -65,7 +103,6 @@ export function TableSection() {
 
     const nextIndex = (current + 1) % SLIDE_COUNT;
 
-    // Swipe the top card off to the left
     gsap.to(topSlide, {
       x: -600,
       y: -100,
@@ -74,23 +111,56 @@ export function TableSection() {
       duration: 0.6,
       ease: "power2.inOut",
       onComplete: () => {
-        gsap.set(topSlide, { x: 0, y: 0, rotation: 0, opacity: 0, scale: 0.9, zIndex: 0 });
+        gsap.set(topSlide, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          opacity: 0,
+          scale: 0.9,
+          zIndex: 0,
+        });
         positionStack(nextIndex);
         setCurrent(nextIndex);
         animating.current = false;
       },
     });
 
-    // Simultaneously animate the next cards up
     slidesRef.current.forEach((slide, i) => {
       if (!slide || i === current) return;
       const offset = (i - nextIndex + SLIDE_COUNT) % SLIDE_COUNT;
       if (offset === 0) {
-        gsap.to(slide, { x: 0, y: 0, rotation: 0, zIndex: SLIDE_COUNT, scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" });
+        gsap.to(slide, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          zIndex: SLIDE_COUNT,
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out",
+        });
       } else if (offset === 1) {
-        gsap.to(slide, { x: 20, y: 20, rotation: 2, zIndex: SLIDE_COUNT - 1, scale: 0.97, opacity: 1, duration: 0.5, ease: "power2.out" });
+        gsap.to(slide, {
+          x: 20,
+          y: 20,
+          rotation: 2,
+          zIndex: SLIDE_COUNT - 1,
+          scale: 0.97,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out",
+        });
       } else if (offset === 2) {
-        gsap.to(slide, { x: 40, y: 40, rotation: 4, zIndex: SLIDE_COUNT - 2, scale: 0.94, opacity: 0.7, duration: 0.5, ease: "power2.out" });
+        gsap.to(slide, {
+          x: 40,
+          y: 40,
+          rotation: 4,
+          zIndex: SLIDE_COUNT - 2,
+          scale: 0.94,
+          opacity: 0.7,
+          duration: 0.5,
+          ease: "power2.out",
+        });
       }
     });
   }, [current, positionStack]);
@@ -139,13 +209,12 @@ export function TableSection() {
         });
       }
 
-      // "1 TABLE" drifts to the right on scroll
       if (titleBlockRef.current) {
         gsap.fromTo(
           titleBlockRef.current,
           { xPercent: 0 },
           {
-            xPercent: 20,
+            xPercent: isMobile ? -20 : 20,
             ease: "none",
             scrollTrigger: {
               trigger: section,
@@ -159,7 +228,7 @@ export function TableSection() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section ref={sectionRef} className={styles.section}>
@@ -169,7 +238,9 @@ export function TableSection() {
             {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
               <div
                 key={i}
-                ref={(el) => { slidesRef.current[i] = el; }}
+                ref={(el) => {
+                  slidesRef.current[i] = el;
+                }}
                 className={styles.card}
               >
                 <div className={styles.cardInner}>

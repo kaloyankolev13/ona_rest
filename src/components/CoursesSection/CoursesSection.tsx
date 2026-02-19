@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+
+const MOBILE_BREAKPOINT = 900;
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -33,6 +35,15 @@ export function CoursesSection() {
 
   const [current, setCurrent] = useState(0);
   const animating = useRef(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
+    const handler = () => setIsMobile(mq.matches);
+    handler();
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   // Position: main slot = left:0, peek slot = left:64%, hidden = off-screen
   const MAIN_LEFT = "0%";
@@ -156,13 +167,13 @@ export function CoursesSection() {
         });
       }
 
-      // "12 COURSES" drifts to the left on scroll
+      // "12 COURSES" drifts on scroll (left on desktop, right on mobile)
       if (titleBlockRef.current) {
         gsap.fromTo(
           titleBlockRef.current,
           { xPercent: 0 },
           {
-            xPercent: -20,
+            xPercent: isMobile ? 20 : -20,
             ease: "none",
             scrollTrigger: {
               trigger: section,
@@ -176,7 +187,7 @@ export function CoursesSection() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section ref={sectionRef} className={styles.section}>
