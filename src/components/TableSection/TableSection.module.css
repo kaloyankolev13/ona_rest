@@ -1,7 +1,7 @@
 .section {
   background-color: var(--primary-green);
   width: 100%;
-  padding: 5rem 0 5rem 4rem;
+  padding: 5rem 4rem 5rem 0;
   overflow: hidden;
 }
 
@@ -21,11 +21,11 @@
 .titleBlock {
   position: absolute;
   top: -0.3em;
-  left: 10%;
+  right: 10%;
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
-  z-index: 5;
+  z-index: 10;
   pointer-events: none;
 }
 
@@ -45,14 +45,14 @@
   text-transform: uppercase;
 }
 
-/* ── Bottom row (text + button, aligned with gallery) ── */
+/* ── Bottom row ── */
 .bottom {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 2rem;
-  padding-right: 4rem;
-  margin-left: 0;
+  padding-left: 4rem;
+  margin-left: 60;
 }
 
 .desc {
@@ -102,26 +102,29 @@
   transform: translateX(3px);
 }
 
-/* ── Gallery (click-through, two photos visible) ── */
+/* ── Gallery: stacked cards ── */
 .gallery {
   position: relative;
-  width: 100%;
-  min-width: 0;
-  aspect-ratio: 28 / 9;
+  width: 38%;
+  aspect-ratio: 4 / 3;
   cursor: pointer;
-  overflow: hidden;
-  border-radius: 1rem 0 0 1rem;
-  margin-left: 15%;
+  margin-left: auto;
+  margin-right: 50%;
 }
 
-.slide {
+.card {
   position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  will-change: left, width, opacity;
+  border-radius: 1rem;
+  overflow: hidden;
+  will-change: transform, opacity;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
-.slidePlaceholder {
+.cardInner {
   width: 100%;
   height: 100%;
   background: linear-gradient(
@@ -132,10 +135,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 1rem;
 }
 
-.slideLabel {
+.cardLabel {
   font-family: var(--font-valky), serif;
   font-size: 3rem;
   color: rgba(232, 226, 191, 0.2);
@@ -147,8 +149,12 @@
     padding: 3rem 2rem;
   }
 
+  .gallery {
+    width: 80%;
+    margin-left: 2rem;
+  }
+
   .layout {
-    grid-template-columns: 1fr;
     gap: 2.5rem;
   }
 
@@ -160,5 +166,10 @@
 @media (max-width: 500px) {
   .section {
     padding: 2.5rem 1.5rem;
+  }
+
+  .gallery {
+    width: 90%;
+    margin-left: 1rem;
   }
 }

@@ -6,3 +6,4 @@ export { NewsSection } from "./NewsSection";
 export { ScrollMarquee } from "./ScrollMarquee";
 export { SideBar } from "./SideBar";
 export { SmoothScroll } from "./SmoothScroll";
+export { TableSection } from "./TableSection";

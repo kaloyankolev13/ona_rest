@@ -8,7 +8,7 @@ import {
   animateRevealOnScroll,
 } from "@/animations/scrollAnimations";
 import animStyles from "@/animations/animations.module.css";
-import styles from "./CoursesSection.module.css";
+import styles from "./TableSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +22,7 @@ function splitToLetters(text: string, className: string) {
   ));
 }
 
-export function CoursesSection() {
+export function TableSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleBlockRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
@@ -34,22 +34,21 @@ export function CoursesSection() {
   const [current, setCurrent] = useState(0);
   const animating = useRef(false);
 
-  // Position: main slot = left:0, peek slot = left:64%, hidden = off-screen
-  const MAIN_LEFT = "0%";
-  const PEEK_LEFT = "64%";
-  const PEEK_WIDTH = "38%";
-  const MAIN_WIDTH = "62%";
-  const OFF_SCREEN = "110%";
-
-  const positionSlide = useCallback(
-    (slide: HTMLDivElement, role: "main" | "peek" | "hidden") => {
-      if (role === "main") {
-        gsap.set(slide, { left: MAIN_LEFT, width: MAIN_WIDTH, zIndex: 2, opacity: 1 });
-      } else if (role === "peek") {
-        gsap.set(slide, { left: PEEK_LEFT, width: PEEK_WIDTH, zIndex: 1, opacity: 1 });
-      } else {
-        gsap.set(slide, { left: OFF_SCREEN, width: PEEK_WIDTH, zIndex: 0, opacity: 0 });
-      }
+  const positionStack = useCallback(
+    (startIndex: number) => {
+      slidesRef.current.forEach((slide, i) => {
+        if (!slide) return;
+        const offset = (i - startIndex + SLIDE_COUNT) % SLIDE_COUNT;
+        if (offset === 0) {
+          gsap.set(slide, { x: 0, y: 0, rotation: 0, zIndex: SLIDE_COUNT, opacity: 1, scale: 1 });
+        } else if (offset === 1) {
+          gsap.set(slide, { x: 20, y: 20, rotation: 2, zIndex: SLIDE_COUNT - 1, opacity: 1, scale: 0.97 });
+        } else if (offset === 2) {
+          gsap.set(slide, { x: 40, y: 40, rotation: 4, zIndex: SLIDE_COUNT - 2, opacity: 0.7, scale: 0.94 });
+        } else {
+          gsap.set(slide, { x: 0, y: 0, rotation: 0, zIndex: 0, opacity: 0, scale: 0.9 });
+        }
+      });
     },
     []
   );
@@ -58,63 +57,47 @@ export function CoursesSection() {
     if (animating.current) return;
     animating.current = true;
 
-    const nextIndex = (current + 1) % SLIDE_COUNT;
-    const peekIndex = (current + 2) % SLIDE_COUNT;
-    const currentSlide = slidesRef.current[current];
-    const nextSlide = slidesRef.current[nextIndex];
-    const peekSlide = slidesRef.current[peekIndex];
-
-    if (!currentSlide || !nextSlide || !peekSlide) {
+    const topSlide = slidesRef.current[current];
+    if (!topSlide) {
       animating.current = false;
       return;
     }
 
-    const tl = gsap.timeline({
+    const nextIndex = (current + 1) % SLIDE_COUNT;
+
+    // Swipe the top card off to the left
+    gsap.to(topSlide, {
+      x: -600,
+      y: -100,
+      rotation: -15,
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.inOut",
       onComplete: () => {
-        positionSlide(currentSlide, "hidden");
+        gsap.set(topSlide, { x: 0, y: 0, rotation: 0, opacity: 0, scale: 0.9, zIndex: 0 });
+        positionStack(nextIndex);
         setCurrent(nextIndex);
         animating.current = false;
       },
     });
 
-    // Current exits left
-    tl.to(currentSlide, {
-      left: "-62%",
-      opacity: 0,
-      duration: 0.7,
-      ease: "power2.inOut",
-    }, 0);
-
-    // Peek moves into main position and grows
-    tl.to(nextSlide, {
-      left: MAIN_LEFT,
-      width: MAIN_WIDTH,
-      zIndex: 2,
-      duration: 0.7,
-      ease: "power2.inOut",
-    }, 0);
-
-    // New peek slides in from off-screen
-    gsap.set(peekSlide, { left: OFF_SCREEN, width: PEEK_WIDTH, zIndex: 1, opacity: 1 });
-    tl.to(peekSlide, {
-      left: PEEK_LEFT,
-      duration: 0.7,
-      ease: "power2.inOut",
-    }, 0);
-  }, [current, positionSlide]);
-
-  useEffect(() => {
+    // Simultaneously animate the next cards up
     slidesRef.current.forEach((slide, i) => {
-      if (!slide) return;
-      if (i === 0) {
-        positionSlide(slide, "main");
-      } else if (i === 1) {
-        positionSlide(slide, "peek");
-      } else {
-        positionSlide(slide, "hidden");
+      if (!slide || i === current) return;
+      const offset = (i - nextIndex + SLIDE_COUNT) % SLIDE_COUNT;
+      if (offset === 0) {
+        gsap.to(slide, { x: 0, y: 0, rotation: 0, zIndex: SLIDE_COUNT, scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" });
+      } else if (offset === 1) {
+        gsap.to(slide, { x: 20, y: 20, rotation: 2, zIndex: SLIDE_COUNT - 1, scale: 0.97, opacity: 1, duration: 0.5, ease: "power2.out" });
+      } else if (offset === 2) {
+        gsap.to(slide, { x: 40, y: 40, rotation: 4, zIndex: SLIDE_COUNT - 2, scale: 0.94, opacity: 0.7, duration: 0.5, ease: "power2.out" });
       }
     });
-  }, [positionSlide]);
+  }, [current, positionStack]);
+
+  useEffect(() => {
+    positionStack(0);
+  }, [positionStack]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -135,9 +118,9 @@ export function CoursesSection() {
         });
       }
       if (galleryRef.current) {
-        gsap.set(galleryRef.current, { xPercent: 80, opacity: 0 });
+        gsap.set(galleryRef.current, { yPercent: 30, opacity: 0 });
         gsap.to(galleryRef.current, {
-          xPercent: 0,
+          yPercent: 0,
           opacity: 1,
           duration: 1,
           ease: "power2.out",
@@ -156,13 +139,13 @@ export function CoursesSection() {
         });
       }
 
-      // "12 COURSES" drifts to the left on scroll
+      // "1 TABLE" drifts to the right on scroll
       if (titleBlockRef.current) {
         gsap.fromTo(
           titleBlockRef.current,
           { xPercent: 0 },
           {
-            xPercent: -20,
+            xPercent: 20,
             ease: "none",
             scrollTrigger: {
               trigger: section,
@@ -181,33 +164,31 @@ export function CoursesSection() {
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.layout}>
-        {/* ── Top: title + gallery side by side ── */}
         <div className={styles.topRow}>
-          <div ref={titleBlockRef} className={styles.titleBlock}>
-            <span ref={numberRef} className={styles.bigNumber}>
-              {splitToLetters("12", animStyles.letter)}
-            </span>
-            <span ref={labelRef} className={styles.label}>
-              {splitToLetters("COURSES", animStyles.letter)}
-            </span>
+          <div ref={galleryRef} className={styles.gallery} onClick={advance}>
+            {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
+              <div
+                key={i}
+                ref={(el) => { slidesRef.current[i] = el; }}
+                className={styles.card}
+              >
+                <div className={styles.cardInner}>
+                  <span className={styles.cardLabel}>{i + 1}</span>
+                </div>
+              </div>
+            ))}
           </div>
 
-          <div ref={galleryRef} className={styles.gallery} onClick={advance}>
-          {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
-            <div
-              key={i}
-              ref={(el) => { slidesRef.current[i] = el; }}
-              className={styles.slide}
-            >
-              <div className={styles.slidePlaceholder}>
-                <span className={styles.slideLabel}>{i + 1}</span>
-              </div>
-            </div>
-          ))}
+          <div ref={titleBlockRef} className={styles.titleBlock}>
+            <span ref={numberRef} className={styles.bigNumber}>
+              {splitToLetters("1", animStyles.letter)}
+            </span>
+            <span ref={labelRef} className={styles.label}>
+              {splitToLetters("TABLE", animStyles.letter)}
+            </span>
           </div>
         </div>
 
-        {/* ── Description below photos ── */}
         <div ref={descRef} className={styles.bottom}>
           <div className={styles.desc}>
             <p className={styles.descText}>
@@ -222,7 +203,7 @@ export function CoursesSection() {
             </p>
           </div>
           <button className={styles.menuBtn}>
-            MENU <span className={styles.arrow}>→</span>
+            BOOK <span className={styles.arrow}>→</span>
           </button>
         </div>
       </div>

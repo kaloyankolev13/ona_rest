@@ -28,6 +28,9 @@ export function HeritageSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
+  const ownerRef = useRef<HTMLDivElement>(null);
+  const ownerPhotoRef = useRef<HTMLDivElement>(null);
+  const ownerTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -61,6 +64,41 @@ export function HeritageSection() {
           stagger: 0.25,
           delay: 0.1,
         });
+      }
+
+      // Owner photo: reveal + parallax
+      if (ownerPhotoRef.current) {
+        animateRevealOnScroll(ownerPhotoRef.current, {
+          y: 80,
+          duration: 0.8,
+        });
+        gsap.fromTo(
+          ownerPhotoRef.current,
+          { yPercent: 0 },
+          {
+            yPercent: -15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ownerRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          }
+        );
+      }
+
+      // Owner text: staggered reveal
+      if (ownerTextRef.current) {
+        const textChildren = Array.from(ownerTextRef.current.children);
+        if (textChildren.length) {
+          animateRevealOnScroll(textChildren, {
+            y: 40,
+            duration: 0.6,
+            stagger: 0.15,
+            delay: 0.2,
+          });
+        }
       }
 
       // Parallax: images drift at different speeds on scroll (uses yPercent to avoid conflict with reveal's y)
@@ -108,6 +146,27 @@ export function HeritageSection() {
         <div className={styles.rightImages}>
           <div className={`${styles.imgSlot} ${styles.imgTop}`} />
           <div className={`${styles.imgSlot} ${styles.imgBottom}`} />
+        </div>
+      </div>
+
+      {/* ── Owner block ── */}
+      <div ref={ownerRef} className={styles.ownerBlock}>
+        <div ref={ownerPhotoRef} className={styles.ownerPhoto}>
+          <div className={styles.ownerPhotoPlaceholder} />
+        </div>
+        <div ref={ownerTextRef} className={styles.ownerText}>
+          <span className={styles.ownerTag}>The person behind ONA</span>
+          <h3 className={styles.ownerName}>Chef Name</h3>
+          <span className={styles.ownerRole}>Owner & Head Chef</span>
+          <p className={styles.ownerDesc}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris.
+          </p>
+          <p className={styles.ownerDesc}>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur.
+          </p>
         </div>
       </div>
     </section>
