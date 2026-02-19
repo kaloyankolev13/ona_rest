@@ -1,4 +1,5 @@
 export { CoursesSection } from "./CoursesSection";
+export { Footer } from "./Footer";
 export { HeritageSection } from "./HeritageSection";
 export { Loading } from "./Loading";
 export { MainContent } from "./MainContent";

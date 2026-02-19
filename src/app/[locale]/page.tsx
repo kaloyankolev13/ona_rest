@@ -9,6 +9,7 @@ import {
   TableSection,
   NewsSection,
   SmoothScroll,
+
 } from "@/components";
 
 export default function Home() {

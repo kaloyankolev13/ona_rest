@@ -6,6 +6,7 @@
     radial-gradient(ellipse 25% 15% at 50% 90%, rgba(7, 43, 22, 0.03) 0%, transparent 70%);
   width: 100%;
   padding: 4rem 0;
+  padding-bottom: 10rem;
 }
 
 .canvas {
