@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -12,10 +13,6 @@ import styles from "./HeritageSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HEADING = "Where cultural heritage meets culinary excellence";
-const DESCRIPTION =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-
 function splitToLetters(text: string, className: string) {
   return text.split("").map((char, i) => (
     <span key={i} className={className}>
@@ -25,6 +22,7 @@ function splitToLetters(text: string, className: string) {
 }
 
 export function HeritageSection() {
+  const t = useTranslations("HeritageSection");
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
@@ -135,10 +133,10 @@ export function HeritageSection() {
         {/* Center text */}
         <div className={styles.center}>
           <h2 ref={headingRef} className={styles.heading}>
-            {splitToLetters(HEADING, animStyles.letter)}
+            {splitToLetters(t("heading"), animStyles.letter)}
           </h2>
           <p ref={descRef} className={styles.description}>
-            {DESCRIPTION}
+            {t("description")}
           </p>
         </div>
 
@@ -155,18 +153,11 @@ export function HeritageSection() {
           <div className={styles.ownerPhotoPlaceholder} />
         </div>
         <div ref={ownerTextRef} className={styles.ownerText}>
-          <span className={styles.ownerTag}>The person behind ONA</span>
-          <h3 className={styles.ownerName}>Chef Name</h3>
-          <span className={styles.ownerRole}>Owner & Head Chef</span>
-          <p className={styles.ownerDesc}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris.
-          </p>
-          <p className={styles.ownerDesc}>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur.
-          </p>
+          <span className={styles.ownerTag}>{t("ownerTag")}</span>
+          <h3 className={styles.ownerName}>{t("ownerName")}</h3>
+          <span className={styles.ownerRole}>{t("ownerRole")}</span>
+          <p className={styles.ownerDesc}>{t("ownerDesc1")}</p>
+          <p className={styles.ownerDesc}>{t("ownerDesc2")}</p>
         </div>
       </div>
     </section>

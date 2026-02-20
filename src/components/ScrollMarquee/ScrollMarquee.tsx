@@ -1,34 +1,26 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./ScrollMarquee.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const LINE_1_SEGMENTS = [
-  "Lorem Ipsum",
-  "Dolor Sit Amet",
-  "Consectetur Adipiscing",
-  "Elit Sed Eiusmod",
-];
-const LINE_2_SEGMENTS = [
-  "Tempor Incididunt",
-  "Ut Labore Dolore",
-  "Magna Aliqua",
-  "Veniam Nostrud",
-];
-
 const REPEATS = 6;
 
-function buildLine(segments: string[], repeats: number) {
+function buildLine(
+  segments: string[],
+  repeats: number,
+  cssStyles: Record<string, string>
+) {
   const items: React.ReactNode[] = [];
   for (let r = 0; r < repeats; r++) {
     segments.forEach((seg, i) => {
       items.push(
-        <span key={`${r}-${i}-t`} className={styles.word}>{seg}</span>,
-        <span key={`${r}-${i}-d`} className={styles.dot} />,
+        <span key={`${r}-${i}-t`} className={cssStyles.word}>{seg}</span>,
+        <span key={`${r}-${i}-d`} className={cssStyles.dot} />,
       );
     });
   }
@@ -36,6 +28,9 @@ function buildLine(segments: string[], repeats: number) {
 }
 
 export function ScrollMarquee() {
+  const t = useTranslations("ScrollMarquee");
+  const line1Segments = t.raw("line1Segments") as string[];
+  const line2Segments = t.raw("line2Segments") as string[];
   const sectionRef = useRef<HTMLDivElement>(null);
   const line1Ref = useRef<HTMLDivElement>(null);
   const line2Ref = useRef<HTMLDivElement>(null);
@@ -73,7 +68,7 @@ export function ScrollMarquee() {
       <div className={styles.track}>
         <div ref={line1Ref} className={styles.line}>
           <span className={styles.text}>
-            {buildLine(LINE_1_SEGMENTS, REPEATS)}
+            {buildLine(line1Segments, REPEATS, styles)}
           </span>
         </div>
       </div>
@@ -81,7 +76,7 @@ export function ScrollMarquee() {
       <div className={styles.track}>
         <div ref={line2Ref} className={`${styles.line} ${styles.lineReverse}`}>
           <span className={styles.text}>
-            {buildLine(LINE_2_SEGMENTS, REPEATS)}
+            {buildLine(line2Segments, REPEATS, styles)}
           </span>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -24,6 +25,7 @@ function splitToLetters(text: string, className: string) {
 }
 
 export function TableSection() {
+  const t = useTranslations("TableSection");
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleBlockRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
@@ -252,29 +254,21 @@ export function TableSection() {
 
           <div ref={titleBlockRef} className={styles.titleBlock}>
             <span ref={numberRef} className={styles.bigNumber}>
-              {splitToLetters("1", animStyles.letter)}
+              {splitToLetters(t("number"), animStyles.letter)}
             </span>
             <span ref={labelRef} className={styles.label}>
-              {splitToLetters("TABLE", animStyles.letter)}
+              {splitToLetters(t("label"), animStyles.letter)}
             </span>
           </div>
         </div>
 
         <div ref={descRef} className={styles.bottom}>
           <div className={styles.desc}>
-            <p className={styles.descText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-              ad minim veniam.
-            </p>
-            <p className={styles.descText}>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident.
-            </p>
+            <p className={styles.descText}>{t("desc1")}</p>
+            <p className={styles.descText}>{t("desc2")}</p>
           </div>
           <button className={styles.menuBtn}>
-            BOOK <span className={styles.arrow}>→</span>
+            {t("bookBtn")} <span className={styles.arrow}>→</span>
           </button>
         </div>
       </div>

@@ -11,13 +11,64 @@
     "news": "НОВИНИ",
     "bookTable": "РЕЗЕРВИРАЙ МАСА"
   },
+  "ScrollMarquee": {
+    "line1Segments": ["Lorem Ipsum", "Dolor Sit Amet", "Consectetur Adipiscing", "Elit Sed Eiusmod"],
+    "line2Segments": ["Tempor Incididunt", "Ut Labore Dolore", "Magna Aliqua", "Veniam Nostrud"]
+  },
+  "ScrollMarquee": {
+    "line1Segments": ["Lorem Ipsum", "Dolor Sit Amet", "Consectetur Adipiscing", "Elit Sed Eiusmod"],
+    "line2Segments": ["Tempor Incididunt", "Ut Labore Dolore", "Magna Aliqua", "Veniam Nostrud"]
+  },
+  "MainContent": {
+    "title2": "РЕСТОРАНТ",
+    "title": "ONA",
+    "imageAlt": "Изображение"
+  },
+  "HeritageSection": {
+    "heading": "Където културното наследство среща кулинарното съвършенство",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "ownerTag": "Лицето зад ONA",
+    "ownerName": "Име на шефа",
+    "ownerRole": "Собственик и главен готвач",
+    "ownerDesc1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "ownerDesc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  "CoursesSection": {
+    "number": "12",
+    "label": "КУРСА",
+    "menuBtn": "МЕНЮ",
+    "desc1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "desc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
+  },
+  "TableSection": {
+    "number": "1",
+    "label": "МАСА",
+    "bookBtn": "РЕЗЕРВИРАЙ",
+    "desc1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "desc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
+  },
+  "NewsSection": {
+    "title": "Новини",
+    "seeAllNews": "Виж всички новини"
+  },
   "Footer": {
     "workingHours": "РАБОТНО ВРЕМЕ",
     "scheduleTueFri": "Вт-Пт 11:00 - 22:00",
     "scheduleSatSun": "Сб-Нд 12:00 - 22:00",
     "scheduleMon": "Пн (Затворено)",
     "address": "АДРЕС",
-    "addressValue": "Скатевци, ул. 31 №3"
+    "addressValue": "Скатевци, ул. 31 №3",
+    "contact": "Контакт",
+    "email": "info@ona.bg",
+    "phone": "+359 000 000 000",
+    "social": "Социални мрежи",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "tiktok": "TikTok",
+    "legalName": "ONA Ресторант",
+    "legalRights": "Всички права запазени ©",
+    "privacyPolicy": "Политика за поверителност",
+    "cookiePolicy": "Политика за бисквитки"
   },
   "Pages": {
     "home": "Начало",

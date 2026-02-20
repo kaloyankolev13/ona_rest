@@ -14,11 +14,7 @@ const navLinks = [
   { key: "bookTable" as const, href: "/book" as const },
 ];
 
-const socialLinks = [
-  { label: "Instagram", href: "#" },
-  { label: "Facebook", href: "#" },
-  { label: "TikTok", href: "#" },
-];
+const socialLinkKeys = ["instagram", "facebook", "tiktok"] as const;
 
 export function Footer() {
   const t = useTranslations("Footer");
@@ -53,21 +49,21 @@ export function Footer() {
 
         <div className={styles.infoColRight}>
           <div className={styles.infoBlock}>
-            <h4 className={styles.infoTitle}>Contact</h4>
-            <p className={styles.infoText}>info@ona.bg</p>
-            <p className={styles.infoText}>+359 000 000 000</p>
+            <h4 className={styles.infoTitle}>{t("contact")}</h4>
+            <p className={styles.infoText}>{t("email")}</p>
+            <p className={styles.infoText}>{t("phone")}</p>
           </div>
           <div className={styles.infoBlock}>
-            <h4 className={styles.infoTitle}>Social</h4>
-            {socialLinks.map((link) => (
+            <h4 className={styles.infoTitle}>{t("social")}</h4>
+            {socialLinkKeys.map((key) => (
               <a
-                key={link.label}
-                href={link.href}
+                key={key}
+                href="#"
                 className={styles.socialLink}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {link.label}
+                {t(key)}
               </a>
             ))}
           </div>
@@ -77,8 +73,8 @@ export function Footer() {
       {/* ── Bottom row ── */}
       <div className={styles.bottomRow}>
         <div className={styles.legal}>
-          <p className={styles.legalText}>ONA Restaurant</p>
-          <p className={styles.legalText}>All rights reserved © {new Date().getFullYear()}</p>
+          <p className={styles.legalText}>{t("legalName")}</p>
+          <p className={styles.legalText}>{t("legalRights")} {new Date().getFullYear()}</p>
         </div>
 
         <nav className={styles.footerNav}>
@@ -90,8 +86,8 @@ export function Footer() {
         </nav>
 
         <div className={styles.legalRight}>
-          <a href="#" className={styles.footerLink}>Privacy Policy</a>
-          <a href="#" className={styles.footerLink}>Cookie Policy</a>
+          <a href="#" className={styles.footerLink}>{t("privacyPolicy")}</a>
+          <a href="#" className={styles.footerLink}>{t("cookiePolicy")}</a>
         </div>
       </div>
     </footer>

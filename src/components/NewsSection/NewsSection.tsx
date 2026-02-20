@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,8 +13,6 @@ import animStyles from "@/animations/animations.module.css";
 import styles from "./NewsSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const TITLE = "News";
 
 function splitToLetters(text: string, className: string) {
   return text.split("").map((char, i) => (
@@ -33,6 +32,7 @@ const IMAGES = [
 ];
 
 export function NewsSection() {
+  const t = useTranslations("NewsSection");
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
@@ -96,10 +96,10 @@ export function NewsSection() {
 
         <div className={styles.centerBlock}>
           <h2 ref={titleRef} className={styles.title}>
-            {splitToLetters(TITLE, animStyles.letter)}
+            {splitToLetters(t("title"), animStyles.letter)}
           </h2>
           <Link href="/news" className={styles.newsBtn}>
-            See all news <span className={styles.arrow}>→</span>
+            {t("seeAllNews")} <span className={styles.arrow}>→</span>
           </Link>
         </div>
       </div>

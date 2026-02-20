@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-
-const MOBILE_BREAKPOINT = 900;
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -14,6 +13,7 @@ import styles from "./CoursesSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const MOBILE_BREAKPOINT = 900;
 const SLIDE_COUNT = 5;
 
 function splitToLetters(text: string, className: string) {
@@ -25,6 +25,7 @@ function splitToLetters(text: string, className: string) {
 }
 
 export function CoursesSection() {
+  const t = useTranslations("CoursesSection");
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleBlockRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
@@ -196,10 +197,10 @@ export function CoursesSection() {
         <div className={styles.topRow}>
           <div ref={titleBlockRef} className={styles.titleBlock}>
             <span ref={numberRef} className={styles.bigNumber}>
-              {splitToLetters("12", animStyles.letter)}
+              {splitToLetters(t("number"), animStyles.letter)}
             </span>
             <span ref={labelRef} className={styles.label}>
-              {splitToLetters("COURSES", animStyles.letter)}
+              {splitToLetters(t("label"), animStyles.letter)}
             </span>
           </div>
 
@@ -221,19 +222,11 @@ export function CoursesSection() {
         {/* ── Description below photos ── */}
         <div ref={descRef} className={styles.bottom}>
           <div className={styles.desc}>
-            <p className={styles.descText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-              ad minim veniam.
-            </p>
-            <p className={styles.descText}>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident.
-            </p>
+            <p className={styles.descText}>{t("desc1")}</p>
+            <p className={styles.descText}>{t("desc2")}</p>
           </div>
           <button className={styles.menuBtn}>
-            MENU <span className={styles.arrow}>→</span>
+            {t("menuBtn")} <span className={styles.arrow}>→</span>
           </button>
         </div>
       </div>

@@ -11,13 +11,60 @@
     "news": "NEWS",
     "bookTable": "BOOK A TABLE"
   },
+  "MainContent": {
+    "title2": "RESTAURANT",
+    "title": "ONA",
+    "imageAlt": "Featured image"
+  },
+  "ScrollMarquee": {
+    "line1Segments": ["Lorem Ipsum", "Dolor Sit Amet", "Consectetur Adipiscing", "Elit Sed Eiusmod"],
+    "line2Segments": ["Tempor Incididunt", "Ut Labore Dolore", "Magna Aliqua", "Veniam Nostrud"]
+  },
+  "HeritageSection": {
+    "heading": "Where cultural heritage meets culinary excellence",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "ownerTag": "The person behind ONA",
+    "ownerName": "Chef Name",
+    "ownerRole": "Owner & Head Chef",
+    "ownerDesc1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "ownerDesc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+  },
+  "CoursesSection": {
+    "number": "12",
+    "label": "COURSES",
+    "menuBtn": "MENU",
+    "desc1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "desc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
+  },
+  "TableSection": {
+    "number": "1",
+    "label": "TABLE",
+    "bookBtn": "BOOK",
+    "desc1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+    "desc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
+  },
+  "NewsSection": {
+    "title": "News",
+    "seeAllNews": "See all news"
+  },
   "Footer": {
     "workingHours": "WORKING HOURS",
     "scheduleTueFri": "Tue-Fri 11 AM - 10 PM",
     "scheduleSatSun": "Sat-Sun 12 AM - 10 PM",
     "scheduleMon": "Mon (Closed)",
     "address": "ADDRESS",
-    "addressValue": "Skatevtsi, 31 Street №3"
+    "addressValue": "Skatevtsi, 31 Street №3",
+    "contact": "Contact",
+    "email": "info@ona.bg",
+    "phone": "+359 000 000 000",
+    "social": "Social",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "tiktok": "TikTok",
+    "legalName": "ONA Restaurant",
+    "legalRights": "All rights reserved ©",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
   },
   "Pages": {
     "home": "Home",
