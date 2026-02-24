@@ -73,5 +73,131 @@
     "contact": "Contact",
     "news": "News",
     "bookTable": "Book a Table"
+  },
+  "AboutPage": {
+    "heroTitle": "Our Story",
+    "heroSubtitle": "ABOUT US",
+    "storyHeading": "A place where every dish tells a story",
+    "storyText1": "ONA was born from a deep love for Bulgarian culinary traditions and a desire to share them with the world. Nestled in the heart of Skatevtsi, our restaurant is a celebration of heritage, flavor, and artistry.",
+    "storyText2": "Every ingredient we use is carefully sourced from local farms and producers, ensuring that each plate reflects the authenticity and richness of our land.",
+    "philosophyTag": "OUR PHILOSOPHY",
+    "philosophyHeading": "Rooted in tradition, refined by passion",
+    "philosophyText": "We believe that great food begins with great respect — for the ingredients, the process, and the people who gather around the table. Our kitchen is guided by seasonality, simplicity, and a relentless pursuit of excellence.",
+    "valuesTag": "OUR VALUES",
+    "value1Title": "Locality",
+    "value1Text": "Every ingredient tells a story of the land it comes from. We partner with local farmers and artisans.",
+    "value2Title": "Craftsmanship",
+    "value2Text": "Each dish is a work of art, meticulously prepared with techniques passed down through generations.",
+    "value3Title": "Hospitality",
+    "value3Text": "We create an atmosphere where every guest feels like family, welcomed with warmth and care.",
+    "teamTag": "THE TEAM",
+    "teamHeading": "The people behind every plate",
+    "teamText": "Our team brings together years of culinary expertise, a shared passion for Bulgarian cuisine, and an unwavering commitment to creating unforgettable dining experiences."
+  },
+  "ContactPage": {
+    "heroTitle": "Contact",
+    "heroSubtitle": "GET IN TOUCH",
+    "infoTag": "FIND US",
+    "addressLabel": "Address",
+    "addressValue": "Skatevtsi, 31 Street №3",
+    "phoneLabel": "Phone",
+    "phoneValue": "+359 000 000 000",
+    "emailLabel": "Email",
+    "emailValue": "info@ona.bg",
+    "hoursLabel": "Working Hours",
+    "hoursTueFri": "Tue-Fri 11 AM - 10 PM",
+    "hoursSatSun": "Sat-Sun 12 AM - 10 PM",
+    "hoursMon": "Mon (Closed)",
+    "formTag": "SEND A MESSAGE",
+    "formName": "Your Name",
+    "formEmail": "Your Email",
+    "formSubject": "Subject",
+    "formMessage": "Your Message",
+    "formSend": "SEND",
+    "mapTag": "ON THE MAP"
+  },
+  "NewsPage": {
+    "heroTitle": "News",
+    "heroSubtitle": "LATEST STORIES",
+    "articles": [
+      {
+        "date": "15 Feb 2026",
+        "title": "Seasonal Menu Launch",
+        "excerpt": "Discover our new spring menu featuring the finest local ingredients and innovative flavor combinations."
+      },
+      {
+        "date": "02 Feb 2026",
+        "title": "Wine Tasting Evening",
+        "excerpt": "Join us for an exclusive evening of Bulgarian wines paired with specially curated dishes from our chef."
+      },
+      {
+        "date": "18 Jan 2026",
+        "title": "Chef's Table Experience",
+        "excerpt": "An intimate dining experience where our head chef prepares a bespoke multi-course meal right before your eyes."
+      },
+      {
+        "date": "05 Jan 2026",
+        "title": "Farm-to-Table Partnership",
+        "excerpt": "We are proud to announce our new partnership with local organic farms in the Rhodope mountains."
+      },
+      {
+        "date": "20 Dec 2025",
+        "title": "Holiday Special Menu",
+        "excerpt": "Celebrate the festive season with our specially crafted holiday menu featuring traditional Bulgarian delicacies."
+      },
+      {
+        "date": "10 Dec 2025",
+        "title": "Culinary Workshop",
+        "excerpt": "Learn the secrets of Bulgarian cuisine in our hands-on workshop led by our award-winning chef."
+      }
+    ],
+    "readMore": "Read More"
+  },
+  "BookPage": {
+    "heroTitle": "Reserve",
+    "heroSubtitle": "BOOK A TABLE",
+    "introText": "Join us for an unforgettable dining experience. Reserve your table and let us take care of the rest.",
+    "formTag": "RESERVATION DETAILS",
+    "fieldDate": "Date",
+    "fieldTime": "Time",
+    "fieldGuests": "Guests",
+    "fieldName": "Full Name",
+    "fieldPhone": "Phone Number",
+    "fieldEmail": "Email",
+    "fieldNotes": "Special Requests",
+    "submitBtn": "RESERVE TABLE",
+    "infoTag": "GOOD TO KNOW",
+    "info1Title": "Dress Code",
+    "info1Text": "Smart casual. We want you to feel comfortable while enjoying the ambiance.",
+    "info2Title": "Cancellation",
+    "info2Text": "Please notify us at least 24 hours in advance if you need to cancel or modify your reservation.",
+    "info3Title": "Large Parties",
+    "info3Text": "For groups of 8 or more, please contact us directly by phone for special arrangements.",
+    "guestOptions": ["1 Guest", "2 Guests", "3 Guests", "4 Guests", "5 Guests", "6 Guests", "7+ Guests"],
+    "timeSlots": ["11:00", "12:00", "13:00", "14:00", "18:00", "19:00", "20:00", "21:00"]
+  },
+  "VoucherPage": {
+    "heroTitle": "Voucher",
+    "heroSubtitle": "GIFT EXPERIENCE",
+    "introHeading": "The perfect gift for any occasion",
+    "introText": "Give the gift of an extraordinary dining experience. Our vouchers are beautifully presented and can be redeemed for any dish or tasting menu at ONA.",
+    "optionsTag": "CHOOSE AN AMOUNT",
+    "option1": "50 €",
+    "option1Desc": "Perfect for a starter and main course",
+    "option2": "100 €",
+    "option2Desc": "A complete dining experience for one",
+    "option3": "200 €",
+    "option3Desc": "An exquisite dinner for two",
+    "option4": "Custom",
+    "option4Desc": "Choose your own amount",
+    "selectBtn": "SELECT",
+    "howItWorksTag": "HOW IT WORKS",
+    "step1Title": "Choose",
+    "step1Text": "Select the voucher amount that suits your gift.",
+    "step2Title": "Personalize",
+    "step2Text": "Add a personal message for the recipient.",
+    "step3Title": "Gift",
+    "step3Text": "Receive the beautifully designed voucher via email or post.",
+    "contactNote": "For custom vouchers or special occasions, contact us at info@ona.bg"
   }
 }

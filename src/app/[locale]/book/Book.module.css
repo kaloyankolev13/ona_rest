@@ -1,0 +1,308 @@
+/* ── Hero ── */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 8rem 4rem 4rem;
+  background-color: #072b16;
+  background-image:
+    radial-gradient(ellipse 30% 25% at 80% 30%, rgba(232, 226, 191, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 30% at 15% 65%, rgba(232, 226, 191, 0.04) 0%, transparent 70%);
+}
+
+.heroSubtitle {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  color: rgba(232, 226, 191, 0.45);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-family: var(--font-kaloyak), sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  color: #e8e2bf;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+}
+
+.heroIntro {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.875rem, 1.2vw, 1.05rem);
+  color: rgba(232, 226, 191, 0.6);
+  line-height: 1.7;
+  margin: 1rem 0 0;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* ── Form section ── */
+.formSection {
+  background-color: #e8e2bf;
+  background-image:
+    radial-gradient(ellipse 25% 20% at 75% 20%, rgba(7, 43, 22, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 25% at 20% 80%, rgba(7, 43, 22, 0.03) 0%, transparent 70%);
+  padding: 6rem 6rem 4rem;
+}
+
+.formInner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.tag {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  color: rgba(51, 51, 51, 0.45);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fieldLabel {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.75rem;
+  color: rgba(51, 51, 51, 0.5);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.input {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.95rem;
+  color: #333333;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(7, 43, 22, 0.15);
+  padding: 0.75rem 0;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input:focus {
+  border-color: var(--primary-green);
+}
+
+.input::placeholder {
+  color: rgba(51, 51, 51, 0.3);
+}
+
+.select {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.95rem;
+  color: #333333;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(7, 43, 22, 0.15);
+  padding: 0.75rem 0;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23333' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  transition: border-color 0.3s;
+}
+
+.select:focus {
+  border-color: var(--primary-green);
+}
+
+.textarea {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.95rem;
+  color: #333333;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(7, 43, 22, 0.15);
+  padding: 0.75rem 0;
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.3s;
+}
+
+.textarea:focus {
+  border-color: var(--primary-green);
+}
+
+.textarea::placeholder {
+  color: rgba(51, 51, 51, 0.3);
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: center;
+  margin-top: 1rem;
+  padding: 0.8rem 2.5rem;
+  border: 1px solid var(--primary-green);
+  border-radius: 2rem;
+  background: var(--primary-green);
+  color: #e8e2bf;
+  font-family: var(--font-valky), serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+
+.submitBtn:hover {
+  background: transparent;
+  color: var(--primary-green);
+  transform: translateY(-2px);
+}
+
+.arrow {
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+
+.submitBtn:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* ── Info section ── */
+.infoSection {
+  background-color: #e8e2bf;
+  padding: 2rem 6rem 8rem;
+}
+
+.infoInner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(7, 43, 22, 0.08);
+  border-radius: 1rem;
+  transition: border-color 0.3s;
+}
+
+.infoCard:hover {
+  border-color: rgba(7, 43, 22, 0.2);
+}
+
+.infoIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(7, 43, 22, 0.12) 0%,
+    rgba(7, 43, 22, 0.06) 100%
+  );
+}
+
+.infoTitle {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  color: #333333;
+  margin: 0;
+  font-weight: 400;
+}
+
+.infoText {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  color: rgba(51, 51, 51, 0.6);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 300px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hero {
+    padding: 6rem 2rem 3rem;
+    min-height: 40vh;
+  }
+
+  .formSection {
+    padding: 4rem 2rem 3rem;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .infoSection {
+    padding: 2rem 2rem 5rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+
+  .formSection {
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .infoSection {
+    padding: 1.5rem 1.5rem 4rem;
+  }
+}

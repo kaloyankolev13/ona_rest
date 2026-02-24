@@ -1,19 +1,35 @@
-import { useTranslations } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
-import { use } from "react";
+import { connectDB } from "@/lib/mongodb";
+import News from "@/models/News";
+import NewsContent from "./NewsContent";
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
-export default function NewsPage({ params }: Props) {
-  const { locale } = use(params);
-  setRequestLocale(locale);
-  const t = useTranslations("Pages");
+export const dynamic = "force-dynamic";
 
-  return (
-    <main style={{ minHeight: "100vh", padding: "4rem 2rem" }}>
-      <h1>{t("news")}</h1>
-    </main>
-  );
+async function getPublishedNews() {
+  await connectDB();
+
+  const articles = await News.find({ published: true })
+    .sort({ createdAt: -1 })
+    .lean();
+
+  return articles.map((a) => ({
+    _id: String(a._id),
+    title: { bg: a.title.bg, en: a.title.en },
+    excerpt: { bg: a.excerpt.bg, en: a.excerpt.en },
+    image: a.image,
+    createdAt: a.createdAt.toISOString(),
+  }));
+}
+
+export default async function NewsPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const articles = await getPublishedNews();
+
+  return <NewsContent articles={articles} locale={locale} />;
 }

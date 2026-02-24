@@ -1,0 +1,352 @@
+/* ── Hero ── */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 8rem 4rem 4rem;
+  background-color: #e8e2bf;
+  background-image:
+    radial-gradient(ellipse 30% 25% at 80% 20%, rgba(7, 43, 22, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 30% at 15% 70%, rgba(7, 43, 22, 0.04) 0%, transparent 70%);
+}
+
+.heroSubtitle {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  color: rgba(51, 51, 51, 0.45);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-family: var(--font-kaloyak), sans-serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  color: #333333;
+  line-height: 1;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Story section ── */
+.story {
+  background-color: #e8e2bf;
+  padding: 6rem 6rem 8rem;
+}
+
+.storyInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.storyImage {
+  aspect-ratio: 3 / 4;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(7, 43, 22, 0.15) 0%,
+    rgba(7, 43, 22, 0.08) 100%
+  );
+}
+
+.storyText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.storyHeading {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: #333333;
+  line-height: 1.25;
+  margin: 0;
+  font-weight: 400;
+}
+
+.storyParagraph {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.875rem, 1.2vw, 1.05rem);
+  color: rgba(51, 51, 51, 0.7);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 540px;
+}
+
+/* ── Philosophy section (dark) ── */
+.philosophy {
+  background-color: #072b16;
+  background-image:
+    radial-gradient(ellipse 35% 30% at 10% 20%, rgba(232, 226, 191, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 25% at 85% 75%, rgba(232, 226, 191, 0.04) 0%, transparent 70%);
+  padding: 8rem 6rem;
+}
+
+.philosophyInner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.tag {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  color: rgba(232, 226, 191, 0.45);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.tagDark {
+  color: rgba(51, 51, 51, 0.45);
+}
+
+.philosophyHeading {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: #e8e2bf;
+  line-height: 1.25;
+  margin: 0;
+  font-weight: 400;
+}
+
+.philosophyText {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.875rem, 1.2vw, 1.05rem);
+  color: rgba(232, 226, 191, 0.7);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 640px;
+}
+
+/* ── Values section ── */
+.values {
+  background-color: #e8e2bf;
+  background-image:
+    radial-gradient(ellipse 30% 25% at 70% 30%, rgba(7, 43, 22, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 20% at 20% 80%, rgba(7, 43, 22, 0.03) 0%, transparent 70%);
+  padding: 8rem 6rem;
+}
+
+.valuesInner {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.valueCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(7, 43, 22, 0.1);
+  border-radius: 1rem;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.valueCard:hover {
+  border-color: rgba(7, 43, 22, 0.25);
+  transform: translateY(-4px);
+}
+
+.valueIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(7, 43, 22, 0.12) 0%,
+    rgba(7, 43, 22, 0.06) 100%
+  );
+}
+
+.valueTitle {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  color: #333333;
+  margin: 0;
+  font-weight: 400;
+}
+
+.valueText {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  color: rgba(51, 51, 51, 0.6);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 320px;
+}
+
+/* ── Team section (dark) ── */
+.team {
+  background-color: #072b16;
+  background-image:
+    radial-gradient(ellipse 30% 25% at 75% 15%, rgba(232, 226, 191, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 30% at 15% 60%, rgba(232, 226, 191, 0.04) 0%, transparent 70%);
+  padding: 8rem 6rem;
+}
+
+.teamInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.teamText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.teamHeading {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: #e8e2bf;
+  line-height: 1.25;
+  margin: 0;
+  font-weight: 400;
+}
+
+.teamParagraph {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.875rem, 1.2vw, 1.05rem);
+  color: rgba(232, 226, 191, 0.7);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 540px;
+}
+
+.teamImages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.teamImg {
+  aspect-ratio: 3 / 4;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 226, 191, 0.12) 0%,
+    rgba(232, 226, 191, 0.05) 100%
+  );
+}
+
+.teamImgWide {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hero {
+    padding: 6rem 2rem 3rem;
+    min-height: 40vh;
+  }
+
+  .story {
+    padding: 4rem 2rem;
+  }
+
+  .storyInner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .storyImage {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .storyText {
+    text-align: center;
+    align-items: center;
+  }
+
+  .philosophy {
+    padding: 5rem 2rem;
+  }
+
+  .values {
+    padding: 5rem 2rem;
+  }
+
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .team {
+    padding: 5rem 2rem;
+  }
+
+  .teamInner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .teamText {
+    text-align: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .heroTitle {
+    font-size: 3.5rem;
+  }
+
+  .story {
+    padding: 3rem 1.5rem;
+  }
+
+  .storyImage {
+    width: 90%;
+  }
+
+  .philosophy {
+    padding: 3rem 1.5rem;
+  }
+
+  .values {
+    padding: 3rem 1.5rem;
+  }
+
+  .valueCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .team {
+    padding: 3rem 1.5rem;
+  }
+
+  .teamImages {
+    grid-template-columns: 1fr;
+  }
+}

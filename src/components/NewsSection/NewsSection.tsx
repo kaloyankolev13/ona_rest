@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,19 +23,25 @@ function splitToLetters(text: string, className: string) {
   ));
 }
 
-const IMAGES = [
-  { id: 1, className: "imgA" },
-  { id: 2, className: "imgB" },
-  { id: 3, className: "imgC" },
-  { id: 4, className: "imgD" },
-  { id: 5, className: "imgE" },
-  { id: 6, className: "imgF" },
-];
+const SLOT_CLASSES = ["imgA", "imgB", "imgC", "imgD", "imgE", "imgF"];
+
+interface NewsArticle {
+  _id: string;
+  image: string;
+}
 
 export function NewsSection() {
   const t = useTranslations("NewsSection");
   const sectionRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const [articles, setArticles] = useState<NewsArticle[]>([]);
+
+  useEffect(() => {
+    fetch("/api/news?published=true")
+      .then((res) => res.json())
+      .then((data: NewsArticle[]) => setArticles(data.slice(0, 6)))
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -57,7 +64,6 @@ export function NewsSection() {
         });
       }
 
-      // Parallax: each image drifts at a different speed on scroll (uses yPercent to avoid conflict with reveal's y)
       const parallaxSpeeds = [-25, 18, -30, 15, -22, 28];
       images.forEach((img, i) => {
         gsap.fromTo(
@@ -78,19 +84,35 @@ export function NewsSection() {
     }, section);
 
     return () => ctx.revert();
-  }, []);
+  }, [articles]);
+
+  const slots = SLOT_CLASSES.map((className, i) => ({
+    id: i + 1,
+    className,
+    article: articles[i] ?? null,
+  }));
 
   return (
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.canvas}>
-        {IMAGES.map((img) => (
+        {slots.map((slot) => (
           <div
-            key={img.id}
-            className={`${styles.imgSlot} ${styles[img.className]}`}
+            key={slot.id}
+            className={`${styles.imgSlot} ${styles[slot.className]}`}
           >
-            <div className={styles.imgPlaceholder}>
-              <span className={styles.imgLabel}>{img.id}</span>
-            </div>
+            {slot.article?.image ? (
+              <Image
+                src={slot.article.image}
+                alt=""
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="35vw"
+              />
+            ) : (
+              <div className={styles.imgPlaceholder}>
+                <span className={styles.imgLabel}>{slot.id}</span>
+              </div>
+            )}
           </div>
         ))}
 

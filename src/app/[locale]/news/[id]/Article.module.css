@@ -1,0 +1,135 @@
+/* ── Hero image ── */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+  background: linear-gradient(
+    135deg,
+    rgba(7, 43, 22, 0.12) 0%,
+    rgba(7, 43, 22, 0.06) 100%
+  );
+  overflow: hidden;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(7, 43, 22, 0.6) 100%
+  );
+}
+
+/* ── Article body ── */
+.article {
+  background-color: #e8e2bf;
+  background-image:
+    radial-gradient(ellipse 25% 20% at 80% 15%, rgba(7, 43, 22, 0.03) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 25% at 15% 75%, rgba(7, 43, 22, 0.04) 0%, transparent 70%);
+  padding: 4rem 6rem 8rem;
+}
+
+.articleInner {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.date {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.75rem;
+  color: rgba(51, 51, 51, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-valky), serif;
+  font-size: 0.8rem;
+  color: var(--primary-green);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: gap 0.3s;
+}
+
+.backLink:hover {
+  gap: 0.7rem;
+}
+
+.backArrow {
+  transition: transform 0.3s;
+}
+
+.backLink:hover .backArrow {
+  transform: translateX(-3px);
+}
+
+.title {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: #333333;
+  line-height: 1.25;
+  margin: 0;
+  font-weight: 400;
+}
+
+.excerpt {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: rgba(51, 51, 51, 0.6);
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(7, 43, 22, 0.08);
+}
+
+.content {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+  color: rgba(51, 51, 51, 0.75);
+  line-height: 1.85;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hero {
+    min-height: 35vh;
+  }
+
+  .article {
+    padding: 3rem 2rem 5rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    min-height: 28vh;
+  }
+
+  .article {
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+}
