@@ -236,7 +236,7 @@ export function TableSection() {
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.layout}>
         <div className={styles.topRow}>
-          <div ref={galleryRef} className={styles.gallery} onClick={advance}>
+          <div ref={galleryRef} className={styles.gallery} onClick={advance} data-clickable>
             {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
               <div
                 key={i}

@@ -204,7 +204,7 @@ export function CoursesSection() {
             </span>
           </div>
 
-          <div ref={galleryRef} className={styles.gallery} onClick={advance}>
+          <div ref={galleryRef} className={styles.gallery} onClick={advance} data-clickable>
           {Array.from({ length: SLIDE_COUNT }).map((_, i) => (
             <div
               key={i}

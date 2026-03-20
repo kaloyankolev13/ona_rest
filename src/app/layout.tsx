@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { getLocale } from "next-intl/server";
+import { CustomCursor } from "@/components";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -48,6 +49,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${kaloyak.variable} ${valky.variable} antialiased`}
       >
         {children}
+        <CustomCursor />
         <SpeedInsights />
       </body>
     </html>
