@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -22,21 +23,17 @@ function splitToLetters(text: string, className: string) {
   ));
 }
 
-const VOUCHER_OPTIONS = [
-  { key: "option1", descKey: "option1Desc" },
-  { key: "option2", descKey: "option2Desc" },
-  { key: "option3", descKey: "option3Desc" },
-  { key: "option4", descKey: "option4Desc" },
-] as const;
-
 export default function VoucherPage() {
   const t = useTranslations("VoucherPage");
 
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
-  const introRef = useRef<HTMLDivElement>(null);
   const introHeadingRef = useRef<HTMLHeadingElement>(null);
-  const optionsRef = useRef<HTMLDivElement>(null);
-  const stepsRef = useRef<HTMLDivElement>(null);
+  const introTextRef = useRef<HTMLParagraphElement>(null);
+  const formatRef = useRef<HTMLDivElement>(null);
+  const howRef = useRef<HTMLDivElement>(null);
+  const experienceRef = useRef<HTMLDivElement>(null);
+  const pricingRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -56,40 +53,19 @@ export default function VoucherPage() {
         );
       }
 
-      if (introRef.current) {
-        const text = introRef.current.querySelector(`.${styles.introText}`);
-        if (text) {
-          animateRevealOnScroll(text, {
-            y: 30,
-            duration: 0.6,
-            delay: 0.4,
-          });
-        }
+      if (introTextRef.current) {
+        animateRevealOnScroll(introTextRef.current, {
+          y: 30, duration: 0.6, delay: 0.3,
+        });
       }
 
-      if (optionsRef.current) {
-        const cards = optionsRef.current.querySelectorAll(
-          `.${styles.optionCard}`
-        );
-        if (cards.length) {
-          animateRevealOnScroll(cards, {
-            y: 60,
-            duration: 0.7,
-            stagger: 0.12,
+      [formatRef, howRef, experienceRef, pricingRef, ctaRef].forEach((ref) => {
+        if (ref.current) {
+          animateRevealOnScroll(ref.current, {
+            y: 50, duration: 0.7, delay: 0.1,
           });
         }
-      }
-
-      if (stepsRef.current) {
-        const steps = stepsRef.current.querySelectorAll(`.${styles.step}`);
-        if (steps.length) {
-          animateRevealOnScroll(steps, {
-            y: 50,
-            duration: 0.7,
-            stagger: 0.15,
-          });
-        }
-      }
+      });
     });
 
     return () => ctx.revert();
@@ -97,7 +73,7 @@ export default function VoucherPage() {
 
   return (
     <SmoothScroll>
-      {/* Hero */}
+      {/* ── Hero ── */}
       <section className={styles.hero}>
         <span className={styles.heroSubtitle}>{t("heroSubtitle")}</span>
         <h1 ref={heroTitleRef} className={styles.heroTitle}>
@@ -105,58 +81,108 @@ export default function VoucherPage() {
         </h1>
       </section>
 
-      {/* Intro */}
-      <section className={styles.intro}>
-        <div ref={introRef} className={styles.introInner}>
-          <h2 ref={introHeadingRef} className={styles.introHeading}>
+      {/* ── Intro ── */}
+      <section className={styles.section}>
+        <div className={styles.narrow}>
+          <h2 ref={introHeadingRef} className={styles.sectionHeading}>
             {splitToLetters(t("introHeading"), animStyles.letter)}
           </h2>
-          <p className={styles.introText}>{t("introText")}</p>
+          <p ref={introTextRef} className={styles.leadText}>
+            {t("introText")}
+          </p>
         </div>
       </section>
 
-      {/* Voucher Options */}
-      <section className={styles.options}>
-        <div className={styles.optionsInner}>
-          <span className={styles.tag}>{t("optionsTag")}</span>
-          <div ref={optionsRef} className={styles.optionsGrid}>
-            {VOUCHER_OPTIONS.map((opt) => (
-              <div key={opt.key} className={styles.optionCard}>
-                <span className={styles.optionAmount}>
-                  {t(opt.key as "option1")}
-                </span>
-                <p className={styles.optionDesc}>
-                  {t(opt.descKey as "option1Desc")}
-                </p>
-                <button className={styles.selectBtn}>
-                  {t("selectBtn")}
-                </button>
-              </div>
-            ))}
+      {/* ── What you receive ── */}
+      <section className={styles.sectionDark}>
+        <div ref={formatRef} className={styles.narrow}>
+          <span className={styles.tag}>{t("formatTag")}</span>
+          <div className={styles.formatGrid}>
+            <div className={styles.formatCard}>
+              <h3 className={styles.formatTitle}>{t("scrollTitle")}</h3>
+              <p className={styles.formatText}>{t("scrollText")}</p>
+            </div>
+            <div className={styles.formatCard}>
+              <h3 className={styles.formatTitle}>{t("blankTitle")}</h3>
+              <p className={styles.formatText}>{t("blankText")}</p>
+            </div>
+          </div>
+          <p className={styles.formatNote}>{t("blankNote")}</p>
+        </div>
+      </section>
+
+      {/* ── How vouchers work ── */}
+      <section className={styles.section}>
+        <div ref={howRef} className={styles.narrow}>
+          <span className={styles.tagDark}>{t("howItWorksTag")}</span>
+          <div className={styles.textBlock}>
+            <p className={styles.bodyText}>{t("howText1")}</p>
+            <p className={styles.bodyText}>{t("howText2")}</p>
+            <p className={styles.bodyText}>{t("howText3")}</p>
+            <p className={styles.noteText}>{t("howNote")}</p>
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className={styles.howItWorks}>
-        <div className={styles.howInner}>
-          <span className={`${styles.tag} ${styles.tagDark}`}>
-            {t("howItWorksTag")}
-          </span>
-          <div ref={stepsRef} className={styles.stepsGrid}>
-            {[1, 2, 3].map((n) => (
-              <div key={n} className={styles.step}>
-                <span className={styles.stepNumber}>0{n}</span>
-                <h3 className={styles.stepTitle}>
-                  {t(`step${n}Title` as "step1Title")}
-                </h3>
-                <p className={styles.stepText}>
-                  {t(`step${n}Text` as "step1Text")}
-                </p>
-              </div>
-            ))}
+      {/* ── What the experience includes ── */}
+      <section className={styles.sectionDark}>
+        <div ref={experienceRef} className={styles.narrow}>
+          <span className={styles.tag}>{t("experienceTag")}</span>
+          <ul className={styles.expList}>
+            <li className={styles.expItem}>{t("exp1")}</li>
+            <li className={styles.expItem}>{t("exp2")}</li>
+            <li className={styles.expItem}>{t("exp3")}</li>
+            <li className={styles.expItem}>{t("exp4")}</li>
+          </ul>
+          <div className={styles.addons}>
+            <h4 className={styles.addonsTitle}>{t("addonsTitle")}</h4>
+            <ul className={styles.addonList}>
+              <li className={styles.addonItem}>{t("addon1")}</li>
+              <li className={styles.addonItem}>{t("addon2")}</li>
+              <li className={styles.addonItem}>{t("addon3")}</li>
+            </ul>
           </div>
-          <p className={styles.contactNote}>{t("contactNote")}</p>
+        </div>
+      </section>
+
+      {/* ── Pricing ── */}
+      <section className={styles.section}>
+        <div ref={pricingRef} className={styles.narrow}>
+          <span className={styles.tagDark}>{t("pricingTag")}</span>
+          <div className={styles.priceList}>
+            <div className={styles.priceRow}>
+              <span className={styles.priceLabel}>{t("priceMain")}</span>
+            </div>
+            <div className={styles.priceRow}>
+              <span className={styles.priceLabel}>{t("priceWine")}</span>
+            </div>
+            <div className={styles.priceRow}>
+              <span className={styles.priceLabel}>{t("priceBreakfast")}</span>
+            </div>
+          </div>
+          <div className={styles.fullPackage}>
+            <span className={styles.fullPackageLabel}>
+              {t("priceFullLabel")}
+            </span>
+            <span className={styles.fullPackageDesc}>
+              {t("priceFullDesc")}
+            </span>
+            <span className={styles.fullPackageValue}>
+              {t("priceFullValue")}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className={styles.sectionDark}>
+        <div ref={ctaRef} className={styles.narrow}>
+          <span className={styles.tag}>{t("ctaTag")}</span>
+          <p className={styles.ctaText}>{t("ctaText")}</p>
+          <Link href="/contact" className={styles.ctaButton}>
+            {t("ctaButton")}
+          </Link>
+          <p className={styles.closing}>{t("ctaClosing")}</p>
         </div>
       </section>
     </SmoothScroll>

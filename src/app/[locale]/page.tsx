@@ -7,9 +7,9 @@ import {
   HeritageSection,
   CoursesSection,
   TableSection,
+  StorySection,
   NewsSection,
   SmoothScroll,
-
 } from "@/components";
 
 export default function Home() {
@@ -22,6 +22,7 @@ export default function Home() {
       <CoursesSection />
       <TableSection />
       <ScrollMarquee />
+      <StorySection />
       <NewsSection />
     </SmoothScroll>
   );

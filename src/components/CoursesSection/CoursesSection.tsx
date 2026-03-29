@@ -224,6 +224,8 @@ export function CoursesSection() {
           <div className={styles.desc}>
             <p className={styles.descText}>{t("desc1")}</p>
             <p className={styles.descText}>{t("desc2")}</p>
+            <p className={styles.descText}>{t("desc3")}</p>
+            <p className={styles.descText}>{t("desc4")}</p>
           </div>
           <button className={styles.menuBtn}>
             {t("menuBtn")} <span className={styles.arrow}>→</span>

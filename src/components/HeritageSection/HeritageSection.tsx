@@ -124,6 +124,20 @@ export function HeritageSection() {
 
   return (
     <section ref={sectionRef} className={styles.section}>
+      {/* ── Owner block ── */}
+      <div ref={ownerRef} className={styles.ownerBlock}>
+        <div ref={ownerPhotoRef} className={styles.ownerPhoto}>
+          <div className={styles.ownerPhotoPlaceholder} />
+        </div>
+        <div ref={ownerTextRef} className={styles.ownerText}>
+          <span className={styles.ownerTag}>{t("ownerTag")}</span>
+          <h3 className={styles.ownerName}>{t("ownerName")}</h3>
+          <span className={styles.ownerRole}>{t("ownerRole")}</span>
+          <p className={styles.ownerDesc}>{t("ownerDesc1")}</p>
+          <p className={styles.ownerDesc}>{t("ownerDesc2")}</p>
+        </div>
+      </div>
+
       <div className={styles.layout}>
         {/* Left image */}
         <div className={styles.leftImages}>
@@ -144,20 +158,6 @@ export function HeritageSection() {
         <div className={styles.rightImages}>
           <div className={`${styles.imgSlot} ${styles.imgTop}`} />
           <div className={`${styles.imgSlot} ${styles.imgBottom}`} />
-        </div>
-      </div>
-
-      {/* ── Owner block ── */}
-      <div ref={ownerRef} className={styles.ownerBlock}>
-        <div ref={ownerPhotoRef} className={styles.ownerPhoto}>
-          <div className={styles.ownerPhotoPlaceholder} />
-        </div>
-        <div ref={ownerTextRef} className={styles.ownerText}>
-          <span className={styles.ownerTag}>{t("ownerTag")}</span>
-          <h3 className={styles.ownerName}>{t("ownerName")}</h3>
-          <span className={styles.ownerRole}>{t("ownerRole")}</span>
-          <p className={styles.ownerDesc}>{t("ownerDesc1")}</p>
-          <p className={styles.ownerDesc}>{t("ownerDesc2")}</p>
         </div>
       </div>
     </section>

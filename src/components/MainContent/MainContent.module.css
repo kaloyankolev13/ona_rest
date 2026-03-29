@@ -2,6 +2,7 @@
   min-height: 100vh;
   width: 100%;
   background-color: #e8e2bf;
+  overflow: hidden;
 }
 
 .content {
@@ -13,20 +14,51 @@
   padding: 0;
 }
 
-.imageSection {
+.videoSection {
   flex: 2;
   display: flex;
   align-items: stretch;
   min-width: 0;
 }
 
-.imageWrapper {
+.videoWrapper {
   position: relative;
   width: 100%;
   height: 100%;
   min-height: 100vh;
   overflow: hidden;
   border-radius: 0 2rem 2rem 0;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.muteBtn {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 226, 191, 0.4);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  color: #e8e2bf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+  z-index: 5;
+}
+
+.muteBtn:hover {
+  background: rgba(0, 0, 0, 0.55);
+  border-color: rgba(232, 226, 191, 0.7);
 }
 
 .textSection {
@@ -39,43 +71,55 @@
   overflow: visible;
 }
 
-.titleGroup {
-  position: relative;
+.dictCard {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  max-width: 400px;
 }
 
-.title2 {
+.dictWord {
   font-family: var(--font-valky), serif;
-  font-size: clamp(5rem, 2.5vw, 5rem);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
   color: #333333;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin: 0 0 0.5rem 0;
-  margin-left: clamp(-10rem, -8vw, -10rem);
-  position: relative;
-  z-index: 2;
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
+  font-weight: 400;
 }
 
-.title {
-  font-family: var(--font-kaloyak), sans-serif;
-  font-size: clamp(4rem, 12vw, 10rem);
-  color: #333333;
-  letter-spacing: 0.05em;
-  line-height: 1;
-  margin: 0;
+.dictPhonetic {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+  color: rgba(51, 51, 51, 0.45);
+  line-height: 1.5;
+  margin: 0 0 1.8rem;
+  font-style: italic;
 }
 
-.image {
-  object-fit: cover;
-}
-
-.imagePlaceholder {
+.dictDivider {
+  border: none;
+  border-top: 1px solid rgba(51, 51, 51, 0.15);
+  margin: 0 0 2rem;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #d4cfa8 0%, #c9c399 100%);
 }
+
+.dictDef {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  color: rgba(51, 51, 51, 0.7);
+  line-height: 1.8;
+  margin: 0 0 1rem;
+}
+
+.dictFinal {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  color: #333333;
+  line-height: 1.3;
+  margin: 1.5rem 0 0;
+  letter-spacing: 0.05em;
+}
+
 
 /* Responsive adjustments */
 @media (max-width: 900px) {
@@ -89,12 +133,12 @@
     gap: 0;
   }
 
-  .imageSection {
+  .videoSection {
     order: 1;
     flex: none;
   }
 
-  .imageWrapper {
+  .videoWrapper {
     min-height: 0;
     aspect-ratio: 4 / 3;
     border-radius: 0;
@@ -104,38 +148,24 @@
     order: 2;
     flex: none;
     justify-content: center;
-    text-align: center;
     padding: 3rem 2rem;
   }
 
-  .titleGroup {
-    align-items: center;
+  .dictCard {
+    max-width: 100%;
   }
 
-  .title2 {
-    font-size: clamp(2rem, 6vw, 3rem);
-    margin-left: 0;
-  }
-
-  .title {
-    font-size: clamp(3.5rem, 14vw, 6rem);
+  .dictWord {
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
 }
 
 @media (max-width: 500px) {
-  .imageWrapper {
+  .videoWrapper {
     aspect-ratio: 3 / 4;
   }
 
   .textSection {
     padding: 2rem 1.5rem;
-  }
-
-  .title2 {
-    font-size: 1.8rem;
-  }
-
-  .title {
-    font-size: 3.2rem;
   }
 }

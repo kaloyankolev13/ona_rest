@@ -5,7 +5,7 @@
     radial-gradient(ellipse 25% 20% at 10% 80%, rgba(7, 43, 22, 0.04) 0%, transparent 70%),
     radial-gradient(ellipse 20% 15% at 60% 5%, rgba(7, 43, 22, 0.03) 0%, transparent 70%);
   width: 100%;
-  padding: 0rem 6rem 13rem 6rem;
+  padding: 6rem 6rem 13rem 6rem;
 }
 
 .layout {
@@ -99,7 +99,7 @@
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
-  padding-top: 8rem;
+  padding-bottom: 6rem;
 }
 
 .ownerPhoto {
@@ -205,7 +205,7 @@
   .ownerBlock {
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding-top: 5rem;
+    padding-bottom: 4rem;
   }
 
   .ownerPhoto {
@@ -242,6 +242,6 @@
   }
 
   .ownerBlock {
-    padding-top: 3rem;
+    padding-bottom: 2.5rem;
   }
 }

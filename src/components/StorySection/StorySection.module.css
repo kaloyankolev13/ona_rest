@@ -1,0 +1,87 @@
+.story {
+  width: 100%;
+}
+
+/* ── Section alternating backgrounds ── */
+.sectionBeige {
+  background-color: #e8e2bf;
+  padding: 8rem 4rem;
+}
+
+.sectionDark {
+  background-color: var(--primary-green);
+  padding: 8rem 4rem;
+}
+
+.narrow {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+/* ── Block (animated element marker) ── */
+.block {
+  opacity: 0;
+}
+
+.accent {
+  opacity: 0;
+}
+
+/* ── Titles ── */
+.poeticTitle {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: #333333;
+  line-height: 1.25;
+  margin: 0 0 0.5rem;
+  font-weight: 400;
+}
+
+.titleLight {
+  color: #e8e2bf;
+}
+
+/* ── Body text ── */
+.poeticText {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: rgba(51, 51, 51, 0.72);
+  line-height: 1.9;
+  margin: 0;
+}
+
+.poeticTextLight {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: rgba(232, 226, 191, 0.72);
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* ── Accent word (Стакевци.) ── */
+.accentWord {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  color: var(--primary-green);
+  line-height: 1;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .sectionBeige,
+  .sectionDark {
+    padding: 5rem 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .sectionBeige,
+  .sectionDark {
+    padding: 4rem 1.5rem;
+  }
+}

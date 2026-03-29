@@ -252,24 +252,25 @@ export function TableSection() {
             ))}
           </div>
 
-          <div ref={titleBlockRef} className={styles.titleBlock}>
-            <span ref={numberRef} className={styles.bigNumber}>
-              {splitToLetters(t("number"), animStyles.letter)}
-            </span>
-            <span ref={labelRef} className={styles.label}>
-              {splitToLetters(t("label"), animStyles.letter)}
-            </span>
-          </div>
-        </div>
+          <div ref={descRef} className={styles.rightContent}>
+            <div ref={titleBlockRef} className={styles.titleBlock}>
+              <span ref={numberRef} className={styles.bigNumber}>
+                {splitToLetters(t("number"), animStyles.letter)}
+              </span>
+              <span ref={labelRef} className={styles.label}>
+                {splitToLetters(t("label"), animStyles.letter)}
+              </span>
+            </div>
 
-        <div ref={descRef} className={styles.bottom}>
-          <div className={styles.desc}>
-            <p className={styles.descText}>{t("desc1")}</p>
-            <p className={styles.descText}>{t("desc2")}</p>
+            <div className={styles.desc}>
+              <p className={styles.descText}>{t("desc1")}</p>
+              <p className={styles.descText}>{t("desc2")}</p>
+              <p className={styles.descText}>{t("desc3")}</p>
+            </div>
+            <button className={styles.menuBtn}>
+              {t("bookBtn")} <span className={styles.arrow}>→</span>
+            </button>
           </div>
-          <button className={styles.menuBtn}>
-            {t("bookBtn")} <span className={styles.arrow}>→</span>
-          </button>
         </div>
       </div>
     </section>

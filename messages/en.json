@@ -12,13 +12,16 @@
     "bookTable": "BOOK A TABLE"
   },
   "MainContent": {
-    "title2": "RESTAURANT",
-    "title": "ONA",
-    "imageAlt": "Featured image"
+    "imageAlt": "Featured image",
+    "dictTitle": "ONÀ.",
+    "dictPhonetic": "In dialect — \"she.\"",
+    "dictDef1": "She is this house. She is the table. She is the dinner that never repeats.",
+    "dictDef2": "She is the feeling that you are exactly where you need to be.",
+    "dictFinal": "ONÀ is everywhere."
   },
   "ScrollMarquee": {
-    "line1Segments": ["Lorem Ipsum", "Dolor Sit Amet", "Consectetur Adipiscing", "Elit Sed Eiusmod"],
-    "line2Segments": ["Tempor Incididunt", "Ut Labore Dolore", "Magna Aliqua", "Veniam Nostrud"]
+    "line1Segments": ["ONÁ", "IS", "EVERYWHERE"],
+    "line2Segments": ["EVERYWHERE", "IS", "ONÁ"]
   },
   "HeritageSection": {
     "heading": "Where cultural heritage meets culinary excellence",
@@ -30,18 +33,39 @@
     "ownerDesc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
   },
   "CoursesSection": {
-    "number": "12",
+    "number": "7",
     "label": "COURSES",
     "menuBtn": "MENU",
-    "desc1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-    "desc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
+    "desc1": "Dinner is a 7-course seasonal affair, with produce from the region and the people we know.",
+    "desc2": "The menu changes with every season — following the rhythm of nature, not of habit.",
+    "desc3": "You can add a carefully selected wine pairing or a non-alcoholic pairing of ferments and seasonal drinks.",
+    "desc4": "Optionally — morning begins slowly, with a 5-course breakfast served at ease, without a clock."
   },
   "TableSection": {
     "number": "1",
     "label": "TABLE",
     "bookBtn": "BOOK",
-    "desc1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-    "desc2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
+    "desc1": "There are no separate tables here. There is one large table with twelve seats.",
+    "desc2": "Everyone sits together. No roles. No rush. Strangers become companions, and dinner becomes a shared experience.",
+    "desc3": "The table gathers people who come not just to eat, but to feel the rhythm of the place."
+  },
+  "StorySection": {
+    "farAwayTitle": "Far, far from almost everything",
+    "farAway1": "From the noise. From the rush. From places that all look the same.",
+    "farAway2": "Where seasons can still be felt, and silence carries meaning.",
+    "farAway3": "Somewhere among the hills of the Balkans hides a small village that you don't find by accident.",
+    "farAway4": "Stakevtsi.",
+    "houseTitle": "And there stands a house.",
+    "house1": "Not just any house.",
+    "house2": "Inside, wondrous things happen. Slowly. Quietly. With great care.",
+    "house3": "The fire crackles. The seasons set the rhythm. And the table gathers people who come not just to eat, but to experience.",
+    "whatIsTitle": "What is ONÀ",
+    "whatIs1": "ONÀ was born right here — as an idea for a kitchen that does not rush, does not repeat itself, and does not try to be everything for everyone.",
+    "whatIs2": "A kitchen that follows the season. The place. The mood of the village.",
+    "whatIs3": "Our menu changes. The evenings are full of stories. And the experience is always a little… wondrous.",
+    "nightTitle": "The Night",
+    "night1": "We have two restored village houses for overnight stays.",
+    "night2": "The stay is a compliment to the dinner — so there is no rush, and the night remains part of the experience."
   },
   "NewsSection": {
     "title": "News",
@@ -178,26 +202,39 @@
   },
   "VoucherPage": {
     "heroTitle": "Voucher",
-    "heroSubtitle": "GIFT EXPERIENCE",
-    "introHeading": "The perfect gift for any occasion",
-    "introText": "Give the gift of an extraordinary dining experience. Our vouchers are beautifully presented and can be redeemed for any dish or tasting menu at ONA.",
-    "optionsTag": "CHOOSE AN AMOUNT",
-    "option1": "50 €",
-    "option1Desc": "Perfect for a starter and main course",
-    "option2": "100 €",
-    "option2Desc": "A complete dining experience for one",
-    "option3": "200 €",
-    "option3Desc": "An exquisite dinner for two",
-    "option4": "Custom",
-    "option4Desc": "Choose your own amount",
-    "selectBtn": "SELECT",
-    "howItWorksTag": "HOW IT WORKS",
-    "step1Title": "Choose",
-    "step1Text": "Select the voucher amount that suits your gift.",
-    "step2Title": "Personalize",
-    "step2Text": "Add a personal message for the recipient.",
-    "step3Title": "Gift",
-    "step3Text": "Receive the beautifully designed voucher via email or post.",
-    "contactNote": "For custom vouchers or special occasions, contact us at info@ona.bg"
+    "heroSubtitle": "GIFT AN EXPERIENCE",
+    "introHeading": "Sometimes the most beautiful gift is not an object, but a memory.",
+    "introText": "The ONA voucher is an invitation to an evening that lingers long after the candles go out.",
+    "formatTag": "WHAT YOU RECEIVE",
+    "scrollTitle": "Scroll",
+    "scrollText": "A dark-green leaf with the ONA logo — the first trace towards an evening far from almost everything.",
+    "blankTitle": "Blank Sheet",
+    "blankText": "A finely illustrated sheet, left intentionally blank. For words written by hand.",
+    "blankNote": "Because there is no more beautiful gesture than a personal message — with thought, with care, with love.",
+    "howItWorksTag": "HOW VOUCHERS WORK",
+    "howText1": "Evenings at ONA are small and carefully prepared. That is why our vouchers are tied to a specific date.",
+    "howText2": "We do not work with open reservations — each evening is created specially for a particular moment and a set number of guests.",
+    "howText3": "If the chosen date is not convenient for the recipient, it can be changed up to 14 days in advance, so we have time to invite another guest to the freed seat.",
+    "howNote": "In case of no-show or cancellation, the voucher amount is non-refundable.",
+    "experienceTag": "WHAT THE EXPERIENCE INCLUDES",
+    "exp1": "Dinner at ONA is a 7-course seasonal menu inspired by the local nature and produce around us.",
+    "exp2": "All guests share one common table — conversation is part of the evening.",
+    "exp3": "The overnight stay is a gift from us — in renovated village houses in Stakevtsi.",
+    "exp4": "Bathrooms are shared between two rooms, part of the authentic character and simple comfort of the place.",
+    "addonsTitle": "Optionally, you can add:",
+    "addon1": "Wine pairing — carefully selected for each dish",
+    "addon2": "Non-alcoholic pairing — ferments, kombuchas and seasonal drinks",
+    "addon3": "5-course breakfast, served at ease — without a clock, without rush.",
+    "pricingTag": "PRICING",
+    "priceMain": "7-course dinner — 160 EUR / person",
+    "priceWine": "Wine pairing — 50 EUR / person",
+    "priceBreakfast": "5-course breakfast — 50 EUR / person",
+    "priceFullLabel": "Full package",
+    "priceFullDesc": "dinner, drinks, breakfast & overnight stay",
+    "priceFullValue": "260 EUR / person",
+    "ctaTag": "HOW TO PURCHASE A VOUCHER",
+    "ctaText": "If you wish to gift an experience at ONA, we will gladly send you the full terms and payment information. You can reach us via the form below or by email.",
+    "ctaButton": "GET IN TOUCH",
+    "ctaClosing": "Sometimes the most beautiful gifts are those experienced together."
   }
 }
