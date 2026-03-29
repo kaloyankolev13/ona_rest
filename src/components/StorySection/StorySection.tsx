@@ -4,6 +4,9 @@ import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  animateRevealOnScroll,
+} from "@/animations/scrollAnimations";
 import styles from "./StorySection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 export function StorySection() {
   const t = useTranslations("StorySection");
   const sectionRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -54,84 +58,91 @@ export function StorySection() {
           }
         );
       });
+
+      if (imageRef.current) {
+        animateRevealOnScroll(imageRef.current, {
+          y: 80,
+          duration: 0.9,
+        });
+      }
     }, section);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={sectionRef} className={styles.story}>
-      {/* ── Far away ── */}
-      <section className={styles.sectionBeige}>
-        <div className={styles.narrow}>
-          <h2 className={`${styles.poeticTitle} ${styles.block}`}>
-            {t("farAwayTitle")}
-          </h2>
-          <p className={`${styles.poeticText} ${styles.block}`}>
-            {t("farAway1")}
-          </p>
-          <p className={`${styles.poeticText} ${styles.block}`}>
-            {t("farAway2")}
-          </p>
-          <p className={`${styles.poeticText} ${styles.block}`}>
-            {t("farAway3")}
-          </p>
-          <p className={`${styles.accentWord} ${styles.accent}`}>
-            {t("farAway4")}
-          </p>
+    <section ref={sectionRef} className={styles.story}>
+      <div className={styles.inner}>
+        <div ref={imageRef} className={styles.imageCol}>
+          <div className={styles.imagePlaceholder} />
         </div>
-      </section>
 
-      {/* ── The house ── */}
-      <section className={styles.sectionDark}>
-        <div className={styles.narrow}>
-          <h2 className={`${styles.poeticTitle} ${styles.titleLight} ${styles.block}`}>
-            {t("houseTitle")}
-          </h2>
-          <p className={`${styles.poeticTextLight} ${styles.block}`}>
-            {t("house1")}
-          </p>
-          <p className={`${styles.poeticTextLight} ${styles.block}`}>
-            {t("house2")}
-          </p>
-          <p className={`${styles.poeticTextLight} ${styles.block}`}>
-            {t("house3")}
-          </p>
-        </div>
-      </section>
+        <div className={styles.textCol}>
+          {/* ── Far away ── */}
+          <div className={styles.chapter}>
+            <h2 className={`${styles.poeticTitle} ${styles.block}`}>
+              {t("farAwayTitle")}
+            </h2>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("farAway1")}
+            </p>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("farAway2")}
+            </p>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("farAway3")}
+            </p>
+            <p className={`${styles.accentWord} ${styles.accent}`}>
+              {t("farAway4")}
+            </p>
+          </div>
 
-      {/* ── The night ── */}
-      <section className={styles.sectionBeige}>
-        <div className={styles.narrow}>
-          <h2 className={`${styles.poeticTitle} ${styles.block}`}>
-            {t("nightTitle")}
-          </h2>
-          <p className={`${styles.poeticText} ${styles.block}`}>
-            {t("night1")}
-          </p>
-          <p className={`${styles.poeticText} ${styles.block}`}>
-            {t("night2")}
-          </p>
-        </div>
-      </section>
+          {/* ── The house ── */}
+          <div className={styles.chapter}>
+            <h2 className={`${styles.poeticTitle} ${styles.block}`}>
+              {t("houseTitle")}
+            </h2>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("house1")}
+            </p>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("house2")}
+            </p>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("house3")}
+            </p>
+          </div>
 
-      {/* ── What is ONA ── */}
-      <section className={styles.sectionBeige}>
-        <div className={styles.narrow}>
-          <h2 className={`${styles.poeticTitle} ${styles.block}`}>
-            {t("whatIsTitle")}
-          </h2>
-          <p className={`${styles.poeticText} ${styles.block}`}>
-            {t("whatIs1")}
-          </p>
-          <p className={`${styles.poeticText} ${styles.block}`}>
-            {t("whatIs2")}
-          </p>
-          <p className={`${styles.poeticText} ${styles.block}`}>
-            {t("whatIs3")}
-          </p>
+          {/* ── The night ── */}
+          <div className={styles.chapter}>
+            <h2 className={`${styles.poeticTitle} ${styles.block}`}>
+              {t("nightTitle")}
+            </h2>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("night1")}
+            </p>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("night2")}
+            </p>
+          </div>
+
+          {/* ── What is ONA ── */}
+          <div className={styles.chapter}>
+            <h2 className={`${styles.poeticTitle} ${styles.block}`}>
+              {t("whatIsTitle")}
+            </h2>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("whatIs1")}
+            </p>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("whatIs2")}
+            </p>
+            <p className={`${styles.poeticText} ${styles.block}`}>
+              {t("whatIs3")}
+            </p>
+          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

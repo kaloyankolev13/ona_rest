@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import Image, { StaticImageData } from "next/image";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,10 +10,69 @@ import {
   animateRevealOnScroll,
 } from "@/animations/scrollAnimations";
 import animStyles from "@/animations/animations.module.css";
-import { SmoothScroll } from "@/components";
+import { SmoothScroll, StorySection } from "@/components";
 import styles from "./About.module.css";
 
+import filipImg from "@/assets/team/filip.jpg";
+import plamImg from "@/assets/team/plam.jpg";
+import plamImg2 from "@/assets/team/plam2.jpg";
+import plamImg3 from "@/assets/team/plam3.jpg";
+import hrisoImg from "@/assets/team/hriso.jpg";
+import hrisoImg2 from "@/assets/team/hriso2.jpg";
+import hrisoImg3 from "@/assets/team/hriso3.jpg";
+
 gsap.registerPlugin(ScrollTrigger);
+
+interface TeamMember {
+  photos: StaticImageData[];
+  nameKey: string;
+  roleKey: string;
+  bioKey: string;
+}
+
+const TEAM: TeamMember[] = [
+  { photos: [filipImg], nameKey: "filipName", roleKey: "filipRole", bioKey: "filipBio" },
+  { photos: [plamImg, plamImg2, plamImg3], nameKey: "plamName", roleKey: "plamRole", bioKey: "plamBio" },
+  { photos: [hrisoImg, hrisoImg2, hrisoImg3], nameKey: "hrisoName", roleKey: "hrisoRole", bioKey: "hrisoBio" },
+];
+
+function TeamCard({
+  member,
+  onClick,
+}: {
+  member: TeamMember & { name: string; role: string };
+  onClick: () => void;
+}) {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    if (member.photos.length <= 1) return;
+    const id = setInterval(() => {
+      setActive((prev) => (prev + 1) % member.photos.length);
+    }, 3500);
+    return () => clearInterval(id);
+  }, [member.photos.length]);
+
+  return (
+    <div className={styles.teamCard} onClick={onClick} data-clickable>
+      <div className={styles.teamCardImages}>
+        {member.photos.map((src, i) => (
+          <Image
+            key={i}
+            src={src}
+            alt={member.name}
+            fill
+            className={`${styles.teamCardImg} ${i === active ? styles.teamCardImgActive : ""}`}
+          />
+        ))}
+      </div>
+      <div className={styles.teamCardOverlay}>
+        <span className={styles.teamCardName}>{member.name}</span>
+        <span className={styles.teamCardRole}>{member.role}</span>
+      </div>
+    </div>
+  );
+}
 
 function splitToLetters(text: string, className: string) {
   return text.split("").map((char, i) => (
@@ -24,13 +84,12 @@ function splitToLetters(text: string, className: string) {
 
 export default function AboutPage() {
   const t = useTranslations("AboutPage");
+  const [modalIdx, setModalIdx] = useState<number | null>(null);
+  const [modalPhotoIdx, setModalPhotoIdx] = useState(0);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const heroRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
-  const storyRef = useRef<HTMLDivElement>(null);
-  const storyHeadingRef = useRef<HTMLHeadingElement>(null);
-  const storyTextRef = useRef<HTMLDivElement>(null);
-  const storyImageRef = useRef<HTMLDivElement>(null);
   const philRef = useRef<HTMLDivElement>(null);
   const philHeadingRef = useRef<HTMLHeadingElement>(null);
   const philTextRef = useRef<HTMLParagraphElement>(null);
@@ -38,6 +97,28 @@ export default function AboutPage() {
   const teamRef = useRef<HTMLDivElement>(null);
   const teamHeadingRef = useRef<HTMLHeadingElement>(null);
   const teamTextRef = useRef<HTMLDivElement>(null);
+
+  const openModal = useCallback((idx: number) => {
+    setModalIdx(idx);
+    setModalPhotoIdx(0);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setModalIdx(null);
+  }, []);
+
+  useEffect(() => {
+    if (modalIdx === null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", handleKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKey);
+      document.body.style.overflow = "";
+    };
+  }, [modalIdx, closeModal]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -47,29 +128,6 @@ export default function AboutPage() {
           { opacity: 0, y: 60 },
           { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.2 }
         );
-      }
-
-      if (storyHeadingRef.current) {
-        animateLettersOnScroll(
-          storyHeadingRef.current,
-          `.${animStyles.letter}`,
-          { stagger: 0.02, duration: 0.35 }
-        );
-      }
-
-      if (storyTextRef.current) {
-        animateRevealOnScroll(storyTextRef.current, {
-          y: 40,
-          duration: 0.7,
-          delay: 0.4,
-        });
-      }
-
-      if (storyImageRef.current) {
-        animateRevealOnScroll(storyImageRef.current, {
-          y: 80,
-          duration: 0.9,
-        });
       }
 
       if (philHeadingRef.current) {
@@ -116,9 +174,9 @@ export default function AboutPage() {
       }
 
       if (teamRef.current) {
-        const imgs = teamRef.current.querySelectorAll(`.${styles.teamImg}`);
-        if (imgs.length) {
-          animateRevealOnScroll(imgs, {
+        const cards = teamRef.current.querySelectorAll(`.${styles.teamCard}`);
+        if (cards.length) {
+          animateRevealOnScroll(cards, {
             y: 60,
             duration: 0.8,
             stagger: 0.2,
@@ -141,18 +199,7 @@ export default function AboutPage() {
       </section>
 
       {/* Story */}
-      <section ref={storyRef} className={styles.story}>
-        <div className={styles.storyInner}>
-          <div ref={storyImageRef} className={styles.storyImage} />
-          <div ref={storyTextRef} className={styles.storyText}>
-            <h2 ref={storyHeadingRef} className={styles.storyHeading}>
-              {splitToLetters(t("storyHeading"), animStyles.letter)}
-            </h2>
-            <p className={styles.storyParagraph}>{t("storyText1")}</p>
-            <p className={styles.storyParagraph}>{t("storyText2")}</p>
-          </div>
-        </div>
-      </section>
+      <StorySection />
 
       {/* Philosophy */}
       <section ref={philRef} className={styles.philosophy}>
@@ -199,13 +246,71 @@ export default function AboutPage() {
             </h2>
             <p className={styles.teamParagraph}>{t("teamText")}</p>
           </div>
-          <div className={styles.teamImages}>
-            <div className={styles.teamImg} />
-            <div className={styles.teamImg} />
-            <div className={`${styles.teamImg} ${styles.teamImgWide}`} />
+          <div className={styles.teamCards}>
+            {TEAM.map((m, i) => (
+              <TeamCard
+                key={m.nameKey}
+                member={{ ...m, name: t(m.nameKey as "filipName"), role: t(m.roleKey as "filipRole") }}
+                onClick={() => openModal(i)}
+              />
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Team Modal */}
+      {modalIdx !== null && (
+        <div className={styles.modalBackdrop} onClick={closeModal}>
+          <div
+            ref={modalRef}
+            className={styles.modal}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button className={styles.modalClose} onClick={closeModal}>
+              &times;
+            </button>
+            <div className={styles.modalBody}>
+              <div className={styles.modalPhoto}>
+                {TEAM[modalIdx].photos.map((src, i) => (
+                  <Image
+                    key={i}
+                    src={src}
+                    alt={t(TEAM[modalIdx].nameKey as "filipName")}
+                    fill
+                    className={`${styles.modalPhotoImg} ${i === modalPhotoIdx ? styles.modalPhotoImgActive : ""}`}
+                  />
+                ))}
+                {TEAM[modalIdx].photos.length > 1 && (
+                  <div className={styles.modalDots}>
+                    {TEAM[modalIdx].photos.map((_, i) => (
+                      <button
+                        key={i}
+                        className={`${styles.modalDot} ${i === modalPhotoIdx ? styles.modalDotActive : ""}`}
+                        onClick={() => setModalPhotoIdx(i)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className={styles.modalInfo}>
+                <h3 className={styles.modalName}>
+                  {t(TEAM[modalIdx].nameKey as "filipName")}
+                </h3>
+                <span className={styles.modalRole}>
+                  {t(TEAM[modalIdx].roleKey as "filipRole")}
+                </span>
+                <div className={styles.modalBio}>
+                  {t(TEAM[modalIdx].bioKey as "filipBio")
+                    .split("\n\n")
+                    .map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </SmoothScroll>
   );
 }
