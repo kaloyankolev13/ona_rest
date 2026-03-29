@@ -260,7 +260,7 @@ export default function AboutPage() {
 
       {/* Team Modal */}
       {modalIdx !== null && (
-        <div className={styles.modalBackdrop} onClick={closeModal}>
+        <div className={styles.modalBackdrop} onClick={closeModal} data-lenis-prevent>
           <div
             ref={modalRef}
             className={styles.modal}

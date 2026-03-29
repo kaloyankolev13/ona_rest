@@ -267,8 +267,7 @@ export function TableSection() {
               <p className={styles.descText}>{t("desc2")}</p>
               <p className={styles.descText}>{t("desc3")}</p>
             </div>
-            <button className={styles.menuBtn}>
-              {t("bookBtn")} <span className={styles.arrow}>→</span>
+            <button className={styles.menuBtn}> <span className={styles.arrow}>→</span>
             </button>
           </div>
         </div>
