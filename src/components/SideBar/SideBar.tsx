@@ -180,7 +180,6 @@ export function SideBar() {
           aria-label={isOpen ? "Close menu" : "Open menu"}
           aria-expanded={isOpen}
         >
-          <span className={styles.menuLabel}>MENU</span>
           <span className={styles.hamburgerIcon}>
             <span className={styles.line} />
             <span className={styles.line} />
@@ -194,6 +193,7 @@ export function SideBar() {
         ref={overlayRef}
         className={styles.overlay}
         aria-hidden={!isOpen}
+        data-lenis-prevent
       >
         <div className={styles.overlayInner}>
           {/* ── Header ── */}
