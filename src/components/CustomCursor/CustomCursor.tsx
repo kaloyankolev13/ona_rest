@@ -6,8 +6,8 @@ import styles from "./CustomCursor.module.css";
 const CLICKABLE_SELECTOR =
   'a, button, [role="button"], input[type="submit"], input[type="button"], select, label[for], [data-clickable], .clickable, summary';
 
-const GEO_OFFSET_X = 50;
-const GEO_OFFSET_Y = 50;
+const GEO_OFFSET_X = 25;
+const GEO_OFFSET_Y = 25;
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
