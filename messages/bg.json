@@ -12,8 +12,8 @@
     "bookTable": "РЕЗЕРВИРАЙ МАСА"
   },
   "ScrollMarquee": {
-    "line1Segments": ["ОНÁ", "Е", "НАСЀКЪДЕ"],
-    "line2Segments": ["НАСЀКЪДЕ", "Е", "ОНÁ"]
+    "line1Segments": ["ОНÀ", "Е", "НАСЀКЪДЕ"],
+    "line2Segments": ["НАСЀКЪДЕ", "Е", "ОНÀ"]
   },
   "MainContent": {
     "imageAlt": "Изображение",
