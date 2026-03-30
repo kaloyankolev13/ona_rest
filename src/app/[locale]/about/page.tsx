@@ -75,9 +75,14 @@ function TeamCard({
 }
 
 function splitToLetters(text: string, className: string) {
-  return text.split("").map((char, i) => (
-    <span key={i} className={className}>
-      {char === " " ? "\u00A0" : char}
+  return text.split(" ").map((word, wi) => (
+    <span key={wi} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+      {word.split("").map((char, ci) => (
+        <span key={ci} className={className}>{char}</span>
+      ))}
+      {wi < text.split(" ").length - 1 && (
+        <span className={className}>{"\u00A0"}</span>
+      )}
     </span>
   ));
 }

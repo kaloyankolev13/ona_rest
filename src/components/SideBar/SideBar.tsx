@@ -297,10 +297,6 @@ export function SideBar() {
               <p className={styles.footerText}>
                 {tFooter("scheduleTueFri")}
               </p>
-              <p className={styles.footerText}>
-                {tFooter("scheduleSatSun")}
-              </p>
-              <p className={styles.footerText}>{tFooter("scheduleMon")}</p>
             </div>
             <div className={styles.footerBlock}>
               <h4 className={styles.footerTitle}>{tFooter("address")}</h4>

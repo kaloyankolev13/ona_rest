@@ -32,8 +32,6 @@ export function Footer() {
           <div className={styles.infoBlock}>
             <h4 className={styles.infoTitle}>{t("workingHours")}</h4>
             <p className={styles.infoText}>{t("scheduleTueFri")}</p>
-            <p className={styles.infoText}>{t("scheduleSatSun")}</p>
-            <p className={styles.infoText}>{t("scheduleMon")}</p>
           </div>
         </div>
 
