@@ -72,9 +72,7 @@
   },
   "Footer": {
     "workingHours": "WORKING HOURS",
-    "scheduleTueFri": "Tue-Fri 11 AM - 10 PM",
-    "scheduleSatSun": "Sat-Sun 12 AM - 10 PM",
-    "scheduleMon": "Mon (Closed)",
+    "scheduleTueFri": "On the countryside we work every day",
     "address": "ADDRESS",
     "addressValue": "Skatevtsi, 31 Street №3",
     "contact": "Contact",

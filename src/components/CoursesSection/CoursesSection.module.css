@@ -126,23 +126,15 @@
 }
 
 .slidePlaceholder {
+  position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 226, 191, 0.12) 0%,
-    rgba(232, 226, 191, 0.05) 100%
-  );
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 1rem;
+  overflow: hidden;
 }
 
-.slideLabel {
-  font-family: var(--font-valky), serif;
-  font-size: 3rem;
-  color: rgba(232, 226, 191, 0.2);
+.slideImage {
+  object-fit: cover;
 }
 
 /* ── Responsive ── */
@@ -208,9 +200,5 @@
 
   .gallery {
     aspect-ratio: 3 / 2;
-  }
-
-  .slideLabel {
-    font-size: 2rem;
   }
 }

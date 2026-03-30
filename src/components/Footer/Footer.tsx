@@ -14,7 +14,10 @@ const navLinks = [
   { key: "bookTable" as const, href: "/book" as const },
 ];
 
-const socialLinkKeys = ["instagram", "facebook", "tiktok"] as const;
+const socialLinks = [
+  { key: "instagram" as const, href: "https://www.instagram.com/ona.rest/" },
+  { key: "facebook" as const, href: "https://www.facebook.com/restaurant.ona" },
+] as const;
 
 export function Footer() {
   const t = useTranslations("Footer");
@@ -53,13 +56,14 @@ export function Footer() {
           </div>
           <div className={styles.infoBlock}>
             <h4 className={styles.infoTitle}>{t("social")}</h4>
-            {socialLinkKeys.map((key) => (
+            {socialLinks.map(({ key, href }) => (
               <a
                 key={key}
-                href="#"
+                href={href}
                 className={styles.socialLink}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(href.startsWith("http")
+                  ? { target: "_blank" as const, rel: "noopener noreferrer" }
+                  : {})}
               >
                 {t(key)}
               </a>

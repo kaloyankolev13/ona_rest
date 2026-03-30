@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +10,7 @@ import {
   animateRevealOnScroll,
 } from "@/animations/scrollAnimations";
 import animStyles from "@/animations/animations.module.css";
+import { MAIN_PAGE_TABLE_IMAGES } from "@/assets/mainPage";
 import styles from "./TableSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -246,7 +248,14 @@ export function TableSection() {
                 className={styles.card}
               >
                 <div className={styles.cardInner}>
-                  <span className={styles.cardLabel}>{i + 1}</span>
+                  <Image
+                    src={MAIN_PAGE_TABLE_IMAGES[i]!}
+                    alt=""
+                    fill
+                    className={styles.cardImage}
+                    sizes="(max-width: 900px) 80vw, 42vw"
+                    priority={i < 2}
+                  />
                 </div>
               </div>
             ))}
