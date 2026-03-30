@@ -515,15 +515,24 @@
   .modal {
     flex-direction: column;
     max-height: 90vh;
+    width: 95%;
+  }
+
+  .modalBody {
+    flex-direction: column;
+    overflow-y: auto;
   }
 
   .modalPhoto {
     width: 100%;
-    min-height: 260px;
+    min-height: 220px;
+    max-height: 35vh;
+    flex-shrink: 0;
   }
 
   .modalInfo {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem;
+    overflow-y: visible;
   }
 }
 
@@ -558,5 +567,23 @@
 
   .team {
     padding: 3rem 1.5rem;
+  }
+
+  .modal {
+    max-height: 92vh;
+  }
+
+  .modalPhoto {
+    min-height: 180px;
+    max-height: 30vh;
+  }
+
+  .modalInfo {
+    padding: 1.25rem;
+  }
+
+  .modalClose {
+    top: 0.5rem;
+    right: 0.75rem;
   }
 }
