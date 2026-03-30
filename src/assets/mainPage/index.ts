@@ -5,6 +5,10 @@ import food3 from "./food_3.jpg";
 import food4 from "./food_4.jpg";
 import food5 from "./food_5.jpg";
 import table1 from "./table_1.jpg";
+import table2 from "./table_2.jpg";
+import table3 from "./table_3.jpg";
+import table4 from "./table_4.jpg";
+import table5 from "./table_5.jpg";
 
 /** Food photography for the courses carousel (5 slides). */
 export const MAIN_PAGE_COURSE_IMAGES: StaticImageData[] = [
@@ -15,11 +19,11 @@ export const MAIN_PAGE_COURSE_IMAGES: StaticImageData[] = [
   food5,
 ];
 
-/** Table imagery for the stacked gallery; duplicate entries are intentional when only one source file exists. */
+/** Table imagery for the stacked gallery (5 slides; `TableSection` rotation). */
 export const MAIN_PAGE_TABLE_IMAGES: StaticImageData[] = [
+  table3,
   table1,
-  table1,
-  table1,
-  table1,
-  table1,
+  table2,
+  table4,
+  table5,
 ];
