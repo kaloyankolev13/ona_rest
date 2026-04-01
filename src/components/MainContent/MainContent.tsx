@@ -7,7 +7,7 @@ import styles from "./MainContent.module.css";
 
 const LOADING_DELAY = 1.8;
 const VIDEO_SRC =
-  "https://res.cloudinary.com/di43xpxdg/video/upload/v1774783090/ona_rest/main_content_video_mscqiw.mp4";
+  "https://res.cloudinary.com/di43xpxdg/video/upload/v1775041327/ona_rest/intro_htxw7w.mp4";
 
 export function MainContent() {
   const t = useTranslations("MainContent");
