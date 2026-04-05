@@ -19,7 +19,8 @@
 }
 
 .heroTitle {
-  font-family: var(--font-kaloyak), sans-serif;
+  font-family: var(--font-valky), sans-serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(4rem, 10vw, 9rem);
   color: #333333;
   line-height: 1;
