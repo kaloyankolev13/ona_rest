@@ -16,14 +16,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const kaloyak = localFont({
-  src: "../../public/font/Kaloyak-Regular.ttf",
-  variable: "--font-kaloyak",
-  display: "swap",
-});
 
 const valky = localFont({
-  src: "../../public/font/Valky-Regular.ttf",
+  src: "../../public/font/CoFo-Raffine-61241.ttf",
   variable: "--font-valky",
   display: "swap",
 });
@@ -46,7 +41,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${kaloyak.variable} ${valky.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${valky.variable} antialiased`}
       >
         {children}
         <CustomCursor />

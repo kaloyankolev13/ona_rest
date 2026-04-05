@@ -95,6 +95,7 @@
 
 .cardTitle {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1.3rem, 2vw, 1.8rem);
   color: #333333;
   margin: 0;
@@ -115,6 +116,7 @@
   align-items: center;
   gap: 0.4rem;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.8rem;
   color: var(--primary-green);
   letter-spacing: 0.08em;

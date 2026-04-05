@@ -32,6 +32,7 @@
 
 .title {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(5rem, 14vw, 12rem);
   color: transparent;
   -webkit-text-stroke: 1.5px var(--primary-green);
@@ -51,6 +52,7 @@
   background: transparent;
   color: var(--primary-green);
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.95rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -96,6 +98,7 @@
 
 .imgLabel {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 1.5rem;
   color: rgba(51, 51, 51, 0.15);
 }

@@ -4,6 +4,7 @@
   --background: #e8e2bf;
   --foreground: #171717;
   --primary-green: #072b16;
+  --font-valky-letter-spacing: 0.08em;
 }
 
 @theme inline {

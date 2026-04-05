@@ -36,11 +36,12 @@
 
 .infoTitle {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.7rem;
   font-weight: 600;
   color: #e8e2bf;
   margin: 0 0 0.3rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 

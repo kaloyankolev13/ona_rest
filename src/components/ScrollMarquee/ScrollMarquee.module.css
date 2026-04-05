@@ -28,11 +28,11 @@
   display: inline-flex;
   align-items: center;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(3rem, 7vw, 7rem);
   line-height: 1.4;
   color: transparent;
   -webkit-text-stroke: 1.5px var(--primary-green);
-  letter-spacing: 0.02em;
   user-select: none;
 }
 

@@ -22,7 +22,8 @@
 }
 
 .heroTitle {
-  font-family: var(--font-kaloyak), sans-serif;
+  font-family: var(--font-valky), sans-serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(4rem, 10vw, 9rem);
   color: #333333;
   line-height: 1;
@@ -63,7 +64,7 @@
 }
 
 .storyHeading {
-  font-family: var(--font-valky), serif;
+  /* font-family: var(--font-valky), serif; */
   font-size: clamp(2rem, 3.5vw, 3rem);
   color: #333333;
   line-height: 1.25;
@@ -73,6 +74,7 @@
 
 .storyParagraph {
   font-family: var(--font-geist-sans), sans-serif;
+  letter-spacing: 0.05em;
   font-size: clamp(0.875rem, 1.2vw, 1.05rem);
   color: rgba(51, 51, 51, 0.7);
   line-height: 1.7;
@@ -113,6 +115,7 @@
 
 .philosophyHeading {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(2rem, 4vw, 3.5rem);
   color: #e8e2bf;
   line-height: 1.25;
@@ -180,6 +183,7 @@
 
 .valueTitle {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   color: #333333;
   margin: 0;
@@ -220,6 +224,7 @@
 
 .teamHeading {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(2rem, 4vw, 3.5rem);
   color: #e8e2bf;
   line-height: 1.25;
@@ -289,6 +294,7 @@
 
 .teamCardName {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1rem, 1.5vw, 1.3rem);
   color: #e8e2bf;
   line-height: 1.2;
@@ -411,6 +417,7 @@
 
 .modalName {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1.5rem, 2.5vw, 2rem);
   color: #e8e2bf;
   margin: 0;

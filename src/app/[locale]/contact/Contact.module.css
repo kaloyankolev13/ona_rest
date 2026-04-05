@@ -70,6 +70,7 @@
 
 .infoLabel {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(0.8rem, 1vw, 0.9rem);
   color: #333333;
   letter-spacing: 0.1em;
@@ -173,6 +174,7 @@
   background: transparent;
   color: var(--primary-green);
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   cursor: pointer;

@@ -35,6 +35,7 @@
 
 .bigNumber {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(6rem, 12vw, 12rem);
   color: transparent;
   -webkit-text-stroke: 3px #e8e2bf;
@@ -43,6 +44,7 @@
 
 .label {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1.4rem, 2.5vw, 2.5rem);
   color: #e8e2bf;
   letter-spacing: 0.15em;
@@ -85,6 +87,7 @@
   background: transparent;
   color: #e8e2bf;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   cursor: pointer;

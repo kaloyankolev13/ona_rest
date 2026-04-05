@@ -80,6 +80,7 @@
 
 .dictWord {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(3.5rem, 6vw, 5.5rem);
   color: #333333;
   line-height: 1.1;
@@ -113,6 +114,7 @@
 
 .dictFinal {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1.1rem, 1.8vw, 1.5rem);
   color: #333333;
   line-height: 1.3;

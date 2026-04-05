@@ -61,6 +61,7 @@
   align-items: center;
   gap: 0.4rem;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.8rem;
   color: var(--primary-green);
   text-decoration: none;
@@ -82,6 +83,7 @@
 
 .title {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(2rem, 4vw, 3.2rem);
   color: #333333;
   line-height: 1.25;

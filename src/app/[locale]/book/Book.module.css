@@ -173,6 +173,7 @@
   background: var(--primary-green);
   color: #e8e2bf;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.9rem;
   letter-spacing: 0.1em;
   cursor: pointer;
@@ -245,6 +246,7 @@
 
 .infoTitle {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1.1rem, 1.5vw, 1.3rem);
   color: #333333;
   margin: 0;

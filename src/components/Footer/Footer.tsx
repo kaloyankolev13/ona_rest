@@ -88,7 +88,9 @@ export function Footer() {
         </nav>
 
         <div className={styles.legalRight}>
-          <a href="#" className={styles.footerLink}>{t("privacyPolicy")}</a>
+          <Link href="/privacy" className={styles.footerLink}>
+            {t("privacyPolicy")}
+          </Link>
           <a href="#" className={styles.footerLink}>{t("cookiePolicy")}</a>
         </div>
       </div>

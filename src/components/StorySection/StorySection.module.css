@@ -55,6 +55,7 @@
 /* ── Titles ── */
 .poeticTitle {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   color: #333333;
   line-height: 1.25;
@@ -75,6 +76,7 @@
 /* ── Accent word (Стакевци.) ── */
 .accentWord {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(2rem, 4vw, 3.5rem);
   color: var(--primary-green);
   line-height: 1;

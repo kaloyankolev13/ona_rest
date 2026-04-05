@@ -17,6 +17,7 @@
 
 .topBarTitle {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 1.2rem;
   letter-spacing: 0.08em;
   margin: 0;
@@ -143,6 +144,7 @@
   border: 1px solid #072b16;
   border-radius: 2rem;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   cursor: pointer;
@@ -171,6 +173,7 @@
 
 .pageTitle {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 1.8rem;
   color: #333;
   margin: 0;
@@ -187,6 +190,7 @@
   border: 1px solid #072b16;
   border-radius: 2rem;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -490,6 +494,7 @@
   border: 1px solid #072b16;
   border-radius: 2rem;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   cursor: pointer;
@@ -513,6 +518,7 @@
   border: 1px solid rgba(51, 51, 51, 0.15);
   border-radius: 2rem;
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: 0.85rem;
   letter-spacing: 0.08em;
   text-decoration: none;

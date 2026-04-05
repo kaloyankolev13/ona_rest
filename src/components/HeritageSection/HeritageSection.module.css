@@ -32,6 +32,7 @@
 
 .heading {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(2rem, 4vw, 3.5rem);
   color: #333333;
   line-height: 1.25;
@@ -138,6 +139,7 @@
 
 .ownerName {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(2rem, 4vw, 3.5rem);
   color: #333333;
   margin: 0;
@@ -147,6 +149,7 @@
 
 .ownerRole {
   font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(0.85rem, 1.2vw, 1.1rem);
   color: rgba(51, 51, 51, 0.5);
   letter-spacing: 0.12em;
