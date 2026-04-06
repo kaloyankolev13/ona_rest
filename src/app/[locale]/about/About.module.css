@@ -1,7 +1,6 @@
 /* ── Hero ── */
 .hero {
   position: relative;
-  overflow: hidden;
   min-height: 60vh;
   display: flex;
   align-items: center;
@@ -137,7 +136,6 @@
 /* ── Values section ── */
 .values {
   position: relative;
-  overflow: hidden;
   background-color: #e8e2bf;
   background-image:
     radial-gradient(ellipse 30% 25% at 70% 30%, rgba(7, 43, 22, 0.04) 0%, transparent 70%),

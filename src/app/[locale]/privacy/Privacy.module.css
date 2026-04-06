@@ -1,6 +1,5 @@
 .hero {
   position: relative;
-  overflow: hidden;
   min-height: 35vh;
   display: flex;
   align-items: center;
@@ -35,7 +34,6 @@
 
 .wrap {
   position: relative;
-  overflow: hidden;
   background-color: #e8e2bf;
   padding: 2rem 4rem 8rem;
 }
