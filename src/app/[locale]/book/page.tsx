@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { animateRevealOnScroll } from "@/animations/scrollAnimations";
 import { SmoothScroll } from "@/components";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./Book.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,6 +65,7 @@ export default function BookPage() {
 
       {/* Reservation Form */}
       <section className={styles.formSection}>
+        <ShevitsaDecor variant={7} />
         <div ref={formRef} className={styles.formInner}>
           <span className={styles.tag}>{t("formTag")}</span>
           <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
@@ -200,6 +202,7 @@ export default function BookPage() {
 
       {/* Info Cards */}
       <section className={styles.infoSection}>
+        <ShevitsaDecor variant={8} />
         <div className={styles.infoInner}>
           <span className={styles.tag} style={{ color: "rgba(51,51,51,0.45)" }}>
             {t("infoTag")}

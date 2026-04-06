@@ -1,0 +1,17 @@
+.container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.item {
+  position: absolute;
+}
+
+@media (max-width: 900px) {
+  .container {
+    display: none;
+  }
+}

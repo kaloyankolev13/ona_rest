@@ -11,6 +11,7 @@ import {
   animateRevealOnScroll,
 } from "@/animations/scrollAnimations";
 import animStyles from "@/animations/animations.module.css";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./NewsSection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -94,6 +95,7 @@ export function NewsSection() {
 
   return (
     <section ref={sectionRef} className={styles.section}>
+      <ShevitsaDecor variant={3} />
       <div className={styles.canvas}>
         {slots.map((slot) => (
           <div

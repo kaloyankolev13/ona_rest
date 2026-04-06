@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { animateRevealOnScroll } from "@/animations/scrollAnimations";
 import { SmoothScroll } from "@/components";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./News.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -70,6 +71,7 @@ export default function NewsContent({ articles, locale }: NewsContentProps) {
     <SmoothScroll>
       {/* Hero */}
       <section className={styles.hero}>
+        <ShevitsaDecor variant={4} />
         <span className={styles.heroSubtitle}>{t("heroSubtitle")}</span>
         <h1 ref={heroTitleRef} className={styles.heroTitle}>
           {t("heroTitle")}
@@ -78,6 +80,7 @@ export default function NewsContent({ articles, locale }: NewsContentProps) {
 
       {/* Articles */}
       <section className={styles.articles}>
+        <ShevitsaDecor variant={9} />
         <div className={styles.articlesInner}>
           {articles.length === 0 ? (
             <p style={{ textAlign: "center", color: "rgba(51,51,51,0.5)", padding: "4rem 0" }}>

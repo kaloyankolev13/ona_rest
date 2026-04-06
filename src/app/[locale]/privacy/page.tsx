@@ -4,6 +4,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { SmoothScroll } from "@/components";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./Privacy.module.css";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -30,11 +31,13 @@ export default async function PrivacyPage({ params }: Props) {
   return (
     <SmoothScroll>
       <header className={styles.hero}>
+        <ShevitsaDecor variant={6} />
         <p className={styles.heroSubtitle}>{t("heroSubtitle")}</p>
         <h1 className={styles.heroTitle}>{t("heroTitle")}</h1>
       </header>
 
       <article className={styles.wrap}>
+        <ShevitsaDecor variant={9} />
         <div className={styles.inner}>
           <p className={styles.effective}>{t("effectiveDate")}</p>
 

@@ -11,9 +11,12 @@ import {
 } from "@/animations/scrollAnimations";
 import animStyles from "@/animations/animations.module.css";
 import { SmoothScroll } from "@/components";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./About.module.css";
 
 import filipImg from "@/assets/team/filip.jpg";
+import filipImg2 from "@/assets/team/filip2.jpeg";
+import filipImg3 from "@/assets/team/filip3.jpeg";
 import plamImg from "@/assets/team/plam.jpg";
 import plamImg2 from "@/assets/team/plam2.jpg";
 import plamImg3 from "@/assets/team/plam3.jpg";
@@ -28,12 +31,13 @@ interface TeamMember {
   nameKey: string;
   roleKey: string;
   bioKey: string;
+  interval: number;
 }
 
 const TEAM: TeamMember[] = [
-  { photos: [filipImg], nameKey: "filipName", roleKey: "filipRole", bioKey: "filipBio" },
-  { photos: [plamImg, plamImg2, plamImg3], nameKey: "plamName", roleKey: "plamRole", bioKey: "plamBio" },
-  { photos: [hrisoImg, hrisoImg2, hrisoImg3], nameKey: "hrisoName", roleKey: "hrisoRole", bioKey: "hrisoBio" },
+  { photos: [filipImg, filipImg2, filipImg3], nameKey: "filipName", roleKey: "filipRole", bioKey: "filipBio", interval: 3000 },
+  { photos: [plamImg, plamImg2, plamImg3], nameKey: "plamName", roleKey: "plamRole", bioKey: "plamBio", interval: 4200 },
+  { photos: [hrisoImg, hrisoImg2, hrisoImg3], nameKey: "hrisoName", roleKey: "hrisoRole", bioKey: "hrisoBio", interval: 3600 },
 ];
 
 function TeamCard({
@@ -49,9 +53,9 @@ function TeamCard({
     if (member.photos.length <= 1) return;
     const id = setInterval(() => {
       setActive((prev) => (prev + 1) % member.photos.length);
-    }, 3500);
+    }, member.interval);
     return () => clearInterval(id);
-  }, [member.photos.length]);
+  }, [member.photos.length, member.interval]);
 
   return (
     <div className={styles.teamCard} onClick={onClick} data-clickable>
@@ -197,6 +201,7 @@ export default function AboutPage() {
     <SmoothScroll>
       {/* Hero */}
       <section ref={heroRef} className={styles.hero}>
+        <ShevitsaDecor variant={4} />
         <span className={styles.heroSubtitle}>{t("heroSubtitle")}</span>
         <h1 ref={heroTitleRef} className={styles.heroTitle}>
           {t("heroTitle")}
@@ -218,6 +223,7 @@ export default function AboutPage() {
 
       {/* Values */}
       <section className={styles.values}>
+        <ShevitsaDecor variant={5} />
         <div className={styles.valuesInner}>
           <span className={`${styles.tag} ${styles.tagDark}`}>
             {t("valuesTag")}

@@ -1,5 +1,7 @@
 /* ── Hero ── */
 .hero {
+  position: relative;
+  overflow: hidden;
   min-height: 60vh;
   display: flex;
   align-items: center;
@@ -30,6 +32,8 @@
 
 /* ── Shared section styles ── */
 .section {
+  position: relative;
+  overflow: hidden;
   background-color: #e8e2bf;
   padding: 6rem 4rem;
 }

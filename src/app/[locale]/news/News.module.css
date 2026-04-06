@@ -1,5 +1,7 @@
 /* ── Hero ── */
 .hero {
+  position: relative;
+  overflow: hidden;
   min-height: 60vh;
   display: flex;
   align-items: center;
@@ -33,6 +35,8 @@
 
 /* ── Articles grid ── */
 .articles {
+  position: relative;
+  overflow: hidden;
   background-color: #e8e2bf;
   background-image:
     radial-gradient(ellipse 25% 20% at 80% 15%, rgba(7, 43, 22, 0.03) 0%, transparent 70%),

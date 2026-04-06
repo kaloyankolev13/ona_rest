@@ -11,6 +11,7 @@ import {
 } from "@/animations/scrollAnimations";
 import animStyles from "@/animations/animations.module.css";
 import { SmoothScroll } from "@/components";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./Voucher.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -75,6 +76,7 @@ export default function VoucherPage() {
     <SmoothScroll>
       {/* ── Hero ── */}
       <section className={styles.hero}>
+        <ShevitsaDecor variant={4} />
         <span className={styles.heroSubtitle}>{t("heroSubtitle")}</span>
         <h1 ref={heroTitleRef} className={styles.heroTitle}>
           {t("heroTitle")}
@@ -83,6 +85,7 @@ export default function VoucherPage() {
 
       {/* ── Intro ── */}
       <section className={styles.section}>
+        <ShevitsaDecor variant={9} />
         <div className={styles.narrow}>
           <h2 ref={introHeadingRef} className={styles.sectionHeading}>
             {splitToLetters(t("introHeading"), animStyles.letter)}
@@ -113,6 +116,7 @@ export default function VoucherPage() {
 
       {/* ── How vouchers work ── */}
       <section className={styles.section}>
+        <ShevitsaDecor variant={5} />
         <div ref={howRef} className={styles.narrow}>
           <span className={styles.tagDark}>{t("howItWorksTag")}</span>
           <div className={styles.textBlock}>
@@ -147,6 +151,7 @@ export default function VoucherPage() {
 
       {/* ── Pricing ── */}
       <section className={styles.section}>
+        <ShevitsaDecor variant={10} />
         <div ref={pricingRef} className={styles.narrow}>
           <span className={styles.tagDark}>{t("pricingTag")}</span>
           <div className={styles.priceList}>

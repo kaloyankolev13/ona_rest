@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import houseImg from "@/assets/house.jpg";
 import {
   animateRevealOnScroll,
 } from "@/animations/scrollAnimations";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./StorySection.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -72,9 +75,17 @@ export function StorySection() {
 
   return (
     <section ref={sectionRef} className={styles.story}>
+      <ShevitsaDecor variant={1} />
       <div className={styles.inner}>
         <div ref={imageRef} className={styles.imageCol}>
-          <div className={styles.imagePlaceholder} />
+          <Image
+            src={houseImg}
+            alt="ONÀ house in winter"
+            width={800}
+            height={1067}
+            className={styles.image}
+            sizes="(max-width: 900px) 100vw, 50vw"
+          />
         </div>
 
         <div className={styles.textCol}>

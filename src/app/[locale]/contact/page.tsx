@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { animateRevealOnScroll } from "@/animations/scrollAnimations";
 import { SmoothScroll } from "@/components";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./Contact.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -111,6 +112,7 @@ export default function ContactPage() {
     <SmoothScroll>
       {/* Hero */}
       <section className={styles.hero}>
+        <ShevitsaDecor variant={6} />
         <span className={styles.heroSubtitle}>{t("heroSubtitle")}</span>
         <h1 ref={heroTitleRef} className={styles.heroTitle}>
           {t("heroTitle")}
@@ -145,6 +147,7 @@ export default function ContactPage() {
 
       {/* Content: Info + Form */}
       <section className={styles.content}>
+        <ShevitsaDecor variant={10} />
         <div className={styles.contentInner}>
           <div ref={infoRef} className={styles.infoColumn}>
             <span className={styles.tag}>{t("infoTag")}</span>
