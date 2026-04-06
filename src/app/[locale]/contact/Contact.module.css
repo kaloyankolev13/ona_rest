@@ -200,6 +200,25 @@
   transform: translateX(3px);
 }
 
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formFeedback {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.formFeedback[data-success] {
+  color: var(--primary-green);
+}
+
+.formFeedback[data-error] {
+  color: #a94442;
+}
+
 /* ── Map section ── */
 .map {
   background-color: #072b16;

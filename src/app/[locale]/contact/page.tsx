@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -25,6 +25,35 @@ export default function ContactPage() {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<mapboxgl.Map | null>(null);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      if (!res.ok) throw new Error();
+
+      setStatus("success");
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch {
+      setStatus("error");
+    }
+  }
 
   useEffect(() => {
     if (!mapContainerRef.current || !MAPBOX_TOKEN || mapInstanceRef.current) return;
@@ -175,7 +204,7 @@ export default function ContactPage() {
 
           <div ref={formRef} className={styles.formColumn}>
             <span className={styles.tag}>{t("formTag")}</span>
-            <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+            <form className={styles.form} onSubmit={handleSubmit}>
               <div className={styles.formRow}>
                 <div className={styles.fieldGroup}>
                   <label className={styles.fieldLabel}>{t("formName")}</label>
@@ -183,6 +212,9 @@ export default function ContactPage() {
                     type="text"
                     className={styles.input}
                     placeholder={t("formName")}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
                   />
                 </div>
                 <div className={styles.fieldGroup}>
@@ -191,6 +223,9 @@ export default function ContactPage() {
                     type="email"
                     className={styles.input}
                     placeholder={t("formEmail")}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                   />
                 </div>
               </div>
@@ -201,6 +236,9 @@ export default function ContactPage() {
                   type="text"
                   className={styles.input}
                   placeholder={t("formSubject")}
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
+                  required
                 />
               </div>
 
@@ -210,12 +248,32 @@ export default function ContactPage() {
                   className={styles.textarea}
                   placeholder={t("formMessage")}
                   rows={5}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
                 />
               </div>
 
-              <button type="submit" className={styles.submitBtn}>
-                {t("formSend")} <span className={styles.arrow}>→</span>
+              <button
+                type="submit"
+                className={styles.submitBtn}
+                disabled={status === "sending"}
+              >
+                {status === "sending" ? t("formSending") : (
+                  <>{t("formSend")} <span className={styles.arrow}>→</span></>
+                )}
               </button>
+
+              {status === "success" && (
+                <p className={styles.formFeedback} data-success>
+                  {t("formSuccess")}
+                </p>
+              )}
+              {status === "error" && (
+                <p className={styles.formFeedback} data-error>
+                  {t("formError")}
+                </p>
+              )}
             </form>
           </div>
         </div>

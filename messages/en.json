@@ -137,6 +137,9 @@
     "formSubject": "Subject",
     "formMessage": "Your Message",
     "formSend": "SEND",
+    "formSending": "SENDING...",
+    "formSuccess": "Message sent successfully!",
+    "formError": "Failed to send. Please try again.",
     "mapTag": "ON THE MAP",
     "podcastTag": "LISTEN FIRST",
     "podcastText": "If you want to know what you are getting into, listen to the podcast on your way here."
@@ -253,7 +256,7 @@
     "info1Title": "Dress Code",
     "info1Text": "Smart casual. We want you to feel comfortable while enjoying the ambiance.",
     "info2Title": "Cancellation",
-    "info2Text": "Please notify us at least 24 hours in advance if you need to cancel or modify your reservation.",
+    "info2Text": "Please notify us at least 2 weeks in advance if you need to cancel or modify your reservation.",
     "info3Title": "Large Parties",
     "info3Text": "For groups of 8 or more, please contact us directly by phone for special arrangements.",
     "guestOptions": ["1 Guest", "2 Guests", "3 Guests", "4 Guests", "5 Guests", "6 Guests", "7+ Guests"],
