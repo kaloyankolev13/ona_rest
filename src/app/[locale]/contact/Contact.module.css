@@ -207,10 +207,35 @@
 .mapInner {
   max-width: 1400px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.mapCol {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+}
+
+.podcastCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.podcastText {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  color: rgba(232, 226, 191, 0.6);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.podcastEmbed {
+  border-radius: 12px;
+  border: none;
 }
 
 .mapTag {
@@ -260,6 +285,10 @@
 
   .map {
     padding: 3rem 2rem;
+  }
+
+  .mapInner {
+    grid-template-columns: 1fr;
   }
 }
 

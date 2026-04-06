@@ -31,9 +31,6 @@ export function HeritageSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descRef = useRef<HTMLParagraphElement>(null);
-  const ownerRef = useRef<HTMLDivElement>(null);
-  const ownerPhotoRef = useRef<HTMLDivElement>(null);
-  const ownerTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -69,41 +66,6 @@ export function HeritageSection() {
         });
       }
 
-      // Owner photo: reveal + parallax
-      if (ownerPhotoRef.current) {
-        animateRevealOnScroll(ownerPhotoRef.current, {
-          y: 80,
-          duration: 0.8,
-        });
-        gsap.fromTo(
-          ownerPhotoRef.current,
-          { yPercent: 0 },
-          {
-            yPercent: -15,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ownerRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-            },
-          }
-        );
-      }
-
-      // Owner text: staggered reveal
-      if (ownerTextRef.current) {
-        const textChildren = Array.from(ownerTextRef.current.children);
-        if (textChildren.length) {
-          animateRevealOnScroll(textChildren, {
-            y: 40,
-            duration: 0.6,
-            stagger: 0.15,
-            delay: 0.2,
-          });
-        }
-      }
-
       // Parallax: images drift at different speeds on scroll (uses yPercent to avoid conflict with reveal's y)
       const parallaxSpeeds = [-20, 25, -15];
       images.forEach((img, i) => {
@@ -129,20 +91,6 @@ export function HeritageSection() {
 
   return (
     <section ref={sectionRef} className={styles.section}>
-      {/* ── Owner block ── */}
-      <div ref={ownerRef} className={styles.ownerBlock}>
-        <div ref={ownerPhotoRef} className={styles.ownerPhoto}>
-          <div className={styles.ownerPhotoPlaceholder} />
-        </div>
-        <div ref={ownerTextRef} className={styles.ownerText}>
-          <span className={styles.ownerTag}>{t("ownerTag")}</span>
-          <h3 className={styles.ownerName}>{t("ownerName")}</h3>
-          <span className={styles.ownerRole}>{t("ownerRole")}</span>
-          <p className={styles.ownerDesc}>{t("ownerDesc1")}</p>
-          <p className={styles.ownerDesc}>{t("ownerDesc2")}</p>
-        </div>
-      </div>
-
       <div className={styles.layout}>
         {/* Left image */}
         <div className={styles.leftImages}>

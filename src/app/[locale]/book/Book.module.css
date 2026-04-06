@@ -75,7 +75,7 @@
 
 .formGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
@@ -196,6 +196,102 @@
   transform: translateX(3px);
 }
 
+/* ── Booking details section ── */
+.detailsSection {
+  background-color: #072b16;
+  background-image:
+    radial-gradient(ellipse 30% 25% at 50% 50%, rgba(232, 226, 191, 0.04) 0%, transparent 70%);
+  padding: 6rem 6rem;
+}
+
+.detailsInner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.detailsIntro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detailsIntro p {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: rgba(232, 226, 191, 0.7);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+
+.detailsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detailsTitle {
+  font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  color: #e8e2bf;
+  margin: 0 0 0.5rem;
+  font-weight: 400;
+}
+
+.detailsText {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  color: rgba(232, 226, 191, 0.6);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.detailsPricing {
+  text-align: center;
+  padding: 2.5rem;
+  border: 1px solid rgba(232, 226, 191, 0.12);
+  border-radius: 1rem;
+}
+
+.detailsPricing .detailsTitle {
+  margin-bottom: 1rem;
+}
+
+.priceList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.priceList li {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  color: rgba(232, 226, 191, 0.7);
+  line-height: 1.6;
+}
+
+.detailsContact {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.85rem, 1vw, 0.95rem);
+  color: rgba(232, 226, 191, 0.5);
+  line-height: 1.7;
+  text-align: center;
+  margin: 0;
+}
+
 /* ── Info section ── */
 .infoSection {
   background-color: #e8e2bf;
@@ -282,6 +378,15 @@
     grid-template-columns: 1fr;
   }
 
+  .detailsSection {
+    padding: 4rem 2rem;
+  }
+
+  .detailsGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
   .infoSection {
     padding: 2rem 2rem 5rem;
   }
@@ -303,6 +408,10 @@
 
   .formSection {
     padding: 3rem 1.5rem 2rem;
+  }
+
+  .detailsSection {
+    padding: 3rem 1.5rem;
   }
 
   .infoSection {

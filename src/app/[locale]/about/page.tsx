@@ -10,7 +10,7 @@ import {
   animateRevealOnScroll,
 } from "@/animations/scrollAnimations";
 import animStyles from "@/animations/animations.module.css";
-import { SmoothScroll, StorySection } from "@/components";
+import { SmoothScroll } from "@/components";
 import styles from "./About.module.css";
 
 import filipImg from "@/assets/team/filip.jpg";
@@ -202,9 +202,6 @@ export default function AboutPage() {
           {t("heroTitle")}
         </h1>
       </section>
-
-      {/* Story */}
-      <StorySection />
 
       {/* Philosophy */}
       <section ref={philRef} className={styles.philosophy}>

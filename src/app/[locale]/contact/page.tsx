@@ -117,6 +117,32 @@ export default function ContactPage() {
         </h1>
       </section>
 
+      {/* Map + Podcast */}
+      <section className={styles.map}>
+        <div className={styles.mapInner}>
+          <div className={styles.mapCol}>
+            <span className={styles.mapTag}>{t("mapTag")}</span>
+            <div ref={mapRef} className={styles.mapContainer}>
+              <div ref={mapContainerRef} className={styles.mapCanvas} />
+            </div>
+          </div>
+          <div className={styles.podcastCol}>
+            <span className={styles.mapTag}>{t("podcastTag")}</span>
+            <p className={styles.podcastText}>{t("podcastText")}</p>
+            <iframe
+              className={styles.podcastEmbed}
+              src="https://open.spotify.com/embed/episode/4LRyX2IkqasxlnfsJ3tlpw?utm_source=generator&t=0"
+              width="100%"
+              height="352"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="Podcast"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Content: Info + Form */}
       <section className={styles.content}>
         <div className={styles.contentInner}>
@@ -188,16 +214,6 @@ export default function ContactPage() {
                 {t("formSend")} <span className={styles.arrow}>→</span>
               </button>
             </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Map */}
-      <section className={styles.map}>
-        <div className={styles.mapInner}>
-          <span className={styles.mapTag}>{t("mapTag")}</span>
-          <div ref={mapRef} className={styles.mapContainer}>
-            <div ref={mapContainerRef} className={styles.mapCanvas} />
           </div>
         </div>
       </section>

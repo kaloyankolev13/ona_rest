@@ -4,6 +4,7 @@ import {
   Loading,
   MainContent,
   ScrollMarquee,
+  StorySection,
   HeritageSection,
   CoursesSection,
   TableSection,
@@ -17,6 +18,7 @@ export default function Home() {
       <Loading duration={1000} />
       <MainContent />
       <ScrollMarquee />
+      <StorySection />
       <HeritageSection />
       <CoursesSection />
       <TableSection />

@@ -13,7 +13,6 @@ gsap.registerPlugin(ScrollTrigger);
 export default function BookPage() {
   const t = useTranslations("BookPage");
   const guestOptions = t.raw("guestOptions") as string[];
-  const timeSlots = t.raw("timeSlots") as string[];
 
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
@@ -74,16 +73,6 @@ export default function BookPage() {
                 <input type="date" className={styles.input} />
               </div>
               <div className={styles.fieldGroup}>
-                <label className={styles.fieldLabel}>{t("fieldTime")}</label>
-                <select className={styles.select}>
-                  {timeSlots.map((slot) => (
-                    <option key={slot} value={slot}>
-                      {slot}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className={styles.fieldGroup}>
                 <label className={styles.fieldLabel}>{t("fieldGuests")}</label>
                 <select className={styles.select}>
                   {guestOptions.map((opt, i) => (
@@ -136,6 +125,76 @@ export default function BookPage() {
               {t("submitBtn")} <span className={styles.arrow}>→</span>
             </button>
           </form>
+        </div>
+      </section>
+
+      {/* Booking Details */}
+      <section className={styles.detailsSection}>
+        <div className={styles.detailsInner}>
+          <div className={styles.detailsIntro}>
+            <p>{t("detailsIntro1")}</p>
+            <p>{t("detailsIntro2")}</p>
+          </div>
+
+          <div className={styles.detailsGrid}>
+            <div className={styles.detailsBlock}>
+              <h3 className={styles.detailsTitle}>{t("dinnerTitle")}</h3>
+              <p className={styles.detailsText}>{t("dinner1")}</p>
+              <p className={styles.detailsText}>{t("dinner2")}</p>
+              <p className={styles.detailsText}>{t("dinner3")}</p>
+            </div>
+
+            <div className={styles.detailsBlock}>
+              <h3 className={styles.detailsTitle}>{t("drinksTitle")}</h3>
+              <p className={styles.detailsText}>{t("drinksIntro")}</p>
+              <p className={styles.detailsText}>{t("drinksWine")}</p>
+              <p className={styles.detailsText}>{t("drinksNonAlc")}</p>
+            </div>
+
+            <div className={styles.detailsBlock}>
+              <h3 className={styles.detailsTitle}>{t("detailsSmallTitle")}</h3>
+              <p className={styles.detailsText}>{t("detailsSlippers")}</p>
+              <p className={styles.detailsText}>{t("detailsChildren")}</p>
+              <p className={styles.detailsText}>{t("detailsPets")}</p>
+            </div>
+
+            <div className={styles.detailsBlock}>
+              <h3 className={styles.detailsTitle}>{t("stayTitle")}</h3>
+              <p className={styles.detailsText}>{t("stay1")}</p>
+              <p className={styles.detailsText}>{t("stay2")}</p>
+              <p className={styles.detailsText}>{t("stay3")}</p>
+              <p className={styles.detailsText}>{t("stay4")}</p>
+            </div>
+          </div>
+
+          <div className={styles.detailsPricing}>
+            <h3 className={styles.detailsTitle}>{t("pricesTitle")}</h3>
+            <ul className={styles.priceList}>
+              <li>{t("priceDinner")}</li>
+              <li>{t("priceWine")}</li>
+              <li>{t("priceNonAlc")}</li>
+              <li>{t("priceBreakfast")}</li>
+            </ul>
+          </div>
+
+          <div className={styles.detailsGrid}>
+            <div className={styles.detailsBlock}>
+              <h3 className={styles.detailsTitle}>{t("reservationsTitle")}</h3>
+              <p className={styles.detailsText}>{t("res1")}</p>
+              <p className={styles.detailsText}>{t("res2")}</p>
+              <p className={styles.detailsText}>{t("res3")}</p>
+              <p className={styles.detailsText}>{t("res4")}</p>
+              <p className={styles.detailsText}>{t("res5")}</p>
+            </div>
+
+            <div className={styles.detailsBlock}>
+              <h3 className={styles.detailsTitle}>{t("noteTitle")}</h3>
+              <p className={styles.detailsText}>{t("note1")}</p>
+              <p className={styles.detailsText}>{t("note2")}</p>
+            </div>
+          </div>
+
+          <p className={styles.detailsContact}>{t("detailsContact")}</p>
         </div>
       </section>
 
