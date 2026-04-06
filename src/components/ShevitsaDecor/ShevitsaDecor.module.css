@@ -11,7 +11,13 @@
 }
 
 @media (max-width: 900px) {
-  .container {
-    display: none;
+  .item {
+    transform: scale(0.6);
+  }
+}
+
+@media (max-width: 500px) {
+  .item {
+    transform: scale(0.45);
   }
 }
