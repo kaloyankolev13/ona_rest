@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
+import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./MainContent.module.css";
 
 const LOADING_DELAY = 1.8;
@@ -49,6 +50,7 @@ export function MainContent() {
 
   return (
     <main className={styles.container}>
+      <ShevitsaDecor variant={5} />
       <div className={styles.content}>
         <div ref={videoSectionRef} className={styles.videoSection}>
           <div className={styles.videoWrapper}>

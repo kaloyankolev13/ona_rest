@@ -12,8 +12,8 @@
     "bookTable": "РЕЗЕРВИРАЙ МАСА"
   },
   "ScrollMarquee": {
-    "line1Segments": ["ОНÀ", "Е", "НАСЀКЪДЕ"],
-    "line2Segments": ["НАСЀКЪДЕ", "Е", "ОНÀ"]
+    "line1Segments": ["#ОНÀЕНАСЀКЪДЕ"],
+    "line2Segments": ["НАСЀКЪДЕЕОНÀ#"]
   },
   "MainContent": {
     "imageAlt": "Изображение",
@@ -79,8 +79,7 @@
     "tiktok": "TikTok",
     "legalName": "ONA Ресторант",
     "legalRights": "Всички права запазени ©",
-    "privacyPolicy": "Политика за поверителност",
-    "cookiePolicy": "Политика за бисквитки"
+    "privacyPolicy": "Политика за поверителност и бисквитки"
   },
   "Pages": {
     "home": "Начало",
