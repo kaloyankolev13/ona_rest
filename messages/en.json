@@ -20,8 +20,8 @@
     "dictFinal": "ONÀ is everywhere."
   },
   "ScrollMarquee": {
-    "line1Segments": ["ONÁ", "IS", "EVERYWHERE"],
-    "line2Segments": ["EVERYWHERE", "IS", "ONÁ"]
+    "line1Segments": ["#ОНÀЕНАСЀКЪДЕ"],
+    "line2Segments": ["НАСЀКЪДЕЕОНÀ#"]
   },
   "HeritageSection": {
     "heading": "Where cultural heritage meets culinary excellence",
