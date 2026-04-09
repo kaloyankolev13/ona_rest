@@ -103,9 +103,9 @@
 /* ── Gallery: stacked cards ── */
 .gallery {
   position: relative;
-  width: 42%;
+  width: 38%;
   flex-shrink: 0;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 3.5;
   cursor: pointer;
 }
 
@@ -129,6 +129,7 @@
 
 .cardImage {
   object-fit: cover;
+  object-position: center top;
 }
 
 /* ── Responsive ── */
@@ -145,6 +146,7 @@
   .gallery {
     width: 80%;
     margin: 0 auto;
+    aspect-ratio: 3 / 4;
   }
 
   .rightContent {
