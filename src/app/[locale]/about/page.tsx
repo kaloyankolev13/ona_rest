@@ -17,7 +17,7 @@ import styles from "./About.module.css";
 import filipImg from "@/assets/team/filip.jpg";
 import filipImg2 from "@/assets/team/filip2.jpeg";
 import filipImg3 from "@/assets/team/filip3.jpeg";
-import filipImg4 from "@/assets/team/filip4.jpeg";
+import filipImg4 from "@/assets/team/filip4.jpg";
 import plamImg from "@/assets/team/plam.jpg";
 import plamImg2 from "@/assets/team/plam2.jpg";
 import plamImg3 from "@/assets/team/plam3.jpg";

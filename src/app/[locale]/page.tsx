@@ -8,6 +8,7 @@ import {
   CoursesSection,
   TableSection,
   NewsSection,
+  JreSection,
   SmoothScroll,
 } from "@/components";
 
@@ -22,6 +23,7 @@ export default function Home() {
       <TableSection />
       <ScrollMarquee />
       <NewsSection />
+      <JreSection />
     </SmoothScroll>
   );
 }

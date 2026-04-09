@@ -1,0 +1,119 @@
+.section {
+  position: relative;
+  background-color: #072b16;
+  padding: 6rem 4rem;
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.logoLink {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border: 1px solid rgba(232, 226, 191, 0.12);
+  border-radius: 1rem;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.logoLink:hover {
+  border-color: rgba(232, 226, 191, 0.3);
+  background: rgba(232, 226, 191, 0.04);
+}
+
+.logo {
+  display: block;
+}
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.label {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.65rem, 0.8vw, 0.75rem);
+  color: rgba(232, 226, 191, 0.4);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.heading {
+  font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: #e8e2bf;
+  line-height: 1.15;
+  margin: 0;
+  font-weight: 400;
+}
+
+.description {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  color: rgba(232, 226, 191, 0.6);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+  color: #e8e2bf;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  transition: opacity 0.3s;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
+
+.arrow {
+  transition: transform 0.3s;
+}
+
+.link:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .textBlock {
+    align-items: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .section {
+    padding: 3rem 1.5rem;
+  }
+
+  .logoLink {
+    padding: 1.5rem;
+  }
+}

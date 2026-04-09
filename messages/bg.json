@@ -66,6 +66,12 @@
     "title": "Новини",
     "seeAllNews": "Виж всички новини"
   },
+  "JreSection": {
+    "label": "ЧЛЕН НА",
+    "heading": "Jeunes Restaurateurs",
+    "description": "ONÀ е горд член на JRE – Jeunes Restaurateurs, европейска асоциация, обединяваща млади и креативни готвачи, посветени на кулинарното съвършенство и изкуството на висшата кухня.",
+    "cta": "Вижте профила ни в JRE"
+  },
   "Footer": {
     "workingHours": "РАБОТНО ВРЕМЕ",
     "scheduleTueFri": "На село се бачка всеки ден.",

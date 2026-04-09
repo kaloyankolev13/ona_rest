@@ -66,6 +66,12 @@
     "title": "News",
     "seeAllNews": "See all news"
   },
+  "JreSection": {
+    "label": "MEMBER OF",
+    "heading": "Jeunes Restaurateurs",
+    "description": "ONÀ is a proud member of JRE – Jeunes Restaurateurs, a European association uniting young, creative chefs dedicated to culinary excellence and the art of fine dining.",
+    "cta": "See our JRE profile"
+  },
   "Footer": {
     "workingHours": "WORKING HOURS",
     "scheduleTueFri": "On the countryside we work every day.",
