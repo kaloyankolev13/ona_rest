@@ -158,6 +158,8 @@ export default function AboutPage() {
   const teamHeadingRef = useRef<HTMLHeadingElement>(null);
   const teamTextRef = useRef<HTMLDivElement>(null);
 
+  const modalTouchStart = useRef<number | null>(null);
+
   const openModal = useCallback((idx: number) => {
     setModalIdx(idx);
     setModalPhotoIdx(0);
@@ -329,7 +331,19 @@ export default function AboutPage() {
               &times;
             </button>
             <div className={styles.modalBody}>
-              <div className={styles.modalPhoto}>
+              <div
+                className={styles.modalPhoto}
+                onTouchStart={(e) => { modalTouchStart.current = e.touches[0].clientX; }}
+                onTouchEnd={(e) => {
+                  if (modalTouchStart.current === null) return;
+                  const delta = e.changedTouches[0].clientX - modalTouchStart.current;
+                  modalTouchStart.current = null;
+                  if (Math.abs(delta) < 40) return;
+                  const len = TEAM[modalIdx].photos.length;
+                  if (delta < 0) setModalPhotoIdx((prev) => (prev + 1) % len);
+                  else setModalPhotoIdx((prev) => (prev - 1 + len) % len);
+                }}
+              >
                 {TEAM[modalIdx].photos.map((src, i) => (
                   <Image
                     key={i}
