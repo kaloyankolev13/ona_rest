@@ -6,6 +6,9 @@ import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import houseImg from "@/assets/house.jpg";
+import ona1 from "@/assets/ona_main/ona_1.jpg";
+import ona2 from "@/assets/ona_main/ona_2.jpg";
+import ona3 from "@/assets/ona_main/ona_3.jpg";
 import {
   animateRevealOnScroll,
 } from "@/animations/scrollAnimations";
@@ -68,6 +71,25 @@ export function StorySection() {
           duration: 0.9,
         });
       }
+
+      const inlinePhotos = section.querySelectorAll(`.${styles.inlinePhoto}`);
+      inlinePhotos.forEach((photo) => {
+        gsap.fromTo(
+          photo,
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: photo,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      });
     }, section);
 
     return () => ctx.revert();
@@ -108,6 +130,17 @@ export function StorySection() {
             </p>
           </div>
 
+          <div className={styles.inlinePhoto}>
+            <Image
+              src={ona1}
+              alt=""
+              width={600}
+              height={800}
+              className={styles.inlineImage}
+              sizes="(max-width: 900px) 90vw, 45vw"
+            />
+          </div>
+
           {/* ── The house ── */}
           <div className={styles.chapter}>
             <h2 className={`${styles.poeticTitle} ${styles.block}`}>
@@ -124,6 +157,17 @@ export function StorySection() {
             </p>
           </div>
 
+          <div className={styles.inlinePhoto}>
+            <Image
+              src={ona2}
+              alt=""
+              width={600}
+              height={750}
+              className={styles.inlineImage}
+              sizes="(max-width: 900px) 90vw, 45vw"
+            />
+          </div>
+
           {/* ── The night ── */}
           <div className={styles.chapter}>
             <h2 className={`${styles.poeticTitle} ${styles.block}`}>
@@ -135,6 +179,17 @@ export function StorySection() {
             <p className={`${styles.poeticText} ${styles.block}`}>
               {t("night2")}
             </p>
+          </div>
+
+          <div className={styles.inlinePhoto}>
+            <Image
+              src={ona3}
+              alt=""
+              width={800}
+              height={450}
+              className={styles.inlineImage}
+              sizes="(max-width: 900px) 90vw, 45vw"
+            />
           </div>
 
           {/* ── What is ONA ── */}

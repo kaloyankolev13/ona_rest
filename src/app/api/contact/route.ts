@@ -1,7 +1,15 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
+import { connectDB } from "@/lib/mongodb";
+import Message from "@/models/Message";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
 
 export async function POST(request: Request) {
   try {
@@ -14,20 +22,27 @@ export async function POST(request: Request) {
       );
     }
 
-    await resend.emails.send({
-      from: "ONÀ Contact Form <onboarding@resend.dev>",
-      to: "booking@ona.rest",
-      replyTo: email,
-      subject: `[Contact] ${subject}`,
-      html: `
-        <h2>New message from the contact form</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <hr />
-        <p>${message.replace(/\n/g, "<br />")}</p>
-      `,
-    });
+    await connectDB();
+    await Message.create({ name, email, subject, message });
+
+    try {
+      await transporter.sendMail({
+        from: `"ONÀ Contact Form" <${process.env.SMTP_USER}>`,
+        to: process.env.SMTP_USER,
+        replyTo: email,
+        subject: `[Contact] ${subject}`,
+        html: `
+          <h2>New message from the contact form</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Subject:</strong> ${subject}</p>
+          <hr />
+          <p>${message.replace(/\n/g, "<br />")}</p>
+        `,
+      });
+    } catch (emailError) {
+      console.error("Email sending failed (message saved to DB):", emailError);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

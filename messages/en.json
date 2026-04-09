@@ -9,11 +9,12 @@
     "aboutUs": "ABOUT US",
     "contact": "CONTACT",
     "news": "NEWS",
+    "gallery": "GALLERY",
     "bookTable": "BOOK A TABLE"
   },
   "MainContent": {
     "imageAlt": "Featured image",
-    "dictTitle": "ONÀ.",
+    "dictTitle": "ONÀ",
     "dictPhonetic": "In dialect — \"she.\"",
     "dictDef1": "She is this house. She is the table. She is the dinner that never repeats.",
     "dictDef2": "She is the feeling that you are exactly where you need to be.",
@@ -67,7 +68,7 @@
   },
   "Footer": {
     "workingHours": "WORKING HOURS",
-    "scheduleTueFri": "On the countryside we work every day. (smiley)",
+    "scheduleTueFri": "On the countryside we work every day.",
     "address": "ADDRESS",
     "addressValue": "Stakevtsi, 31 Street №1",
     "contact": "Contact",
@@ -130,7 +131,7 @@
     "emailLabel": "Email",
     "emailValue": "booking@ona.rest",
     "hoursLabel": "Working Hours",
-    "hoursTueFri": "On the countryside we work every day. (smiley)",
+    "hoursTueFri": "On the countryside we work every day.",
     "formTag": "SEND A MESSAGE",
     "formName": "Your Name",
     "formEmail": "Your Email",
@@ -331,5 +332,9 @@
     "ctaText": "If you wish to gift an experience at ONA, we will gladly send you the full terms and payment information. You can reach us via the form below or by email.",
     "ctaButton": "GET IN TOUCH",
     "ctaClosing": "Sometimes the most beautiful gifts are those experienced together."
+  },
+  "GalleryPage": {
+    "heroTitle": "Gallery",
+    "heroSubtitle": "MOMENTS AT ONÀ"
   }
 }

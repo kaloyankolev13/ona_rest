@@ -12,6 +12,7 @@ const navItems = [
   { key: "aboutUs" as const, href: "/about" as const },
   { key: "contact" as const, href: "/contact" as const },
   { key: "news" as const, href: "/news" as const },
+  { key: "gallery" as const, href: "/gallery" as const },
 ];
 
 export function SideBar() {
@@ -296,6 +297,7 @@ export function SideBar() {
               <h4 className={styles.footerTitle}>{tFooter("workingHours")}</h4>
               <p className={styles.footerText}>
                 {tFooter("scheduleTueFri")}
+                😊
               </p>
             </div>
             <div className={styles.footerBlock}>

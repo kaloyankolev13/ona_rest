@@ -71,6 +71,20 @@
   max-width: 540px;
 }
 
+/* ── Inline photos between chapters ── */
+.inlinePhoto {
+  border-radius: 1rem;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.inlineImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 /* ── Accent word (Стакевци.) ── */
 .accentWord {
   font-family: var(--font-valky), serif;

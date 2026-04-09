@@ -1,7 +1,6 @@
 export { CoursesSection } from "./CoursesSection";
 export { CustomCursor } from "./CustomCursor";
 export { Footer } from "./Footer";
-export { HeritageSection } from "./HeritageSection";
 export { Loading } from "./Loading";
 export { MainContent } from "./MainContent";
 export { NewsSection } from "./NewsSection";

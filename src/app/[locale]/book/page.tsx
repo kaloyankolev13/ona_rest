@@ -63,73 +63,6 @@ export default function BookPage() {
         <p className={styles.heroIntro}>{t("introText")}</p>
       </section>
 
-      {/* Reservation Form */}
-      <section className={styles.formSection}>
-        <ShevitsaDecor variant={7} />
-        <div ref={formRef} className={styles.formInner}>
-          <span className={styles.tag}>{t("formTag")}</span>
-          <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
-            <div className={styles.formGrid}>
-              <div className={styles.fieldGroup}>
-                <label className={styles.fieldLabel}>{t("fieldDate")}</label>
-                <input type="date" className={styles.input} />
-              </div>
-              <div className={styles.fieldGroup}>
-                <label className={styles.fieldLabel}>{t("fieldGuests")}</label>
-                <select className={styles.select}>
-                  {guestOptions.map((opt, i) => (
-                    <option key={i} value={i + 1}>
-                      {opt}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className={styles.formRow}>
-              <div className={styles.fieldGroup}>
-                <label className={styles.fieldLabel}>{t("fieldName")}</label>
-                <input
-                  type="text"
-                  className={styles.input}
-                  placeholder={t("fieldName")}
-                />
-              </div>
-              <div className={styles.fieldGroup}>
-                <label className={styles.fieldLabel}>{t("fieldPhone")}</label>
-                <input
-                  type="tel"
-                  className={styles.input}
-                  placeholder={t("fieldPhone")}
-                />
-              </div>
-            </div>
-
-            <div className={styles.fieldGroup}>
-              <label className={styles.fieldLabel}>{t("fieldEmail")}</label>
-              <input
-                type="email"
-                className={styles.input}
-                placeholder={t("fieldEmail")}
-              />
-            </div>
-
-            <div className={styles.fieldGroup}>
-              <label className={styles.fieldLabel}>{t("fieldNotes")}</label>
-              <textarea
-                className={styles.textarea}
-                placeholder={t("fieldNotes")}
-                rows={3}
-              />
-            </div>
-
-            <button type="submit" className={styles.submitBtn}>
-              {t("submitBtn")} <span className={styles.arrow}>→</span>
-            </button>
-          </form>
-        </div>
-      </section>
-
       {/* Booking Details */}
       <section className={styles.detailsSection}>
         <div className={styles.detailsInner}>
@@ -197,6 +130,73 @@ export default function BookPage() {
           </div>
 
           <p className={styles.detailsContact}>{t("detailsContact")}</p>
+        </div>
+      </section>
+
+      {/* Reservation Form */}
+      <section className={styles.formSection}>
+        <ShevitsaDecor variant={7} />
+        <div ref={formRef} className={styles.formInner}>
+          <span className={styles.tag}>{t("formTag")}</span>
+          <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+            <div className={styles.formGrid}>
+              <div className={styles.fieldGroup}>
+                <label className={styles.fieldLabel}>{t("fieldDate")}</label>
+                <input type="date" className={styles.input} />
+              </div>
+              <div className={styles.fieldGroup}>
+                <label className={styles.fieldLabel}>{t("fieldGuests")}</label>
+                <select className={styles.select}>
+                  {guestOptions.map((opt, i) => (
+                    <option key={i} value={i + 1}>
+                      {opt}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className={styles.formRow}>
+              <div className={styles.fieldGroup}>
+                <label className={styles.fieldLabel}>{t("fieldName")}</label>
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder={t("fieldName")}
+                />
+              </div>
+              <div className={styles.fieldGroup}>
+                <label className={styles.fieldLabel}>{t("fieldPhone")}</label>
+                <input
+                  type="tel"
+                  className={styles.input}
+                  placeholder={t("fieldPhone")}
+                />
+              </div>
+            </div>
+
+            <div className={styles.fieldGroup}>
+              <label className={styles.fieldLabel}>{t("fieldEmail")}</label>
+              <input
+                type="email"
+                className={styles.input}
+                placeholder={t("fieldEmail")}
+              />
+            </div>
+
+            <div className={styles.fieldGroup}>
+              <label className={styles.fieldLabel}>{t("fieldNotes")}</label>
+              <textarea
+                className={styles.textarea}
+                placeholder={t("fieldNotes")}
+                rows={3}
+              />
+            </div>
+
+            <button type="submit" className={styles.submitBtn}>
+              {t("submitBtn")} <span className={styles.arrow}>→</span>
+            </button>
+          </form>
         </div>
       </section>
 

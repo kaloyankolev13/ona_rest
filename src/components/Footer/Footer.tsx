@@ -10,6 +10,7 @@ const navLinks = [
   { key: "home" as const, href: "/" as const },
   { key: "aboutUs" as const, href: "/about" as const },
   { key: "news" as const, href: "/news" as const },
+  { key: "gallery" as const, href: "/gallery" as const },
   { key: "contact" as const, href: "/contact" as const },
   { key: "bookTable" as const, href: "/book" as const },
 ];
@@ -34,7 +35,7 @@ export function Footer() {
           </div>
           <div className={styles.infoBlock}>
             <h4 className={styles.infoTitle}>{t("workingHours")}</h4>
-            <p className={styles.infoText}>{t("scheduleTueFri")}</p>
+            <p className={styles.infoText}>{t("scheduleTueFri")} 😊</p>
           </div>
         </div>
 

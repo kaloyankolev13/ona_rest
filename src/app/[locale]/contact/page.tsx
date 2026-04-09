@@ -198,7 +198,7 @@ export default function ContactPage() {
 
             <div className={styles.infoBlock}>
               <h4 className={styles.infoLabel}>{t("hoursLabel")}</h4>
-              <p className={styles.infoValue}>{t("hoursTueFri")}</p>
+              <p className={styles.infoValue}>{t("hoursTueFri")} 😊</p>
             </div>
           </div>
 

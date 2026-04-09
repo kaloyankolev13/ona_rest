@@ -9,6 +9,7 @@ export async function POST(request: NextRequest) {
 
   const formData = await request.formData();
   const file = formData.get("file") as File | null;
+  const folder = (formData.get("folder") as string) || "ona-news";
 
   if (!file) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
@@ -21,7 +22,7 @@ export async function POST(request: NextRequest) {
     (resolve, reject) => {
       cloudinary.uploader
         .upload_stream(
-          { folder: "ona-news", resource_type: "image" },
+          { folder, resource_type: "image" },
           (error, result) => {
             if (error || !result) return reject(error);
             resolve({ secure_url: result.secure_url, public_id: result.public_id });

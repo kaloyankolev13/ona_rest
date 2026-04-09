@@ -5,7 +5,6 @@ import {
   MainContent,
   ScrollMarquee,
   StorySection,
-  HeritageSection,
   CoursesSection,
   TableSection,
   NewsSection,
@@ -19,7 +18,6 @@ export default function Home() {
       <MainContent />
       <ScrollMarquee />
       <StorySection />
-      <HeritageSection />
       <CoursesSection />
       <TableSection />
       <ScrollMarquee />

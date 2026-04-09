@@ -221,7 +221,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* Values
       <section className={styles.values}>
         <ShevitsaDecor variant={5} />
         <div className={styles.valuesInner}>
@@ -242,7 +242,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team */}
       <section ref={teamRef} className={styles.team}>
