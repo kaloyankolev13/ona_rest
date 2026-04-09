@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,6 +18,39 @@ export default function BookPage() {
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
+
+  const [date, setDate] = useState("");
+  const [guests, setGuests] = useState(1);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [notes, setNotes] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setStatus("sending");
+
+    try {
+      const res = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, date, guests, notes }),
+      });
+
+      if (!res.ok) throw new Error();
+
+      setStatus("success");
+      setDate("");
+      setGuests(1);
+      setName("");
+      setPhone("");
+      setEmail("");
+      setNotes("");
+    } catch {
+      setStatus("error");
+    }
+  }
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -138,15 +171,25 @@ export default function BookPage() {
         <ShevitsaDecor variant={7} />
         <div ref={formRef} className={styles.formInner}>
           <span className={styles.tag}>{t("formTag")}</span>
-          <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles.formGrid}>
               <div className={styles.fieldGroup}>
                 <label className={styles.fieldLabel}>{t("fieldDate")}</label>
-                <input type="date" className={styles.input} />
+                <input
+                  type="date"
+                  className={styles.input}
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                />
               </div>
               <div className={styles.fieldGroup}>
                 <label className={styles.fieldLabel}>{t("fieldGuests")}</label>
-                <select className={styles.select}>
+                <select
+                  className={styles.select}
+                  value={guests}
+                  onChange={(e) => setGuests(Number(e.target.value))}
+                >
                   {guestOptions.map((opt, i) => (
                     <option key={i} value={i + 1}>
                       {opt}
@@ -163,6 +206,9 @@ export default function BookPage() {
                   type="text"
                   className={styles.input}
                   placeholder={t("fieldName")}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
                 />
               </div>
               <div className={styles.fieldGroup}>
@@ -171,6 +217,9 @@ export default function BookPage() {
                   type="tel"
                   className={styles.input}
                   placeholder={t("fieldPhone")}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -181,6 +230,9 @@ export default function BookPage() {
                 type="email"
                 className={styles.input}
                 placeholder={t("fieldEmail")}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -190,12 +242,31 @@ export default function BookPage() {
                 className={styles.textarea}
                 placeholder={t("fieldNotes")}
                 rows={3}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
               />
             </div>
 
-            <button type="submit" className={styles.submitBtn}>
-              {t("submitBtn")} <span className={styles.arrow}>→</span>
+            <button
+              type="submit"
+              className={styles.submitBtn}
+              disabled={status === "sending"}
+            >
+              {status === "sending" ? t("formSending") : (
+                <>{t("submitBtn")} <span className={styles.arrow}>→</span></>
+              )}
             </button>
+
+            {status === "success" && (
+              <p className={styles.formFeedback} data-success>
+                {t("formSuccess")}
+              </p>
+            )}
+            {status === "error" && (
+              <p className={styles.formFeedback} data-error>
+                {t("formError")}
+              </p>
+            )}
           </form>
         </div>
       </section>
