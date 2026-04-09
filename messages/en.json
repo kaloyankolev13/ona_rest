@@ -10,7 +10,7 @@
     "contact": "CONTACT",
     "news": "NEWS",
     "gallery": "GALLERY",
-    "bookTable": "BOOK A TABLE"
+    "bookTable": "MAKE A RESERVATION"
   },
   "MainContent": {
     "imageAlt": "Featured image",
@@ -29,9 +29,9 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   "CoursesSection": {
-    "number": "7",
+    "number": "9",
     "label": "COURSES",
-    "desc1": "Dinner is a 7-course seasonal affair, with produce from the region and the people we know.",
+    "desc1": "Dinner is a 9-course seasonal affair, with produce from the region and the people we know.",
     "desc2": "The menu changes with every season — following the rhythm of nature, not of habit.",
     "desc3": "You can add a carefully selected wine pairing or a non-alcoholic pairing of ferments and seasonal drinks.",
     "desc4": "Optionally — morning begins slowly, with a 5-course breakfast served at ease, without a clock."

@@ -10,7 +10,7 @@
     "contact": "КОНТАКТИ",
     "news": "НОВИНИ",
     "gallery": "ГАЛЕРИЯ",
-    "bookTable": "РЕЗЕРВИРАЙ МАСА"
+    "bookTable": "НАПРАВИ РЕЗЕРВАЦИЯ"
   },
   "ScrollMarquee": {
     "line1Segments": ["#ОНÀЕНАСЀКЪДЕ"],
@@ -29,9 +29,9 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   "CoursesSection": {
-    "number": "7",
+    "number": "9",
     "label": "СТЕПЕНИ",
-    "desc1": "Вечерята е 7-степенна и сезонна, с продукти от региона и от хората, които познаваме.",
+    "desc1": "Вечерята е 9-степенна и сезонна, с продукти от региона и от хората, които познаваме.",
     "desc2": "Менюто се променя с всеки сезон — следва ритъма на природата, не на навика.",
     "desc3": "Можете да добавите внимателно подбран винен пакет или безалкохолен pairing от ферментации и сезонни напитки.",
     "desc4": "По желание — сутринта започва бавно, с 5-степенна закуска, сервирана спокойно и без часовник."
