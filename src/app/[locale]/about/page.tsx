@@ -41,6 +41,28 @@ const TEAM: TeamMember[] = [
   { photos: [hrisoImg, hrisoImg2, hrisoImg3], nameKey: "hrisoName", roleKey: "hrisoRole", bioKey: "hrisoBio", interval: 3600 },
 ];
 
+function useSwipe(onSwipeLeft: () => void, onSwipeRight: () => void) {
+  const touchStart = useRef<number | null>(null);
+
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  }, []);
+
+  const onTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (touchStart.current === null) return;
+      const delta = e.changedTouches[0].clientX - touchStart.current;
+      touchStart.current = null;
+      if (Math.abs(delta) < 40) return;
+      if (delta < 0) onSwipeLeft();
+      else onSwipeRight();
+    },
+    [onSwipeLeft, onSwipeRight]
+  );
+
+  return { onTouchStart, onTouchEnd };
+}
+
 function TeamCard({
   member,
   onClick,
@@ -49,17 +71,35 @@ function TeamCard({
   onClick: () => void;
 }) {
   const [active, setActive] = useState(0);
+  const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const goNext = useCallback(
+    () => setActive((prev) => (prev + 1) % member.photos.length),
+    [member.photos.length]
+  );
+  const goPrev = useCallback(
+    () => setActive((prev) => (prev - 1 + member.photos.length) % member.photos.length),
+    [member.photos.length]
+  );
+
+  const swipe = useSwipe(goNext, goPrev);
 
   useEffect(() => {
     if (member.photos.length <= 1) return;
-    const id = setInterval(() => {
+    autoRef.current = setInterval(() => {
       setActive((prev) => (prev + 1) % member.photos.length);
     }, member.interval);
-    return () => clearInterval(id);
+    return () => { if (autoRef.current) clearInterval(autoRef.current); };
   }, [member.photos.length, member.interval]);
 
   return (
-    <div className={styles.teamCard} onClick={onClick} data-clickable>
+    <div
+      className={styles.teamCard}
+      onClick={onClick}
+      onTouchStart={swipe.onTouchStart}
+      onTouchEnd={swipe.onTouchEnd}
+      data-clickable
+    >
       <div className={styles.teamCardImages}>
         {member.photos.map((src, i) => (
           <Image
@@ -75,6 +115,16 @@ function TeamCard({
         <span className={styles.teamCardName}>{member.name}</span>
         <span className={styles.teamCardRole}>{member.role}</span>
       </div>
+      {member.photos.length > 1 && (
+        <div className={styles.teamCardDots}>
+          {member.photos.map((_, i) => (
+            <span
+              key={i}
+              className={`${styles.teamCardDot} ${i === active ? styles.teamCardDotActive : ""}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

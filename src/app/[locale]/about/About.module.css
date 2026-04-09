@@ -271,6 +271,7 @@
 
 .teamCardImg {
   object-fit: cover;
+  object-position: top;
   opacity: 0;
   transition: opacity 1.2s ease;
 }
@@ -308,6 +309,30 @@
   color: rgba(232, 226, 191, 0.65);
   letter-spacing: 0.05em;
   margin-top: 0.25rem;
+}
+
+/* ── Team card dots ── */
+.teamCardDots {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.teamCardDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(232, 226, 191, 0.35);
+  transition: background 0.3s;
+}
+
+.teamCardDotActive {
+  background: #e8e2bf;
 }
 
 /* ── Modal ── */
@@ -366,14 +391,15 @@
 
 .modalPhoto {
   position: relative;
-  width: 45%;
-  min-height: 420px;
+  width: 55%;
+  min-height: 700px;
   flex-shrink: 0;
   overflow: hidden;
 }
 
 .modalPhotoImg {
   object-fit: cover;
+  object-position: center 30%;
   opacity: 0;
   transition: opacity 0.8s ease;
 }
@@ -534,8 +560,8 @@
 
   .modalPhoto {
     width: 100%;
-    min-height: 220px;
-    max-height: 35vh;
+    min-height: 320px;
+    max-height: 50vh;
     flex-shrink: 0;
   }
 
@@ -583,8 +609,8 @@
   }
 
   .modalPhoto {
-    min-height: 180px;
-    max-height: 30vh;
+    min-height: 280px;
+    max-height: 45vh;
   }
 
   .modalInfo {

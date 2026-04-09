@@ -31,6 +31,7 @@ export default function GalleryContent({ photos }: { photos: Photo[] }) {
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
 
@@ -148,6 +149,15 @@ export default function GalleryContent({ photos }: { photos: Photo[] }) {
         <div
           className={styles.lightboxBackdrop}
           onClick={closeLightbox}
+          onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX; }}
+          onTouchEnd={(e) => {
+            if (touchStartX.current === null) return;
+            const delta = e.changedTouches[0].clientX - touchStartX.current;
+            touchStartX.current = null;
+            if (Math.abs(delta) < 40) return;
+            if (delta < 0) goNext();
+            else goPrev();
+          }}
           data-lenis-prevent
         >
           <button
