@@ -17,6 +17,7 @@ import styles from "./About.module.css";
 import filipImg from "@/assets/team/filip.jpg";
 import filipImg2 from "@/assets/team/filip2.jpeg";
 import filipImg3 from "@/assets/team/filip3.jpeg";
+import filipImg4 from "@/assets/team/filip4.jpeg";
 import plamImg from "@/assets/team/plam.jpg";
 import plamImg2 from "@/assets/team/plam2.jpg";
 import plamImg3 from "@/assets/team/plam3.jpg";
@@ -35,7 +36,7 @@ interface TeamMember {
 }
 
 const TEAM: TeamMember[] = [
-  { photos: [filipImg, filipImg2, filipImg3], nameKey: "filipName", roleKey: "filipRole", bioKey: "filipBio", interval: 3000 },
+  { photos: [filipImg, filipImg2, filipImg3, filipImg4], nameKey: "filipName", roleKey: "filipRole", bioKey: "filipBio", interval: 3000 },
   { photos: [plamImg, plamImg2, plamImg3], nameKey: "plamName", roleKey: "plamRole", bioKey: "plamBio", interval: 4200 },
   { photos: [hrisoImg, hrisoImg2, hrisoImg3], nameKey: "hrisoName", roleKey: "hrisoRole", bioKey: "hrisoBio", interval: 3600 },
 ];
