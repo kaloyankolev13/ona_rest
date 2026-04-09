@@ -133,3 +133,131 @@
     transform: rotate(0deg) !important;
   }
 }
+
+/* ── Lightbox ── */
+.lightboxBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  animation: lightboxFadeIn 0.25s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.lightboxImage {
+  max-width: 85vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
+  animation: lightboxZoomIn 0.3s ease;
+  user-select: none;
+}
+
+@keyframes lightboxZoomIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  z-index: 2;
+  background: none;
+  border: none;
+  color: #e8e2bf;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.lightboxClose:hover {
+  background: rgba(232, 226, 191, 0.12);
+}
+
+.lightboxArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: rgba(232, 226, 191, 0.08);
+  border: 1px solid rgba(232, 226, 191, 0.15);
+  color: #e8e2bf;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.lightboxArrow:hover {
+  background: rgba(232, 226, 191, 0.18);
+  border-color: rgba(232, 226, 191, 0.3);
+}
+
+.lightboxArrowLeft {
+  left: 1.5rem;
+}
+
+.lightboxArrowRight {
+  right: 1.5rem;
+}
+
+.lightboxCounter {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.85rem;
+  color: rgba(232, 226, 191, 0.6);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 700px) {
+  .lightboxImage {
+    max-width: 95vw;
+    max-height: 75vh;
+  }
+
+  .lightboxArrow {
+    width: 42px;
+    height: 42px;
+    font-size: 2rem;
+  }
+
+  .lightboxArrowLeft {
+    left: 0.75rem;
+  }
+
+  .lightboxArrowRight {
+    right: 0.75rem;
+  }
+
+  .lightboxClose {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+}

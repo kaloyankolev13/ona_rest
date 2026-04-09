@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -30,6 +30,38 @@ export default function GalleryContent({ photos }: { photos: Photo[] }) {
   const t = useTranslations("GalleryPage");
   const heroTitleRef = useRef<HTMLHeadingElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+
+  const goNext = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev + 1) % photos.length : null
+    );
+  }, [photos.length]);
+
+  const goPrev = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev - 1 + photos.length) % photos.length : null
+    );
+  }, [photos.length]);
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const savedOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      else if (e.key === "ArrowRight") goNext();
+      else if (e.key === "ArrowLeft") goPrev();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = savedOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [lightboxIndex, closeLightbox, goNext, goPrev]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -91,6 +123,7 @@ export default function GalleryContent({ photos }: { photos: Photo[] }) {
                   <div
                     key={photo._id}
                     className={styles.item}
+                    onClick={() => setLightboxIndex(i)}
                     style={{
                       gridColumn: `span ${pattern.colSpan}`,
                       gridRow: `span ${pattern.rowSpan}`,
@@ -110,6 +143,49 @@ export default function GalleryContent({ photos }: { photos: Photo[] }) {
           )}
         </div>
       </section>
+
+      {lightboxIndex !== null && (
+        <div
+          className={styles.lightboxBackdrop}
+          onClick={closeLightbox}
+          data-lenis-prevent
+        >
+          <button
+            className={styles.lightboxClose}
+            onClick={closeLightbox}
+            aria-label="Close"
+          >
+            &times;
+          </button>
+
+          <button
+            className={`${styles.lightboxArrow} ${styles.lightboxArrowLeft}`}
+            onClick={(e) => { e.stopPropagation(); goPrev(); }}
+            aria-label="Previous photo"
+          >
+            &#8249;
+          </button>
+
+          <img
+            src={photos[lightboxIndex].image}
+            alt=""
+            className={styles.lightboxImage}
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <button
+            className={`${styles.lightboxArrow} ${styles.lightboxArrowRight}`}
+            onClick={(e) => { e.stopPropagation(); goNext(); }}
+            aria-label="Next photo"
+          >
+            &#8250;
+          </button>
+
+          <span className={styles.lightboxCounter}>
+            {lightboxIndex + 1} / {photos.length}
+          </span>
+        </div>
+      )}
     </SmoothScroll>
   );
 }
