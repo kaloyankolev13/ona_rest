@@ -22,6 +22,21 @@ export async function POST(request: Request) {
       );
     }
 
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const PHONE_RE = /^\+?[\d\s\-().]{7,20}$/;
+    if (!EMAIL_RE.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 }
+      );
+    }
+    if (!PHONE_RE.test(phone)) {
+      return NextResponse.json(
+        { error: "Invalid phone number" },
+        { status: 400 }
+      );
+    }
+
     await connectDB();
     await Booking.create({ name, email, phone, date, guests, notes });
 

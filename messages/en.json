@@ -1,7 +1,9 @@
 {
   "Metadata": {
     "title": "ONA",
-    "description": "ONA Restaurant"
+    "description": "ONA Restaurant",
+    "metaTitle": "ONA — Seasonal Dining in Stakevtsi",
+    "metaDescription": "A 9-course seasonal dining experience in the heart of the Bulgarian countryside. One table, twelve seats, unforgettable evenings."
   },
   "Nav": {
     "home": "HOME",
@@ -98,6 +100,8 @@
     "bookTable": "Book a Table"
   },
   "AboutPage": {
+    "metaTitle": "About Us",
+    "metaDescription": "Meet the team behind ONA — a restaurant born from passion for Bulgarian culinary traditions in the village of Stakevtsi.",
     "heroTitle": "Our Story",
     "heroSubtitle": "ABOUT US",
     "storyHeading": "A place where every dish tells a story",
@@ -127,6 +131,8 @@
     "hrisoBio": "Almost a year ago, new energy entered the veins of the restaurant. Hristian is the engineer at the heart of the restaurant — the kitchen. He discovered his passion for cooking at an early age, passed down by his grandmother, somewhere in the distant year of 2003. Those bold enough to travel the road to the village of Stakevtsi will find out how and why.\n\nHe first started working in a kitchen in the summer of 2016, still a student, just for the summer and seemingly in jest — but not quite. The next year the scenario repeated, this time on the Bulgarian Black Sea coast. In 2018 he interrupted his university education in Bulgaria, and in early 2019 left for Malta, where he enrolled in a Bachelor in Culinary Arts at the island nation's tourism institute. On his way to fulfilling his dream, COVID arrived — at the very same time he first stepped into a Michelin kitchen: The Harbour Club, recognized in the first edition of the eponymous guide for the island.\n\nA year later he departed as a scholarship student to France, to the Institute Paul Bocuse academy, where he completed a course in International Management in Culinary Art while simultaneously interning in the kitchen of the future champion of the Bocuse d'Or 2021, restaurant Saisons — Ecully, distinguished with one Michelin star. Upon returning to Malta, Hristian took on the role of junior sous chef at restaurant Fernando Gastrotheque. He spent nearly two years in the kitchen of this small restaurant, but together with its head chef they never stopped dreaming of the star — and it did not delay. In this restaurant Hristian became part of the team that earned the distinction every chef dreams of.\n\n2022 presented an opportunity not to be taken lightly, and with a bit of luck and persistence he left for the United States, Chicago, where he became part of the team at a restaurant with over a quarter century of history, holder of three Michelin stars through early 2026 — Alinea, under head chef Grant Achatz.\n\nThe end of this thrilling adventure opened the door for him to return to Bulgaria, where he became culinary director of restaurant Cosmos in 2023, on the eve of Bulgaria's addition to JRE. Hristian actively participated in creating the restaurant's book alongside his colleagues, used his time there to develop his passion for wine, and together with Plamena completed WSET Level 2. The imprint left by the pandemic allowed him to enroll in a master's program in Spain, at Nebrija University, in the field of Gastronomy Innovations — once again shifting the winds for Hristian.\n\nEarly 2025 — the suitcase is packed again, the destination once more is the USA, but not just anywhere: the Big Apple, New York City, to join the team of yet another restaurant that has held the title of Best Restaurant in the World, hanging on its wall for 14 years the coveted red plaque with three stars and until recently the only vegan restaurant with that distinction — Eleven Madison Park. And so it goes until August of that same year, when Hristian together with Plamena and ONA together with ON, find themselves in the village of Stakevtsi to knock you off your feet."
   },
   "ContactPage": {
+    "metaTitle": "Contact",
+    "metaDescription": "Get in touch with ONA. Find us in Stakevtsi or send us a message.",
     "heroTitle": "Contact",
     "heroSubtitle": "GET IN TOUCH",
     "infoTag": "FIND US",
@@ -147,6 +153,7 @@
     "formSending": "SENDING...",
     "formSuccess": "Message sent successfully!",
     "formError": "Failed to send. Please try again.",
+    "errorInvalidEmail": "Please enter a valid email address.",
     "mapTag": "ON THE MAP",
     "podcastTag": "LISTEN FIRST",
     "podcastText": "If you want to know what you are getting into, listen to the podcast on your way here."
@@ -211,6 +218,8 @@
     "s13emailLabel": "Email:"
   },
   "NewsPage": {
+    "metaTitle": "News",
+    "metaDescription": "Latest stories and updates from ONA restaurant in Stakevtsi.",
     "heroTitle": "News",
     "heroSubtitle": "LATEST STORIES",
     "articles": [
@@ -248,6 +257,8 @@
     "readMore": "Read More"
   },
   "BookPage": {
+    "metaTitle": "Reserve a Table",
+    "metaDescription": "Book your seat at ONA for an unforgettable multi-course dining experience in Stakevtsi.",
     "heroTitle": "Reserve",
     "heroSubtitle": "BOOK A TABLE",
     "introText": "Join us for an unforgettable dining experience. Reserve your table and let us take care of the rest.",
@@ -262,6 +273,8 @@
     "formSending": "Sending...",
     "formSuccess": "Your reservation request has been sent! We will get back to you shortly.",
     "formError": "Something went wrong. Please try again or contact us directly.",
+    "errorInvalidEmail": "Please enter a valid email address.",
+    "errorInvalidPhone": "Please enter a valid phone number (e.g. +359 88 1234567).",
     "infoTag": "GOOD TO KNOW",
     "info1Title": "Dress Code",
     "info1Text": "Smart casual. We want you to feel comfortable while enjoying the ambiance.",
@@ -306,6 +319,8 @@
     "detailsContact": "For full terms, payment details, and additional information, you can reach us by email or through the form below."
   },
   "VoucherPage": {
+    "metaTitle": "Gift Voucher",
+    "metaDescription": "Gift an unforgettable evening at ONA. A dining experience in the Bulgarian countryside.",
     "heroTitle": "Voucher",
     "heroSubtitle": "GIFT AN EXPERIENCE",
     "introHeading": "Sometimes the most beautiful gift is not an object, but a memory.",
@@ -343,7 +358,15 @@
     "ctaClosing": "Sometimes the most beautiful gifts are those experienced together."
   },
   "GalleryPage": {
+    "metaTitle": "Gallery",
+    "metaDescription": "Moments captured at ONA — the food, the place, the experience.",
     "heroTitle": "Gallery",
     "heroSubtitle": "MOMENTS AT ONÀ"
+  },
+  "CookieConsent": {
+    "message": "We use cookies to analyze site traffic and improve your experience.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "learnMore": "Learn more"
   }
 }

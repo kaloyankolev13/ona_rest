@@ -15,6 +15,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
+    alternates: {
+      canonical: `https://ona.rest/${locale}/privacy`,
+      languages: { bg: "/bg/privacy", en: "/en/privacy" },
+    },
+    openGraph: {
+      title: t("metaTitle"),
+      description: t("metaDescription"),
+      url: `https://ona.rest/${locale}/privacy`,
+      siteName: "ONA",
+      locale,
+      type: "website",
+    },
   };
 }
 

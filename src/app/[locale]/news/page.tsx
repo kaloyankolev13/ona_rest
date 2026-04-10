@@ -1,4 +1,5 @@
-import { setRequestLocale } from "next-intl/server";
+import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { connectDB } from "@/lib/mongodb";
 import News from "@/models/News";
 import NewsContent from "./NewsContent";
@@ -8,6 +9,27 @@ type Props = {
 };
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "NewsPage" });
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+    alternates: {
+      canonical: `https://ona.rest/${locale}/news`,
+      languages: { bg: "/bg/news", en: "/en/news" },
+    },
+    openGraph: {
+      title: t("metaTitle"),
+      description: t("metaDescription"),
+      url: `https://ona.rest/${locale}/news`,
+      siteName: "ONA",
+      locale,
+      type: "website",
+    },
+  };
+}
 
 async function getPublishedNews() {
   await connectDB();

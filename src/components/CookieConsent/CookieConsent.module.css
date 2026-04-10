@@ -1,0 +1,86 @@
+.banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.2rem 2.5rem;
+  background: #072b16;
+  color: #e8e2bf;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.25);
+}
+
+.message {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.link {
+  color: #e8e2bf;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.accept,
+.reject {
+  font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  padding: 0.55rem 1.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.accept {
+  background: #e8e2bf;
+  color: #072b16;
+  border: 1px solid #e8e2bf;
+}
+
+.accept:hover {
+  background: transparent;
+  color: #e8e2bf;
+}
+
+.reject {
+  background: transparent;
+  color: #e8e2bf;
+  border: 1px solid rgba(232, 226, 191, 0.3);
+}
+
+.reject:hover {
+  border-color: #e8e2bf;
+}
+
+@media (max-width: 640px) {
+  .banner {
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: center;
+  }
+}

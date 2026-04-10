@@ -92,7 +92,7 @@ export function Footer() {
           <Link href="/privacy" className={styles.footerLink}>
             {t("privacyPolicy")}
           </Link>
-          <a href="#" className={styles.footerLink}>{t("cookiePolicy")}</a>
+          <Link href="/privacy" className={styles.footerLink}>{t("cookiePolicy")}</Link>
         </div>
       </div>
     </footer>
