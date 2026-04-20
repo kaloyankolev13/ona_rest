@@ -36,7 +36,7 @@ export default function AdminGalleryPage() {
     for (const file of Array.from(files)) {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("folder", "ona-gallery");
+      formData.append("folder", "ona_gallery");
 
       const uploadRes = await fetch("/api/upload", {
         method: "POST",

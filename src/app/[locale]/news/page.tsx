@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { connectDB } from "@/lib/mongodb";
 import News from "@/models/News";
+import NewsR2 from "@/models/NewsR2";
 import NewsContent from "./NewsContent";
 
 type Props = {
@@ -34,16 +35,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 async function getPublishedNews() {
   await connectDB();
 
-  const articles = await News.find({ published: true })
-    .sort({ createdAt: -1 })
-    .lean();
+  const [legacy, current] = await Promise.all([
+    News.find({ published: true }).sort({ createdAt: -1 }).lean(),
+    NewsR2.find({ published: true }).sort({ createdAt: -1 }).lean(),
+  ]);
 
-  return articles.map((a) => ({
+  const migratedSourceIds = new Set(
+    current.map((a) => a.sourceId?.toString()).filter(Boolean) as string[]
+  );
+  const unmigratedLegacy = legacy.filter(
+    (a) => !migratedSourceIds.has(String(a._id))
+  );
+
+  const merged = [...unmigratedLegacy, ...current].sort(
+    (a, b) =>
+      (b.createdAt as Date).getTime() - (a.createdAt as Date).getTime()
+  );
+
+  return merged.map((a) => ({
     _id: String(a._id),
     title: { bg: a.title.bg, en: a.title.en },
     excerpt: { bg: a.excerpt.bg, en: a.excerpt.en },
     image: a.image,
-    createdAt: a.createdAt.toISOString(),
+    createdAt: (a.createdAt as Date).toISOString(),
   }));
 }
 

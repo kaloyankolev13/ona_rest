@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "migrate:r2": "tsx scripts/migrate-to-r2.ts",
+    "migrate:r2:dry": "tsx scripts/migrate-to-r2.ts --dry-run",
+    "migrate:r2:backup": "tsx scripts/migrate-to-r2.ts --backup",
+    "migrate:r2:rollback": "tsx scripts/migrate-to-r2.ts --rollback"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1032.0",
     "@next/third-parties": "^16.2.3",
     "@vercel/speed-insights": "^1.3.1",
-    "cloudinary": "^2.9.0",
     "gsap": "^3.14.2",
     "lenis": "^1.3.17",
     "mapbox-gl": "^3.21.0",
@@ -29,9 +33,11 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.1.5",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

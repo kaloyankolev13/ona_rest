@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import News from "@/models/News";
+import NewsR2 from "@/models/NewsR2";
 
 export async function GET(request: NextRequest) {
   await connectDB();
@@ -9,9 +10,24 @@ export async function GET(request: NextRequest) {
   const publishedOnly = searchParams.get("published") === "true";
 
   const filter = publishedOnly ? { published: true } : {};
-  const news = await News.find(filter).sort({ createdAt: -1 }).lean();
 
-  return NextResponse.json(news);
+  const [legacy, current] = await Promise.all([
+    News.find(filter).sort({ createdAt: -1 }).lean(),
+    NewsR2.find(filter).sort({ createdAt: -1 }).lean(),
+  ]);
+
+  const migratedSourceIds = new Set(
+    current.map((a) => a.sourceId?.toString()).filter(Boolean) as string[]
+  );
+  const unmigratedLegacy = legacy.filter(
+    (a) => !migratedSourceIds.has(String(a._id))
+  );
+
+  const merged = [...unmigratedLegacy, ...current].sort((a, b) => {
+    return (b.createdAt as Date).getTime() - (a.createdAt as Date).getTime();
+  });
+
+  return NextResponse.json(merged);
 }
 
 export async function POST(request: NextRequest) {
@@ -23,7 +39,7 @@ export async function POST(request: NextRequest) {
   await connectDB();
   const body = await request.json();
 
-  const article = await News.create({
+  const article = await NewsR2.create({
     title: body.title,
     excerpt: body.excerpt,
     content: body.content,

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import cloudinary from "@/lib/cloudinary";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import crypto from "crypto";
+import { r2, R2_BUCKET, R2_PUBLIC_URL } from "@/lib/r2";
 
 export async function POST(request: NextRequest) {
   const session = request.cookies.get("admin_session")?.value;
@@ -9,7 +11,7 @@ export async function POST(request: NextRequest) {
 
   const formData = await request.formData();
   const file = formData.get("file") as File | null;
-  const folder = (formData.get("folder") as string) || "ona-news";
+  const folder = (formData.get("folder") as string) || "ona_news";
 
   if (!file) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
@@ -18,22 +20,20 @@ export async function POST(request: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
-  const result = await new Promise<{ secure_url: string; public_id: string }>(
-    (resolve, reject) => {
-      cloudinary.uploader
-        .upload_stream(
-          { folder, resource_type: "image" },
-          (error, result) => {
-            if (error || !result) return reject(error);
-            resolve({ secure_url: result.secure_url, public_id: result.public_id });
-          }
-        )
-        .end(buffer);
-    }
+  const ext = (file.name.split(".").pop() || "bin").toLowerCase();
+  const key = `${folder}/${Date.now()}-${crypto.randomBytes(6).toString("hex")}.${ext}`;
+
+  await r2.send(
+    new PutObjectCommand({
+      Bucket: R2_BUCKET,
+      Key: key,
+      Body: buffer,
+      ContentType: file.type || "application/octet-stream",
+    })
   );
 
   return NextResponse.json({
-    url: result.secure_url,
-    publicId: result.public_id,
+    url: `${R2_PUBLIC_URL}/${key}`,
+    publicId: key,
   });
 }
