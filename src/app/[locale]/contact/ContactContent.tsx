@@ -7,7 +7,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { animateRevealOnScroll } from "@/animations/scrollAnimations";
-import { SmoothScroll } from "@/components";
+import { SmoothScroll, Turnstile, type TurnstileHandle } from "@/components";
 import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./Contact.module.css";
 
@@ -30,8 +30,12 @@ export default function ContactContent() {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error" | "captcha"
+  >("idle");
   const [touched, setTouched] = useState<{ email?: boolean }>({});
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileHandle>(null);
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const emailError = touched.email && email.length > 0 && !EMAIL_RE.test(email)
@@ -43,13 +47,17 @@ export default function ContactContent() {
 
     setTouched({ email: true });
     if (!EMAIL_RE.test(email)) return;
+    if (!captchaToken) {
+      setStatus("captcha");
+      return;
+    }
     setStatus("sending");
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, subject, message }),
+        body: JSON.stringify({ name, email, subject, message, captchaToken }),
       });
 
       if (!res.ok) throw new Error();
@@ -59,8 +67,12 @@ export default function ContactContent() {
       setEmail("");
       setSubject("");
       setMessage("");
+      setCaptchaToken(null);
+      turnstileRef.current?.reset();
     } catch {
       setStatus("error");
+      setCaptchaToken(null);
+      turnstileRef.current?.reset();
     }
   }
 
@@ -195,11 +207,21 @@ export default function ContactContent() {
                 <label className={styles.fieldLabel}>{t("formMessage")}</label>
                 <textarea className={styles.textarea} placeholder={t("formMessage")} rows={5} value={message} onChange={(e) => setMessage(e.target.value)} required />
               </div>
+              <Turnstile
+                ref={turnstileRef}
+                onVerify={(token) => {
+                  setCaptchaToken(token);
+                  if (status === "captcha") setStatus("idle");
+                }}
+                onExpire={() => setCaptchaToken(null)}
+                onError={() => setCaptchaToken(null)}
+              />
               <button type="submit" className={styles.submitBtn} disabled={status === "sending"}>
                 {status === "sending" ? t("formSending") : (<>{t("formSend")} <span className={styles.arrow}>→</span></>)}
               </button>
               {status === "success" && (<p className={styles.formFeedback} data-success>{t("formSuccess")}</p>)}
               {status === "error" && (<p className={styles.formFeedback} data-error>{t("formError")}</p>)}
+              {status === "captcha" && (<p className={styles.formFeedback} data-error>{t("errorCaptcha")}</p>)}
             </form>
           </div>
         </div>
