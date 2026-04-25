@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { connectDB } from "@/lib/mongodb";
 import GalleryPhoto from "@/models/GalleryPhoto";
+import GalleryPhotoR2 from "@/models/GalleryPhotoR2";
 import GalleryContent from "./GalleryContent";
 
 type Props = {
@@ -33,8 +34,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 async function getPhotos() {
   await connectDB();
-  const photos = await GalleryPhoto.find().sort({ order: 1, createdAt: -1 }).lean();
-  return photos.map((p) => ({
+  const [legacy, current] = await Promise.all([
+    GalleryPhoto.find().sort({ order: 1, createdAt: -1 }).lean(),
+    GalleryPhotoR2.find().sort({ order: 1, createdAt: -1 }).lean(),
+  ]);
+
+  const migratedSourceIds = new Set(
+    current.map((p) => p.sourceId?.toString()).filter(Boolean) as string[]
+  );
+  const unmigratedLegacy = legacy.filter(
+    (p) => !migratedSourceIds.has(String(p._id))
+  );
+
+  const merged = [...unmigratedLegacy, ...current].sort((a, b) => {
+    if (a.order !== b.order) return a.order - b.order;
+    return (b.createdAt as Date).getTime() - (a.createdAt as Date).getTime();
+  });
+
+  return merged.map((p) => ({
     _id: String(p._id),
     image: p.image,
   }));

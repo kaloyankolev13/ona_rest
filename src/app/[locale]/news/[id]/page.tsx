@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { connectDB } from "@/lib/mongodb";
 import News from "@/models/News";
+import NewsR2 from "@/models/NewsR2";
 import ArticleContent from "./ArticleContent";
 
 type Props = {
@@ -14,16 +15,47 @@ async function getArticle(id: string) {
   await connectDB();
 
   try {
-    const article = await News.findById(id).lean();
-    if (!article || !article.published) return null;
+    const r2Article = await NewsR2.findById(id).lean();
+    if (r2Article) {
+      if (!r2Article.published) return null;
+      return {
+        _id: String(r2Article._id),
+        title: { bg: r2Article.title.bg, en: r2Article.title.en },
+        excerpt: { bg: r2Article.excerpt.bg, en: r2Article.excerpt.en },
+        content: { bg: r2Article.content.bg, en: r2Article.content.en },
+        image: r2Article.image,
+        createdAt: (r2Article.createdAt as Date).toISOString(),
+      };
+    }
 
+    const migratedVersion = await NewsR2.findOne({ sourceId: id }).lean();
+    if (migratedVersion) {
+      if (!migratedVersion.published) return null;
+      return {
+        _id: String(migratedVersion._id),
+        title: { bg: migratedVersion.title.bg, en: migratedVersion.title.en },
+        excerpt: {
+          bg: migratedVersion.excerpt.bg,
+          en: migratedVersion.excerpt.en,
+        },
+        content: {
+          bg: migratedVersion.content.bg,
+          en: migratedVersion.content.en,
+        },
+        image: migratedVersion.image,
+        createdAt: (migratedVersion.createdAt as Date).toISOString(),
+      };
+    }
+
+    const legacyArticle = await News.findById(id).lean();
+    if (!legacyArticle || !legacyArticle.published) return null;
     return {
-      _id: String(article._id),
-      title: { bg: article.title.bg, en: article.title.en },
-      excerpt: { bg: article.excerpt.bg, en: article.excerpt.en },
-      content: { bg: article.content.bg, en: article.content.en },
-      image: article.image,
-      createdAt: article.createdAt.toISOString(),
+      _id: String(legacyArticle._id),
+      title: { bg: legacyArticle.title.bg, en: legacyArticle.title.en },
+      excerpt: { bg: legacyArticle.excerpt.bg, en: legacyArticle.excerpt.en },
+      content: { bg: legacyArticle.content.bg, en: legacyArticle.content.en },
+      image: legacyArticle.image,
+      createdAt: legacyArticle.createdAt.toISOString(),
     };
   } catch {
     return null;
