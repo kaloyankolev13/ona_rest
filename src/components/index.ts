@@ -11,3 +11,5 @@ export { ShevitsaDecor } from "./ShevitsaDecor/ShevitsaDecor";
 export { SmoothScroll } from "./SmoothScroll";
 export { StorySection } from "./StorySection";
 export { TableSection } from "./TableSection";
+export { Turnstile } from "./Turnstile";
+export type { TurnstileHandle } from "./Turnstile";

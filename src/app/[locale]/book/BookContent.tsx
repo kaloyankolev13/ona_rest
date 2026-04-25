@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { animateRevealOnScroll } from "@/animations/scrollAnimations";
-import { SmoothScroll } from "@/components";
+import { SmoothScroll, Turnstile, type TurnstileHandle } from "@/components";
 import { ShevitsaDecor } from "@/components/ShevitsaDecor/ShevitsaDecor";
 import styles from "./Book.module.css";
 
@@ -25,8 +25,12 @@ export default function BookContent() {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [notes, setNotes] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error" | "captcha"
+  >("idle");
   const [touched, setTouched] = useState<{ email?: boolean; phone?: boolean }>({});
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileHandle>(null);
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const PHONE_RE = /^\+?[\d\s\-().]{7,20}$/;
@@ -43,13 +47,17 @@ export default function BookContent() {
 
     setTouched({ email: true, phone: true });
     if (!EMAIL_RE.test(email) || !PHONE_RE.test(phone)) return;
+    if (!captchaToken) {
+      setStatus("captcha");
+      return;
+    }
     setStatus("sending");
 
     try {
       const res = await fetch("/api/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, date, guests, notes }),
+        body: JSON.stringify({ name, email, phone, date, guests, notes, captchaToken }),
       });
 
       if (!res.ok) throw new Error();
@@ -61,8 +69,12 @@ export default function BookContent() {
       setPhone("");
       setEmail("");
       setNotes("");
+      setCaptchaToken(null);
+      turnstileRef.current?.reset();
     } catch {
       setStatus("error");
+      setCaptchaToken(null);
+      turnstileRef.current?.reset();
     }
   }
 
@@ -231,12 +243,23 @@ export default function BookContent() {
               <textarea className={styles.textarea} placeholder={t("fieldNotes")} rows={3} value={notes} onChange={(e) => setNotes(e.target.value)} />
             </div>
 
+            <Turnstile
+              ref={turnstileRef}
+              onVerify={(token) => {
+                setCaptchaToken(token);
+                if (status === "captcha") setStatus("idle");
+              }}
+              onExpire={() => setCaptchaToken(null)}
+              onError={() => setCaptchaToken(null)}
+            />
+
             <button type="submit" className={styles.submitBtn} disabled={status === "sending"}>
               {status === "sending" ? t("formSending") : (<>{t("submitBtn")} <span className={styles.arrow}>→</span></>)}
             </button>
 
             {status === "success" && (<p className={styles.formFeedback} data-success>{t("formSuccess")}</p>)}
             {status === "error" && (<p className={styles.formFeedback} data-error>{t("formError")}</p>)}
+            {status === "captcha" && (<p className={styles.formFeedback} data-error>{t("errorCaptcha")}</p>)}
           </form>
         </div>
       </section>

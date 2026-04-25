@@ -154,6 +154,7 @@
     "formSuccess": "Message sent successfully!",
     "formError": "Failed to send. Please try again.",
     "errorInvalidEmail": "Please enter a valid email address.",
+    "errorCaptcha": "Please complete the verification before submitting.",
     "mapTag": "ON THE MAP",
     "podcastTag": "LISTEN FIRST",
     "podcastText": "If you want to know what you are getting into, listen to the podcast on your way here."
@@ -275,6 +276,7 @@
     "formError": "Something went wrong. Please try again or contact us directly.",
     "errorInvalidEmail": "Please enter a valid email address.",
     "errorInvalidPhone": "Please enter a valid phone number (e.g. +359 88 1234567).",
+    "errorCaptcha": "Please complete the verification before submitting.",
     "infoTag": "GOOD TO KNOW",
     "info1Title": "Dress Code",
     "info1Text": "Smart casual. We want you to feel comfortable while enjoying the ambiance.",

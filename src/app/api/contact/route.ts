@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { connectDB } from "@/lib/mongodb";
 import Message from "@/models/Message";
+import { verifyTurnstile, getRemoteIp } from "@/lib/turnstile";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -13,7 +14,7 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(request: Request) {
   try {
-    const { name, email, subject, message } = await request.json();
+    const { name, email, subject, message, captchaToken } = await request.json();
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
@@ -26,6 +27,17 @@ export async function POST(request: Request) {
     if (!EMAIL_RE.test(email)) {
       return NextResponse.json(
         { error: "Invalid email address" },
+        { status: 400 }
+      );
+    }
+
+    const captcha = await verifyTurnstile(
+      captchaToken,
+      getRemoteIp(request.headers)
+    );
+    if (!captcha.success) {
+      return NextResponse.json(
+        { error: "Captcha verification failed" },
         { status: 400 }
       );
     }
