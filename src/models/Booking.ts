@@ -7,6 +7,7 @@ export interface IBooking extends Document {
   date: string;
   guests: number;
   notes: string;
+  read: boolean;
   createdAt: Date;
 }
 
@@ -18,6 +19,7 @@ const BookingSchema = new Schema<IBooking>(
     date: { type: String, required: true },
     guests: { type: Number, required: true },
     notes: { type: String, default: "" },
+    read: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

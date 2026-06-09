@@ -45,6 +45,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <a href="/admin/messages" className={styles.topBarLink}>
             Messages
           </a>
+          <a href="/admin/bookings" className={styles.topBarLink}>
+            Bookings
+          </a>
           <a href="/admin/gallery" className={styles.topBarLink}>
             Gallery
           </a>
