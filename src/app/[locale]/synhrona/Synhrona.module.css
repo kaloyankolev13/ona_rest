@@ -76,6 +76,19 @@
   pointer-events: auto;
 }
 
+/* Tighter step chrome on phones so tall steps (e.g. the 10-row
+   programme list) don't overflow above/below the viewport. */
+@media (max-width: 760px) {
+  .step {
+    padding: 92px clamp(16px, 5vw, 32px) 76px;
+  }
+}
+@media (max-width: 380px) {
+  .step {
+    padding: 84px 14px 68px;
+  }
+}
+
 .stepInner {
   width: 100%;
   max-width: 1100px;
@@ -365,6 +378,36 @@
   font-family: var(--serif);
   font-weight: 500;
   line-height: 1.25;
+}
+
+/* Compact programme list so all 10 rows fit on small phones
+   without overlapping the fixed counter / falling off-screen. */
+@media (max-width: 760px) {
+  .progGrid li {
+    padding: 9px 0;
+    gap: 14px;
+  }
+  .progGrid .n {
+    font-size: 14px;
+    min-width: 24px;
+  }
+  .progGrid .t {
+    font-size: 14.5px;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 380px) {
+  .progGrid li {
+    padding: 7px 0;
+    gap: 12px;
+  }
+  .progGrid .n {
+    font-size: 13px;
+    min-width: 22px;
+  }
+  .progGrid .t {
+    font-size: 13.5px;
+  }
 }
 
 /* ───────── where & when ───────── */

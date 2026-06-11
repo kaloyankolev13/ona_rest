@@ -207,7 +207,7 @@ export function SideBar() {
     <>
       {/* Trigger area — синхрONÀ pill + hamburger; sits above the overlay */}
       <div className={styles.triggerWrapper}>
-        {!isOpen && (
+        {!isOpen && pathname !== "/synhrona" && (
           <Link
             href="/synhrona"
             className={styles.synhronaPill}
