@@ -10,9 +10,35 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 1.25rem;
   padding: 2rem 2rem 0;
   z-index: 300;
   pointer-events: none;
+}
+
+/* ── синхрONÀ entry pill (breathing, links to the guided page) ── */
+.synhronaPill {
+  pointer-events: auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-valky), sans-serif;
+  color: #ece3cf;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0.45rem 1rem;
+  border: 1.5px solid var(--primary-green);
+  border-radius: 999px;
+  background: var(--primary-green);
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.synhronaPill:hover {
+  color: #ffffff;
+  background: #0a3a1e;
 }
 
 .menuTrigger {
@@ -326,6 +352,12 @@
 @media (max-width: 640px) {
   .triggerWrapper {
     padding: 1.5rem 1.5rem 0;
+    gap: 0.85rem;
+  }
+
+  .synhronaPill {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.75rem;
   }
 
   .menuTrigger {

@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(Get-ChildItem -Path \"D:\\\\ethos.solutions\\\\ona_rest\" -Force)",
-      "Bash(Select-Object Name, PSIsContainer)"
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"try{require.resolve\\('puppeteer'\\);console.log\\('puppeteer yes'\\)}catch{console.log\\('no puppeteer'\\)}\")",
+      "Bash(node -e \"try{require.resolve\\('playwright'\\);console.log\\('playwright yes'\\)}catch{console.log\\('no playwright'\\)}\")",
+      "Bash([ -f \"$CHROME\" ])",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --window-size=1440,900 --screenshot=/tmp/synh_home.png http://localhost:3000/bg)",
+      "Bash(echo \"shot: $?\")",
+      "Read(//tmp/**)"
     ]
   }
 }

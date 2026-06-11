@@ -173,8 +173,13 @@ export function SideBar() {
 
   return (
     <>
-      {/* Hamburger / X toggle — always visible, sits above the overlay */}
+      {/* Trigger area — синхрONÀ pill + hamburger; sits above the overlay */}
       <div className={styles.triggerWrapper}>
+        {!isOpen && (
+          <Link href="/synhrona" className={styles.synhronaPill}>
+            {t("synhrona")}
+          </Link>
+        )}
         <button
           className={`${styles.menuTrigger} ${isOpen ? styles.menuTriggerOpen : ""}`}
           onClick={handleToggle}
