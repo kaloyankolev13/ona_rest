@@ -271,9 +271,7 @@ export default function SynhronaContent() {
             <div className={`${styles.whenPlace} ${styles.rv} ${styles.d2}`}>
               {t("b4Place")}
             </div>
-            <p className={`${styles.whenNote} ${styles.rv} ${styles.d3}`}>
-              {t("b4Note")}
-            </p>
+
           </div>
         </section>
 
