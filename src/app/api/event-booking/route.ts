@@ -4,7 +4,7 @@ import { connectDB } from "@/lib/mongodb";
 import EventBooking from "@/models/EventBooking";
 import { verifyTurnstile, getRemoteIp } from "@/lib/turnstile";
 
-const EVENT_RECIPIENT = "kaloyan.kolev@hotmail.com";
+const EVENT_RECIPIENT = "vansastrology@gmail.com";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
