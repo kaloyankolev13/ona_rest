@@ -580,6 +580,217 @@
   font-family: var(--font-geist-sans), sans-serif;
 }
 
+/* ── Bookings calendar ── */
+.calendarCard {
+  background: #e8e2bf;
+  padding: 1.25rem 1.5rem 1.5rem;
+  border: 1px solid #072b16;
+  border-radius: 0.5rem;
+  margin: 0 auto 1.5rem;
+  max-width: 440px;
+  width: 100%;
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: 0.5rem;
+}
+
+.calendarMonthLabel {
+  font-family: var(--font-valky), serif;
+  letter-spacing: var(--font-valky-letter-spacing);
+  font-size: 0.95rem;
+  color: #072b16;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  flex: 1;
+}
+
+.calendarNav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.calendarNavBtn {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid #072b16;
+  border-radius: 50%;
+  color: #072b16;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s;
+}
+
+.calendarNavBtn:hover {
+  background: #072b16;
+  color: #e8e2bf;
+}
+
+.calendarActions {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.calendarTodayBtn {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #072b16;
+  background: transparent;
+  border: 1px solid #072b16;
+  border-radius: 1rem;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.calendarTodayBtn:hover {
+  background: #072b16;
+  color: #e8e2bf;
+}
+
+.calendarClearBtn {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #e8e2bf;
+  background: #072b16;
+  border: 1px solid #072b16;
+  border-radius: 1rem;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.calendarClearBtn:hover {
+  background: transparent;
+  color: #072b16;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #072b16;
+  gap: 1px;
+  border: 1px solid #072b16;
+  overflow: hidden;
+}
+
+.calendarWeekday {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.7rem;
+  color: #e8e2bf;
+  background: #072b16;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.65rem 0;
+  font-weight: 500;
+}
+
+.calendarDay {
+  position: relative;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8e2bf;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.75rem;
+  color: #072b16;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.calendarDay:hover {
+  background: #f5f3eb;
+}
+
+.calendarDayOutside {
+  color: rgba(7, 43, 22, 0.25);
+}
+
+.calendarDayToday {
+  font-weight: 700;
+}
+
+.calendarDayToday::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid #072b16;
+  pointer-events: none;
+}
+
+.calendarDayHasBookings {
+  background: #e8e2bf;
+  font-weight: 700;
+  color: #072b16;
+}
+
+.calendarDaySelected,
+.calendarDaySelected:hover {
+  background: #072b16;
+  color: #e8e2bf;
+}
+
+.calendarDaySelected.calendarDayToday::before {
+  border-color: #e8e2bf;
+}
+
+.calendarBookingCount {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0.95rem;
+  height: 0.95rem;
+  padding: 0 0.25rem;
+  border-radius: 0.5rem;
+  background: #e8e2bf;
+  color: #072b16;
+  font-size: 0.6rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.calendarDaySelected .calendarBookingCount {
+  background: #e8e2bf;
+  color: #072b16;
+}
+
+.calendarFilterNote {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 0.8rem;
+  color: rgba(51, 51, 51, 0.7);
+}
+
+.calendarFilterNoteValue {
+  font-weight: 600;
+  color: #072b16;
+  letter-spacing: 0.05em;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .main {
