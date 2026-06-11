@@ -2,7 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState, FormEvent } from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
+import { Turnstile, type TurnstileHandle } from "@/components";
 import styles from "./Synhrona.module.css";
+import introImg from "@/assets/mainPage/table_1.jpg";
+import whoImg from "@/assets/mainPage/table_2.jpg";
+import breakImg from "@/assets/mainPage/table_4.jpg";
+import selImg from "@/assets/mainPage/food_3.jpg";
 
 const TOTAL = 9;
 const BUSY_MS = 820;
@@ -14,6 +20,11 @@ export default function SynhronaContent() {
 
   const [cur, setCur] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+  const [captchaError, setCaptchaError] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileHandle>(null);
 
   // refs mirror state so global listeners read fresh values without re-binding
   const curRef = useRef(0);
@@ -102,11 +113,44 @@ export default function SynhronaContent() {
     };
   }, [next, prev]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    // Prototype behaviour: intercepted client-side.
-    // TODO: wire to a real endpoint/email for production submissions.
-    setSubmitted(true);
+    if (submitting) return;
+
+    const form = e.currentTarget as HTMLFormElement;
+    const data = new FormData(form);
+    const payload = {
+      name: String(data.get("name") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      message: String(data.get("message") ?? "").trim(),
+      captchaToken,
+    };
+
+    setSubmitError(false);
+
+    if (!captchaToken) {
+      setCaptchaError(true);
+      return;
+    }
+
+    setCaptchaError(false);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/event-booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSubmitted(true);
+    } catch {
+      setSubmitError(true);
+      setCaptchaToken(null);
+      turnstileRef.current?.reset();
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const stepClass = (i: number) =>
@@ -146,8 +190,13 @@ export default function SynhronaContent() {
               </p>
             </div>
             <div className={`${styles.colMedia} ${styles.rv} ${styles.d1}`}>
-              <div className={`${styles.media} ${styles.mediaTall}`}>
-                {t("imgIntro")}
+              <div className={`${styles.media} ${styles.mediaTall} ${styles.mediaPhoto}`}>
+                <Image
+                  src={introImg}
+                  alt={t("imgIntro")}
+                  fill
+                  sizes="(max-width: 820px) 100vw, 50vw"
+                />
               </div>
             </div>
           </div>
@@ -173,8 +222,13 @@ export default function SynhronaContent() {
               </div>
             </div>
             <div className={`${styles.colMedia} ${styles.rv} ${styles.d1}`}>
-              <div className={`${styles.media} ${styles.mediaTall}`}>
-                {t("imgWho")}
+              <div className={`${styles.media} ${styles.mediaTall} ${styles.mediaPhoto}`}>
+                <Image
+                  src={whoImg}
+                  alt={t("imgWho")}
+                  fill
+                  sizes="(max-width: 820px) 100vw, 50vw"
+                />
               </div>
             </div>
           </div>
@@ -226,8 +280,13 @@ export default function SynhronaContent() {
         {/* 5 · IMAGE BREAK */}
         <section className={stepClass(5)}>
           <div className={styles.stepInner} style={{ maxWidth: 920 }}>
-            <div className={`${styles.media} ${styles.mediaWide} ${styles.rv}`}>
-              {t("imgBreak")}
+            <div className={`${styles.media} ${styles.mediaWide} ${styles.mediaPhoto} ${styles.rv}`}>
+              <Image
+                src={breakImg}
+                alt={t("imgBreak")}
+                fill
+                sizes="(max-width: 920px) 100vw, 920px"
+              />
             </div>
           </div>
         </section>
@@ -247,8 +306,13 @@ export default function SynhronaContent() {
               </p>
             </div>
             <div className={`${styles.colMedia} ${styles.rv} ${styles.d1}`}>
-              <div className={`${styles.media} ${styles.mediaTall}`}>
-                {t("imgSel")}
+              <div className={`${styles.media} ${styles.mediaTall} ${styles.mediaPhoto}`}>
+                <Image
+                  src={selImg}
+                  alt={t("imgSel")}
+                  fill
+                  sizes="(max-width: 820px) 100vw, 50vw"
+                />
               </div>
             </div>
           </div>
@@ -339,9 +403,30 @@ export default function SynhronaContent() {
                     />
                   </div>
                 </div>
-                <button type="submit" className={styles.submit}>
-                  {t("fBtn")}
+                <div className={styles.captcha}>
+                  <Turnstile
+                    ref={turnstileRef}
+                    onVerify={(token) => {
+                      setCaptchaToken(token);
+                      setCaptchaError(false);
+                    }}
+                    onExpire={() => setCaptchaToken(null)}
+                    onError={() => setCaptchaToken(null)}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className={styles.submit}
+                  disabled={submitting}
+                >
+                  {submitting ? t("fSending") : t("fBtn")}
                 </button>
+                {submitError && (
+                  <div className={styles.formError}>{t("fError")}</div>
+                )}
+                {captchaError && (
+                  <div className={styles.formError}>{t("errorCaptcha")}</div>
+                )}
               </form>
             )}
           </div>

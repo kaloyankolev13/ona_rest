@@ -29,6 +29,10 @@ export function SideBar() {
   const footerRef = useRef<HTMLElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
+  const synhronaPillRef = useRef<HTMLAnchorElement>(null);
+  const transitionRef = useRef<HTMLDivElement>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
   // Close menu when pathname changes (render-time state adjustment)
   const [lastPathname, setLastPathname] = useState(pathname);
   if (pathname !== lastPathname) {
@@ -163,8 +167,36 @@ export function SideBar() {
     };
   }, []);
 
+  // Retract the page-transition overlay once the синхрONÀ page has mounted.
+  useEffect(() => {
+    if (!isTransitioning || pathname !== "/synhrona") return;
+    const id = setTimeout(() => {
+      transitionRef.current?.classList.remove(styles.pageTransitionExpand);
+      const doneId = setTimeout(() => setIsTransitioning(false), 900);
+      return () => clearTimeout(doneId);
+    }, 150);
+    return () => clearTimeout(id);
+  }, [isTransitioning, pathname]);
+
   const handleToggle = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const handleSynhronaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (isTransitioning) return;
+
+    const el = synhronaPillRef.current;
+    const overlay = transitionRef.current;
+    if (el && overlay) {
+      const rect = el.getBoundingClientRect();
+      overlay.style.setProperty("--tx", `${rect.left + rect.width / 2}px`);
+      overlay.style.setProperty("--ty", `${rect.top + rect.height / 2}px`);
+      overlay.classList.add(styles.pageTransitionExpand);
+    }
+
+    setIsTransitioning(true);
+    setTimeout(() => router.push("/synhrona"), 700);
   };
 
   const switchLocale = (newLocale: "bg" | "en") => {
@@ -176,7 +208,12 @@ export function SideBar() {
       {/* Trigger area — синхрONÀ pill + hamburger; sits above the overlay */}
       <div className={styles.triggerWrapper}>
         {!isOpen && (
-          <Link href="/synhrona" className={styles.synhronaPill}>
+          <Link
+            href="/synhrona"
+            className={styles.synhronaPill}
+            ref={synhronaPillRef}
+            onClick={handleSynhronaClick}
+          >
             {t("synhrona")}
           </Link>
         )}
@@ -312,6 +349,9 @@ export function SideBar() {
           </footer>
         </div>
       </div>
+
+      {/* синхрONÀ page transition — dark iris wipe expanding from the pill */}
+      <div ref={transitionRef} className={styles.pageTransition} aria-hidden="true" />
     </>
   );
 }

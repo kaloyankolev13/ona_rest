@@ -117,6 +117,25 @@
 }
 
 /* ============================
+   синхрONÀ page transition (iris wipe from the pill)
+   ============================ */
+
+.pageTransition {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: #142019;
+  pointer-events: none;
+  clip-path: circle(0% at var(--tx, 50%) var(--ty, 50%));
+  transition: clip-path 0.85s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: clip-path;
+}
+
+.pageTransitionExpand {
+  clip-path: circle(150% at var(--tx, 50%) var(--ty, 50%));
+}
+
+/* ============================
    Full-screen overlay
    ============================ */
 
