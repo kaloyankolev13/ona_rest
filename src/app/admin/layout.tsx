@@ -48,9 +48,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <a href="/admin/bookings" className={styles.topBarLink}>
             Bookings
           </a>
-          <a href="/admin/event-bookings" className={styles.topBarLink}>
-            Event bookings
-          </a>
           <a href="/admin/gallery" className={styles.topBarLink}>
             Gallery
           </a>
