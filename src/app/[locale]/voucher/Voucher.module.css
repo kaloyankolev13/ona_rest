@@ -14,7 +14,7 @@
 .heroSubtitle {
   font-family: var(--font-geist-sans), sans-serif;
   font-size: clamp(0.7rem, 0.9vw, 0.85rem);
-  color: rgba(51, 51, 51, 0.45);
+  color: #535343;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -42,7 +42,9 @@
 }
 
 .narrow {
-  max-width: 750px;
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -52,21 +54,19 @@
 }
 
 /* ── Tags ── */
-.tag {
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
-  color: rgba(232, 226, 191, 0.45);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+.tag,
+.tagDark {
+  font-family: var(--font-valky), serif;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-wrap: balance;
 }
 
-.tagDark {
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
-  color: rgba(51, 51, 51, 0.45);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
+.tag { color: #e8e2bf; }
+.tagDark { color: #072b16; }
 
 /* ── Typography ── */
 .sectionHeading {
@@ -91,7 +91,7 @@
 
 .bodyText {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
   color: rgba(51, 51, 51, 0.7);
   line-height: 1.8;
   margin: 0;
@@ -99,8 +99,8 @@
 
 .noteText {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.8rem, 1vw, 0.9rem);
-  color: rgba(51, 51, 51, 0.5);
+  font-size: 1rem;
+  color: #535343;
   line-height: 1.6;
   margin: 0.5rem 0 0;
   font-style: italic;
@@ -114,36 +114,16 @@
 }
 
 /* ── Format cards (scroll + blank sheet) ── */
-.formatGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  width: 100%;
-}
 
-.formatCard {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding: 2.5rem 2rem;
-  border: 1px solid rgba(232, 226, 191, 0.12);
-  border-radius: 1rem;
-  text-align: left;
-}
 
-.formatTitle {
-  font-family: var(--font-valky), serif;
-  letter-spacing: var(--font-valky-letter-spacing);
-  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-  color: #e8e2bf;
-  margin: 0;
-  font-weight: 400;
-}
+
+
+
 
 .formatText {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.8rem, 1vw, 0.9rem);
-  color: rgba(232, 226, 191, 0.65);
+  font-size: 1rem;
+  color: rgba(232, 226, 191, 0.85);
   line-height: 1.7;
   margin: 0;
 }
@@ -172,7 +152,7 @@
 
 .expItem {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
   color: rgba(232, 226, 191, 0.75);
   line-height: 1.7;
   padding-left: 1.5rem;
@@ -219,8 +199,8 @@
 
 .addonItem {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.8rem, 1vw, 0.9rem);
-  color: rgba(232, 226, 191, 0.6);
+  font-size: 1rem;
+  color: rgba(232, 226, 191, 0.85);
   line-height: 1.6;
   padding-left: 1.5rem;
   position: relative;
@@ -243,13 +223,18 @@
 }
 
 .priceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  text-align: left;
   padding: 1.2rem 0;
   border-bottom: 1px solid rgba(51, 51, 51, 0.08);
 }
 
 .priceLabel {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
   color: rgba(51, 51, 51, 0.7);
   line-height: 1.5;
 }
@@ -260,8 +245,8 @@
   align-items: center;
   gap: 0.4rem;
   padding: 2.5rem 2rem;
-  border: 1px solid rgba(51, 51, 51, 0.12);
-  border-radius: 1rem;
+  background: #dcd6b1;
+  border-radius: 0.25rem;
   width: 100%;
   margin-top: 0.5rem;
 }
@@ -277,7 +262,7 @@
 .fullPackageDesc {
   font-family: var(--font-geist-sans), sans-serif;
   font-size: clamp(0.75rem, 0.9vw, 0.85rem);
-  color: rgba(51, 51, 51, 0.5);
+  color: #535343;
   letter-spacing: 0.05em;
 }
 
@@ -293,7 +278,7 @@
 /* ── CTA ── */
 .ctaText {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: clamp(0.875rem, 1.1vw, 1rem);
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
   color: rgba(232, 226, 191, 0.75);
   line-height: 1.8;
   margin: 0;
@@ -318,7 +303,8 @@
   transition: background 0.3s, color 0.3s;
 }
 
-.ctaButton:hover {
+.ctaButton:hover,
+.ctaButton:focus-visible {
   background: #e8e2bf;
   color: var(--primary-green);
 }
@@ -327,7 +313,7 @@
   font-family: var(--font-valky), serif;
   letter-spacing: var(--font-valky-letter-spacing);
   font-size: clamp(1rem, 1.4vw, 1.15rem);
-  color: rgba(232, 226, 191, 0.6);
+  color: rgba(232, 226, 191, 0.85);
   line-height: 1.6;
   margin: 1rem 0 0;
   font-style: italic;
@@ -345,9 +331,7 @@
     padding: 4rem 2rem;
   }
 
-  .formatGrid {
-    grid-template-columns: 1fr;
-  }
+
 }
 
 @media (max-width: 500px) {
@@ -364,11 +348,53 @@
     padding: 3rem 1.5rem;
   }
 
-  .formatCard {
-    padding: 1.5rem;
-  }
+
 
   .fullPackage {
     padding: 1.5rem;
   }
+}
+
+/* Quiet, readable content around the moving embroidery. */
+.heroTitle,
+.heroSubtitle {
+  position: relative;
+  z-index: 3;
+}
+
+.sectionHeading { text-wrap: balance; }
+.textBlock { width: 100%; }
+.formatNote { text-align: left; }
+
+.validity {
+  border-left: 2px solid #072b16;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.priceValue {
+  font-family: var(--font-geist-sans), sans-serif;
+  color: #072b16;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sectionDark + .sectionDark { padding-top: 0; }
+
+.ctaButton:focus-visible {
+  outline: 2px solid #e8e2bf;
+  outline-offset: 5px;
+}
+
+@media (max-width: 500px) {
+  .priceRow { flex-direction: column; gap: 0.35rem; }
+  .fullPackageValue { font-size: 1.7rem; line-height: 1.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaButton { transition: none; }
+  .sectionHeading span { opacity: 1; transform: none; }
 }

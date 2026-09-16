@@ -42,6 +42,8 @@ export default function VoucherContent() {
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     const ctx = gsap.context(() => {
       if (heroTitleRef.current) {
         gsap.fromTo(heroTitleRef.current, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.2 });
@@ -75,41 +77,44 @@ export default function VoucherContent() {
         </div>
       </section>
 
-      <section className={styles.sectionDark}>
-        <div ref={formatRef} className={styles.narrow}>
-          <span className={styles.tag}>{t("formatTag")}</span>
-          <div className={styles.formatGrid}>
-            <div className={styles.formatCard}><h3 className={styles.formatTitle}>{t("scrollTitle")}</h3><p className={styles.formatText}>{t("scrollText")}</p></div>
-            <div className={styles.formatCard}><h3 className={styles.formatTitle}>{t("blankTitle")}</h3><p className={styles.formatText}>{t("blankText")}</p></div>
-          </div>
-          <p className={styles.formatNote}>{t("blankNote")}</p>
-        </div>
-      </section>
-
       <section className={styles.section}>
         <ShevitsaDecor variant={5} />
         <div ref={howRef} className={styles.narrow}>
-          <span className={styles.tagDark}>{t("howItWorksTag")}</span>
+          <h2 className={styles.tagDark}>{t("howItWorksTag")}</h2>
           <div className={styles.textBlock}>
             <p className={styles.bodyText}>{t("howText1")}</p>
             <p className={styles.bodyText}>{t("howText2")}</p>
             <p className={styles.bodyText}>{t("howText3")}</p>
+            <div className={styles.validity}>
+              <p className={styles.bodyText}>{t("validityText")}</p>
+              <p className={styles.bodyText}>{t("reservationText")}</p>
+            </div>
             <p className={styles.noteText}>{t("howNote")}</p>
           </div>
         </div>
       </section>
 
       <section className={styles.sectionDark}>
+        <div ref={formatRef} className={styles.narrow}>
+          <h2 className={styles.tag}>{t("formatTag")}</h2>
+          <div className={styles.textBlock}>
+            <p className={styles.formatText}>{t("formatText1")}</p>
+            <p className={styles.formatText}>{t("formatText2")}</p>
+          </div>
+          <p className={styles.formatNote}>{t("blankNote")}</p>
+        </div>
+      </section>
+
+      <section className={styles.sectionDark}>
         <div ref={experienceRef} className={styles.narrow}>
-          <span className={styles.tag}>{t("experienceTag")}</span>
+          <h2 className={styles.tag}>{t("experienceTag")}</h2>
           <ul className={styles.expList}>
             <li className={styles.expItem}>{t("exp1")}</li>
             <li className={styles.expItem}>{t("exp2")}</li>
             <li className={styles.expItem}>{t("exp3")}</li>
-            <li className={styles.expItem}>{t("exp4")}</li>
           </ul>
           <div className={styles.addons}>
-            <h4 className={styles.addonsTitle}>{t("addonsTitle")}</h4>
+            <h3 className={styles.addonsTitle}>{t("addonsTitle")}</h3>
             <ul className={styles.addonList}>
               <li className={styles.addonItem}>{t("addon1")}</li>
               <li className={styles.addonItem}>{t("addon2")}</li>
@@ -122,11 +127,11 @@ export default function VoucherContent() {
       <section className={styles.section}>
         <ShevitsaDecor variant={10} />
         <div ref={pricingRef} className={styles.narrow}>
-          <span className={styles.tagDark}>{t("pricingTag")}</span>
+          <h2 className={styles.tagDark}>{t("pricingTag")}</h2>
           <div className={styles.priceList}>
-            <div className={styles.priceRow}><span className={styles.priceLabel}>{t("priceMain")}</span></div>
-            <div className={styles.priceRow}><span className={styles.priceLabel}>{t("priceWine")}</span></div>
-            <div className={styles.priceRow}><span className={styles.priceLabel}>{t("priceBreakfast")}</span></div>
+            <div className={styles.priceRow}><span className={styles.priceLabel}>{t("priceMain")}</span><span className={styles.priceValue}>{t("priceMainValue")}</span></div>
+            <div className={styles.priceRow}><span className={styles.priceLabel}>{t("priceWine")}</span><span className={styles.priceValue}>{t("priceWineValue")}</span></div>
+            <div className={styles.priceRow}><span className={styles.priceLabel}>{t("priceBreakfast")}</span><span className={styles.priceValue}>{t("priceBreakfastValue")}</span></div>
           </div>
           <div className={styles.fullPackage}>
             <span className={styles.fullPackageLabel}>{t("priceFullLabel")}</span>
@@ -138,7 +143,7 @@ export default function VoucherContent() {
 
       <section className={styles.sectionDark}>
         <div ref={ctaRef} className={styles.narrow}>
-          <span className={styles.tag}>{t("ctaTag")}</span>
+          <h2 className={styles.tag}>{t("ctaTag")}</h2>
           <p className={styles.ctaText}>{t("ctaText")}</p>
           <Link href="/contact" className={styles.ctaButton}>{t("ctaButton")}</Link>
           <p className={styles.closing}>{t("ctaClosing")}</p>
