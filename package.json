@@ -10,7 +10,9 @@
     "migrate:r2": "tsx scripts/migrate-to-r2.ts",
     "migrate:r2:dry": "tsx scripts/migrate-to-r2.ts --dry-run",
     "migrate:r2:backup": "tsx scripts/migrate-to-r2.ts --backup",
-    "migrate:r2:rollback": "tsx scripts/migrate-to-r2.ts --rollback"
+    "migrate:r2:rollback": "tsx scripts/migrate-to-r2.ts --rollback",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1032.0",

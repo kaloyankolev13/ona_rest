@@ -1,3 +1,4 @@
+import { EMAIL_RE } from "../lib/form-validation";
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 export interface IMessage extends Document {
@@ -11,10 +12,10 @@ export interface IMessage extends Document {
 
 const MessageSchema = new Schema<IMessage>(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    subject: { type: String, required: true },
-    message: { type: String, required: true },
+    name: { type: String, required: true, trim: true, maxlength: 100, minlength: 2 },
+    email: { type: String, required: true, trim: true, maxlength: 254, match: EMAIL_RE },
+    subject: { type: String, default: "", trim: true, maxlength: 200 },
+    message: { type: String, required: true, trim: true, maxlength: 5000, minlength: 5 },
     read: { type: Boolean, default: false },
   },
   { timestamps: true }

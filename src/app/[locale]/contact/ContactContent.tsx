@@ -35,6 +35,9 @@ export default function ContactContent() {
   >("idle");
   const [touched, setTouched] = useState<{ email?: boolean }>({});
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [website, setWebsite] = useState("");
+  const formStartedAt = useRef<number>(0);
+  useEffect(() => { formStartedAt.current = Date.now(); }, []);
   const turnstileRef = useRef<TurnstileHandle>(null);
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,6 +47,7 @@ export default function ContactContent() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (status === "sending") return;
 
     setTouched({ email: true });
     if (!EMAIL_RE.test(email)) return;
@@ -57,7 +61,7 @@ export default function ContactContent() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, subject, message, captchaToken }),
+        body: JSON.stringify({ name, email, subject, message, captchaToken, website, formStartedAt: formStartedAt.current }),
       });
 
       if (!res.ok) throw new Error();
@@ -180,6 +184,7 @@ export default function ContactContent() {
           <div ref={formRef} className={styles.formColumn}>
             <span className={styles.tag}>{t("formTag")}</span>
             <form className={styles.form} onSubmit={handleSubmit}>
+              <div hidden aria-hidden="true"><label>Website<input name="website" type="text" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} /></label></div>
               <div className={styles.formRow}>
                 <div className={styles.fieldGroup}>
                   <label className={styles.fieldLabel}>{t("formName")}</label>

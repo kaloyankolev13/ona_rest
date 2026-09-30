@@ -92,14 +92,17 @@ export const Turnstile = forwardRef<TurnstileHandle, TurnstileProps>(
     const onExpireRef = useRef(onExpire);
     const onErrorRef = useRef(onError);
 
-    onVerifyRef.current = onVerify;
-    onExpireRef.current = onExpire;
-    onErrorRef.current = onError;
+    useEffect(() => {
+      onVerifyRef.current = onVerify;
+      onExpireRef.current = onExpire;
+      onErrorRef.current = onError;
+    }, [onVerify, onExpire, onError]);
 
     useImperativeHandle(
       ref,
       () => ({
         reset: () => {
+          onExpireRef.current?.();
           if (widgetIdRef.current && window.turnstile) {
             window.turnstile.reset(widgetIdRef.current);
           }
@@ -127,6 +130,7 @@ export const Turnstile = forwardRef<TurnstileHandle, TurnstileProps>(
           widgetIdRef.current = window.turnstile.render(target, {
             sitekey: siteKey,
             callback: (token: string) => onVerifyRef.current(token),
+            "timeout-callback": () => onExpireRef.current?.(),
             "expired-callback": () => onExpireRef.current?.(),
             "error-callback": () => onErrorRef.current?.(),
             theme,

@@ -4,7 +4,7 @@ import Booking from "@/models/Booking";
 
 function isAuthed(request: NextRequest) {
   const session = request.cookies.get("admin_session")?.value;
-  return session === process.env.ADMIN_SESSION_SECRET;
+  return !!process.env.ADMIN_SESSION_SECRET && session === process.env.ADMIN_SESSION_SECRET;
 }
 
 export async function PUT(
@@ -19,8 +19,9 @@ export async function PUT(
   const body = await request.json();
 
   await connectDB();
-  const updated = await Booking.findByIdAndUpdate(id, body, {
+  const updated = await Booking.findByIdAndUpdate(id, { $set: { read: body.read === true } }, {
     returnDocument: "after",
+    runValidators: true,
   });
 
   if (!updated) {
