@@ -1,4 +1,8 @@
 {
+  "Turnstile": {
+    "failed": "Проверката не успя (код {code}). Опитайте отново.",
+    "retry": "Нова проверка"
+  },
   "Metadata": {
     "title": "ONA",
     "description": "ONA Ресторант",

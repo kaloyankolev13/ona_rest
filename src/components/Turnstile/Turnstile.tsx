@@ -5,7 +5,9 @@ import {
   useEffect,
   useImperativeHandle,
   useRef,
+  useState,
 } from "react";
+import { useTranslations } from "next-intl";
 
 const SCRIPT_SRC =
   "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
@@ -16,7 +18,7 @@ interface TurnstileRenderOptions {
   sitekey: string;
   callback: (token: string) => void;
   "expired-callback"?: () => void;
-  "error-callback"?: () => void;
+  "error-callback"?: (code: string) => void;
   "timeout-callback"?: () => void;
   theme?: TurnstileTheme;
   size?: "normal" | "compact" | "flexible";
@@ -86,6 +88,9 @@ export const Turnstile = forwardRef<TurnstileHandle, TurnstileProps>(
     { onVerify, onExpire, onError, theme = "auto", action, className },
     ref
   ) {
+    const t = useTranslations("Turnstile");
+    const [errorCode, setErrorCode] = useState<string | null>(null);
+    const [generation, setGeneration] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const widgetIdRef = useRef<string | null>(null);
     const onVerifyRef = useRef(onVerify);
@@ -102,6 +107,7 @@ export const Turnstile = forwardRef<TurnstileHandle, TurnstileProps>(
       ref,
       () => ({
         reset: () => {
+          setErrorCode(null);
           onExpireRef.current?.();
           if (widgetIdRef.current && window.turnstile) {
             window.turnstile.reset(widgetIdRef.current);
@@ -129,10 +135,20 @@ export const Turnstile = forwardRef<TurnstileHandle, TurnstileProps>(
           if (cancelled || !window.turnstile) return;
           widgetIdRef.current = window.turnstile.render(target, {
             sitekey: siteKey,
-            callback: (token: string) => onVerifyRef.current(token),
+            callback: (token: string) => {
+              if (cancelled) return;
+              setErrorCode(null);
+              onVerifyRef.current(token);
+            },
             "timeout-callback": () => onExpireRef.current?.(),
             "expired-callback": () => onExpireRef.current?.(),
-            "error-callback": () => onErrorRef.current?.(),
+            "error-callback": (code: string) => {
+              if (cancelled) return;
+              setErrorCode(code);
+              console.warn("Turnstile verification failed", { code, action });
+              onErrorRef.current?.();
+            },
+            size: "flexible",
             theme,
             action,
           });
@@ -152,8 +168,22 @@ export const Turnstile = forwardRef<TurnstileHandle, TurnstileProps>(
           widgetIdRef.current = null;
         }
       };
-    }, [theme, action]);
+    }, [theme, action, generation]);
 
-    return <div ref={containerRef} className={className} />;
+    return (
+      <div className={className}>
+        <div ref={containerRef} />
+        {errorCode && (
+          <div role="alert">
+            <p>{t("failed", { code: errorCode })}</p>
+            <button type="button" onClick={() => {
+              onExpireRef.current?.();
+              setErrorCode(null);
+              setGeneration(value => value + 1);
+            }}>{t("retry")}</button>
+          </div>
+        )}
+      </div>
+    );
   }
 );

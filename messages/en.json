@@ -1,4 +1,8 @@
 {
+  "Turnstile": {
+    "failed": "Verification failed (code {code}). Please try again.",
+    "retry": "Retry verification"
+  },
   "Metadata": {
     "title": "ONA",
     "description": "ONA Restaurant",
