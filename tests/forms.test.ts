@@ -1,5 +1,6 @@
 import test, { beforeEach } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { secureSubmission, SubmissionError, resetFormSecurityForTests } from "../src/lib/form-security";
 import { verifyTurnstile, getRemoteIp } from "../src/lib/turnstile";
 import { validBookingDate } from "../src/lib/form-validation";
@@ -23,6 +24,13 @@ async function rejected(form: "contact" | "booking", body: unknown, code = 400) 
  await assert.rejects(submit(form, body), error => error instanceof SubmissionError && error.status === code); assert.equal(saves, 0);
 }
 for (const form of ["contact", "booking"] as const) {
+ test(form + " widget provides the required verification action", () => {
+   const page = form === "booking" ? "book/BookContent" : "contact/ContactContent";
+   const source = readFileSync(new URL("../src/app/[locale]/" + page + ".tsx", import.meta.url), "utf8");
+   const widget = source.match(/<Turnstile\s[\s\S]*?\/>/)?.[0];
+   assert.ok(widget, "The form must render its Turnstile widget");
+   assert.match(widget, new RegExp('action="' + form + '"'));
+ });
  const body = form === "contact" ? contact : booking;
  test(form + " valid submission", async () => { response = { ...(response as object), action: form }; await submit(form, body); assert.equal(saves, 1); });
  test(form + " missing token", () => rejected(form, { ...body, captchaToken: undefined }));

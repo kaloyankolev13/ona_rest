@@ -214,6 +214,7 @@ export default function ContactContent() {
               </div>
               <Turnstile
                 ref={turnstileRef}
+                action="contact"
                 onVerify={(token) => {
                   setCaptchaToken(token);
                   if (status === "captcha") setStatus("idle");

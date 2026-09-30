@@ -250,6 +250,7 @@ export default function BookContent() {
 
             <Turnstile
               ref={turnstileRef}
+              action="booking"
               onVerify={(token) => {
                 setCaptchaToken(token);
                 if (status === "captcha") setStatus("idle");
